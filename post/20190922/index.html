@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.55.6" />
+
+  <title>[ChatBot03] 上傳 EchoBot 到雲端並建立通道 &middot; Ava程式筆記</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://avacheng.github.io/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://avacheng.github.io/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="https://avacheng.github.io/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+ 
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="https://avacheng.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="https://avacheng.github.io/">Ava程式筆記</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/topics/"><i class='fa fa-map-signs fa-fw'></i>Topics</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/tags/"><i class='fa fa-tag fa-fw'></i>Tags</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/about/"><i class='fa fa-user fa-fw'></i>About</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/avacheng" rel="me" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2019. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>[ChatBot03] 上傳 EchoBot 到雲端並建立通道</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>2019-09-22 Sunday</time>
+  </div>
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://avacheng.github.io/topics/%E7%AB%99%E5%9C%A8%E5%B7%A8%E4%BA%BA%E8%82%A9%E8%86%80%E4%B8%8A%E9%96%8B%E7%99%BC%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA">站在巨人肩膀上開發聊天機器人</a>
+    
+  </div>
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/chatbot">chatbot</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/web-app">web-app</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/azure">azure</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/.net-core">.net-core</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/bot-channels-registration">bot-channels-registration</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/webchat">webchat</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>前一篇在地端完成了一個簡單的機器人，而這篇目標是將這個機器人放到 <a href="https://portal.azure.com/" target="_blank">Azure 雲端</a> 成為一個「App」，並建立「機器人通道註冊」與之相連。最後使用「機器人通道註冊」中的預設通道「WebChat 網路聊天」作為使用者介面來測試雲端佈署是否成功。</p>
+
+<p>本文大綱：<br>
+1. 在 Azure 建立機器人通道註冊（Bot Channels Registration，屬於 Bot 服務的子項目），並在 AD 新增應用程式註冊，用來取得與管理 Web App 的帳號密碼<br>
+2. 將帳號密碼加入 EchoBot 參數，再到 Azure 建立 Web App（Web 應用程式/應用程式服務），上傳 EchoBot 專案<br>
+3. 在「WebChat 網路聊天」介面測試雲端佈署是否成功</p>
+
+<p><img src="https://avacheng.github.io/post/pic20190922/BotFramework0922.jpg" width="100%">
+↑ 目標：將機器人發行到雲端並可透過 WebChat 傳送接收訊息</p>
+
+<hr />
+
+<h2 id="1-在-azure-建立機器人通道註冊">1. 在 Azure 建立機器人通道註冊</h2>
+
+<blockquote>
+<p>》在 Azure 建立機器人通道註冊（Bot Channels Registration，屬於 Bot 服務的子項目），並在 AD 新增應用程式註冊，用來取得與管理 Web App 的帳號密碼</p>
+</blockquote>
+
+<p>參考下圖建立「機器人通道註冊」（Bot Channels Registration），其中定價層改為 F0，並且在建立資源前，先註冊應用程式 ID 和密碼
+<img src="https://avacheng.github.io/post/pic20190922/Picture0391.png" width="100%"></p>
+
+<hr />
+
+<p>依照以下畫面在 Azure AD 建立新的應用程式註冊
+<img src="https://avacheng.github.io/post/pic20190922/Picture0401.png" width="100%"></p>
+
+<hr />
+
+<p><img src="https://avacheng.github.io/post/pic20190922/Picture0411.png" width="100%"></p>
+
+<hr />
+
+<p>複製「應用程式識別碼」另外貼到記事本中，此即為「應用程式 ID」
+<img src="https://avacheng.github.io/post/pic20190922/Picture0421.png" width="100%"></p>
+
+<hr />
+
+<p>接下來產生密碼
+<img src="https://avacheng.github.io/post/pic20190922/Picture0431.png" width="100%"></p>
+
+<hr />
+
+<p><img src="https://avacheng.github.io/post/pic20190922/Picture0441.png" width="100%"></p>
+
+<hr />
+
+<p>密碼只會出現這一次，一樣貼到記事本中（如果密碼不見了，用同樣程序產生新的密碼，並修改所有用到密碼的地方即可）
+<img src="https://avacheng.github.io/post/pic20190922/Picture0451.png" width="100%"></p>
+
+<hr />
+
+<p><img src="https://avacheng.github.io/post/pic20190922/Picture0461.png" width="100%"></p>
+
+<hr />
+
+<h2 id="2-上傳-echobot-專案到-azure">2. 上傳 EchoBot 專案到 Azure</h2>
+
+<blockquote>
+<p>》將帳號密碼加入 EchoBot 參數，再到 Azure 建立 Web App（Web應用程式/應用程式服務），上傳 EchoBot 專案</p>
+</blockquote>
+
+<p>開啟 Visual Studio 中的 appsettings.json 檔案，將剛才取得的帳號密碼分別填入（參考下圖畫面），儲存檔案
+<img src="https://avacheng.github.io/post/pic20190922/Picture0481.png" width="100%"></p>
+
+<hr />
+
+<p>進到專案的屬性頁面，檢視「目標 Framework」（應為 .NET Core 2.1）
+<img src="https://avacheng.github.io/post/pic20190922/Picture0181.png" width="100%"></p>
+
+<hr />
+
+<p>回到 Azure 畫面，建立新資源「Web App」，參考下圖進行設定，「檢閱及建立」後，進到確認畫面，繼續「建立」來完成新增資源。<br>
+1. 名稱：需在 azurewebsites 網域中為唯一<br>
+2. 執行階段堆疊：選擇和上圖的「目標 Framework」相同<br>
+3. windows方案：如果不是 <strong>(新增)</strong> 開頭，則建立新項目<br>
+4. SKU：在測試階段用「免費 F1」即可
+<img src="https://avacheng.github.io/post/pic20190922/Picture0221.png" width="100%"></p>
+
+<hr />
+
+<p>等待建立完成後，前往資源（App Service），從「取得發行設定檔」下載檔案
+<img src="https://avacheng.github.io/post/pic20190922/Picture0251.png" width="100%"></p>
+
+<hr />
+
+<p>回到 Visual Studio，進入「發行」頁面，點選「匯入設定檔」，匯入先前下載的設定檔
+<img src="https://avacheng.github.io/post/pic20190922/Picture0311.png" width="100%"></p>
+
+<hr />
+
+<p>選項改「Web Deploy」，然後發佈。發佈成功後，複製跳出的網頁的網址
+<img src="https://avacheng.github.io/post/pic20190922/Picture0331.png" width="100%"></p>
+
+<hr />
+
+<p>最後到「機器人通道註冊」的設定頁面，將複製的網址貼到「訊息端點」位置，尾端再加上「api/messages」，然後儲存
+<img src="https://avacheng.github.io/post/pic20190922/Picture0332.png" width="100%"></p>
+
+<hr />
+
+<h2 id="3-測試雲端佈署是否成功">3. 測試雲端佈署是否成功</h2>
+
+<blockquote>
+<p>》在「WebChat 網路聊天」介面測試雲端佈署是否成功</p>
+</blockquote>
+
+<p>訊息端點設定完成後，到「在 WebCaht 中測試」，看連線是否順利、是否能傳送與接收訊息。<br>
+如果成功，機器人應該在 (1)新成員進入對話狀態時，顯示歡迎詞「Hello and welcome!」；(2)接收到訊息後，傳送回聲訊息，也就是「Echo: 收到的訊息」，例如：接收到「你好」，機器人回傳的訊息為「Echo: 你好」。
+<img src="https://avacheng.github.io/post/pic20190922/Picture0531.png" width="100%"></p>
+
+<hr />
+
+<h3 id="補充-本篇所建的資源項目">補充：本篇所建的資源項目</h3>
+
+<blockquote>
+<p>》應有建立「機器人通道註冊」所產生的「機器人通道註冊」和「Application Insights」2 個項目和建立「Web App」所產生的「App Service」、「App Service 方案」和「Application Insights」3 個項目，共 5 個項目</p>
+</blockquote>
+
+<p><img src="https://avacheng.github.io/post/pic20190922/Picture0511.png" width="100%"></p>
+
+<hr />
+
+<h3 id="補充-模擬器加上帳號密碼">補充：模擬器加上帳號密碼</h3>
+
+<p>因為 Echobot 專案的設定檔中加上了 ID 和密碼，模擬器也需要跟著設定，設定方式參考上一篇文章「<a href="../20190907" target="_blank">建立機器人雛形 EchoBot</a>」文末補充部分。</p>
+
+<hr />
+
+<p>&lt;如有轉載，請附上本文連結網址&gt;</p>
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://avacheng.github.io/post/20190907/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://avacheng.github.io/post/20190907/">[ChatBot02] 建立機器人雛形 EchoBot</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+
+  
+
+</div>
+
+</div>
+</div>
+<script src="https://avacheng.github.io/js/ui.js"></script>
+<script src="https://avacheng.github.io/js/menus.js"></script>
+
+
+<script>
+  
+  if (window.location.hostname != "localhost") {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-149376358-1', 'auto');
+    ga('send', 'pageview');
+  }
+</script>
+
+
+
+
+
+</body>
+</html>
+

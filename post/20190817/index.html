@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.55.6" />
+
+  <title>Keras 預訓練模型 layer 抽換 &middot; Ava程式筆記</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://avacheng.github.io/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://avacheng.github.io/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="https://avacheng.github.io/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+ 
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="https://avacheng.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="https://avacheng.github.io/">Ava程式筆記</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/topics/"><i class='fa fa-map-signs fa-fw'></i>Topics</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/tags/"><i class='fa fa-tag fa-fw'></i>Tags</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/about/"><i class='fa fa-user fa-fw'></i>About</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/avacheng" rel="me" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2019. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Keras 預訓練模型 layer 抽換</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>2019-08-18 Sunday</time>
+  </div>
+
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/machine-learning">machine-learning</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/transfer-learning">transfer-learning</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/cnn">cnn</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/pre-train">pre-train</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/resnet50">resnet50</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/keras">keras</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/python">python</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/keras.applications">keras.applications</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>除了自己建模外，keras.applications 提供了數個預訓練的深度學習模型，包含常用的圖片分類模型 ResNet50、Vgg16/Vgg19 等，但是應用時可能會遇到需要調整輸入或輸出 layer 的狀況，最近練習時遇到案例輸入是 (128, 128, 3)、輸出是 2 個分類的，和預設的輸入 (244, 244, 3)、輸出 1000 類不同，在網路上找了一些抽換模型 layer 的方法，記錄下來</p>
+
+<h2 id="引用套件">★ 引用套件</h2>
+
+<pre><code class="language-python">from keras.applications.resnet50 import ResNet50
+</code></pre>
+
+<h2 id="參數說明">★ 參數說明</h2>
+
+<p><a href="https://keras.io/applications/#resnet" target="_blank">(官方連結)</a></p>
+
+<pre><code class="language-python">keras.applications.resnet50.ResNet50(
+                    include_top=True, # 是否包含最後的全連接層 (fully-connected layer)
+                    weights='imagenet', # None: 權重隨機初始化、'imagenet': 載入預訓練權重
+                    input_tensor=None, # 使用 Keras tensor 作為模型的輸入層（layers.Input() 輸出的 tensor）
+                    input_shape=None, # 當 include_top=False 時，可調整輸入圖片的尺寸（長寬需不小於 32）
+                    pooling=None, # 當 include_top=False 時，最後的輸出是否 pooling（可選 'avg' 或 'max'）
+                    classes=1000 # 當 include_top=True 且 weights=None 時，最後輸出的類別數
+                    )
+</code></pre>
+
+<hr />
+
+<h2 id="原始-resnet50-模型">★ 原始 ResNet50 模型</h2>
+
+<pre><code class="language-python">resMod = ResNet50(include_top=True, weights='imagenet')
+</code></pre>
+
+<h3 id="模型前-3-層">模型前 3 層</h3>
+
+<table>
+<thead>
+<tr>
+<th align="left">Layer (type)　　　　　　　　　　</th>
+<th align="left">Output Shape　　　　　</th>
+<th align="center">　　　Param #　　　</th>
+<th align="left">Connected to　　</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">input_1 (InputLayer)</td>
+<td align="left">(None, 224, 224, 3)</td>
+<td align="center">0</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">conv1_pad (ZeroPadding2D)</td>
+<td align="left">(None, 230, 230, 3)</td>
+<td align="center">0</td>
+<td align="left">input_1[0][0]</td>
+</tr>
+
+<tr>
+<td align="left">conv1 (Conv2D)</td>
+<td align="left">(None, 112, 112, 64)</td>
+<td align="center">9472</td>
+<td align="left">conv1_pad[0][0]</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="模型最後-5-層">模型最後 5 層</h3>
+
+<table>
+<thead>
+<tr>
+<th align="left">Layer (type)</th>
+<th align="left">Output Shape</th>
+<th align="center">　Param #　</th>
+<th align="left">Connected to　　</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">bn5c_branch2c (BatchNormalization)</td>
+<td align="left">(None, 7, 7, 2048)</td>
+<td align="center">8192</td>
+<td align="left">res5c_branch2c[0][0]</td>
+</tr>
+
+<tr>
+<td align="left">add_16 (Add)</td>
+<td align="left">(None, 7, 7, 2048)</td>
+<td align="center">0</td>
+<td align="left">bn5c_branch2c[0][0]、activation_46[0][0]</td>
+</tr>
+
+<tr>
+<td align="left">activation_49 (Activation)</td>
+<td align="left">(None, 7, 7, 2048)</td>
+<td align="center">0</td>
+<td align="left">add_16[0][0]</td>
+</tr>
+
+<tr>
+<td align="left">avg_pool (GlobalAveragePooling2)</td>
+<td align="left">(None, 2048)</td>
+<td align="center">0</td>
+<td align="left">activation_49[0][0]</td>
+</tr>
+
+<tr>
+<td align="left">fc1000 (Dense)</td>
+<td align="left">(None, 1000)</td>
+<td align="center">2049000</td>
+<td align="left">avg_pool[0][0]</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="不載入預訓練權重-直接更改輸入輸出層維度">★ 不載入預訓練權重，直接更改輸入輸出層維度</h2>
+
+<pre><code class="language-python">num_classes = 2
+input_shape = (128, 128, 3)
+resMod = ResNet50(include_top=True, weights=None,
+                  input_shape=input_shape, classes=num_classes)
+</code></pre>
+
+<p>得到的模型會是已經調整好輸入輸出維度的模型，但是權重需要重新 training</p>
+
+<h3 id="模型前-3-層-1">模型前 3 層</h3>
+
+<table>
+<thead>
+<tr>
+<th align="left">Layer (type)　　　　　　　　　　</th>
+<th align="left">Output Shape　　　　　</th>
+<th align="center">　　　Param #　　　</th>
+<th align="left">Connected to　　</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">input_1 (InputLayer)</td>
+<td align="left">(None, 128, 128, 3)</td>
+<td align="center">0</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">conv1_pad (ZeroPadding2D)</td>
+<td align="left">(None, 134, 134, 3)</td>
+<td align="center">0</td>
+<td align="left">input_1[0][0]</td>
+</tr>
+
+<tr>
+<td align="left">conv1 (Conv2D)</td>
+<td align="left">(None, 64, 64, 64)</td>
+<td align="center">9472</td>
+<td align="left">conv1_pad[0][0]</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="模型最後-5-層-1">模型最後 5 層</h3>
+
+<table>
+<thead>
+<tr>
+<th align="left">Layer (type)</th>
+<th align="left">Output Shape</th>
+<th align="center">　Param #　</th>
+<th align="left">Connected to　　</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">bn5c_branch2c (BatchNormalization)</td>
+<td align="left">(None, 4, 4, 2048)</td>
+<td align="center">8192</td>
+<td align="left">res5c_branch2c[0][0]</td>
+</tr>
+
+<tr>
+<td align="left">add_16 (Add)</td>
+<td align="left">(None, 4, 4, 2048)</td>
+<td align="center">0</td>
+<td align="left">bn5c_branch2c[0][0]、activation_46[0][0]</td>
+</tr>
+
+<tr>
+<td align="left">activation_49 (Activation)</td>
+<td align="left">(None, 4, 4, 2048)</td>
+<td align="center">0</td>
+<td align="left">add_16[0][0]</td>
+</tr>
+
+<tr>
+<td align="left">avg_pool (GlobalAveragePooling2)</td>
+<td align="left">(None, 2048)</td>
+<td align="center">0</td>
+<td align="left">activation_49[0][0]</td>
+</tr>
+
+<tr>
+<td align="left">fc1000 (Dense)</td>
+<td align="left">(None, 2)</td>
+<td align="center">4098</td>
+<td align="left">avg_pool[0][0]</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="載入權重-更改輸入圖片尺寸-輸出類別數手動修改">★ 載入權重，更改輸入圖片尺寸，輸出類別數手動修改</h2>
+
+<pre><code class="language-python">input_shape = (128, 128, 3)
+resMod = ResNet50(include_top=False, weights='imagenet',
+                  input_shape=input_shape)
+</code></pre>
+
+<h3 id="模型前-3-層-2">模型前 3 層</h3>
+
+<table>
+<thead>
+<tr>
+<th align="left">Layer (type)　　　　　　　　　　</th>
+<th align="left">Output Shape　　　　　</th>
+<th align="center">　　　Param #　　　</th>
+<th align="left">Connected to　　</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">input_1 (InputLayer)</td>
+<td align="left">(None, 128, 128, 3)</td>
+<td align="center">0</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">conv1_pad (ZeroPadding2D)</td>
+<td align="left">(None, 134, 134, 3)</td>
+<td align="center">0</td>
+<td align="left">input_1[0][0]</td>
+</tr>
+
+<tr>
+<td align="left">conv1 (Conv2D)</td>
+<td align="left">(None, 64, 64, 64)</td>
+<td align="center">9472</td>
+<td align="left">conv1_pad[0][0]</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="模型最後-3-層">模型最後 3 層</h3>
+
+<table>
+<thead>
+<tr>
+<th align="left">Layer (type)</th>
+<th align="left">Output Shape</th>
+<th align="center">　Param #　</th>
+<th align="left">Connected to　　</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">bn5c_branch2c (BatchNormalization)</td>
+<td align="left">(None, 4, 4, 2048)</td>
+<td align="center">8192</td>
+<td align="left">res5c_branch2c[0][0]</td>
+</tr>
+
+<tr>
+<td align="left">add_16 (Add)</td>
+<td align="left">(None, 4, 4, 2048)</td>
+<td align="center">0</td>
+<td align="left">bn5c_branch2c[0][0]、activation_46[0][0]</td>
+</tr>
+
+<tr>
+<td align="left">activation_49 (Activation)</td>
+<td align="left">(None, 4, 4, 2048)</td>
+<td align="center">0</td>
+<td align="left">add_16[0][0]</td>
+</tr>
+</tbody>
+</table>
+
+<p>在 <code>pooling=None</code> 時，原先的最後 2 層會被抽出；假如 <code>pooling='avg'</code> ，GlobalAveragePooling2 這層還會保留，只抽掉最後的全連接層；假如 <code>pooling='max'</code> ，GlobalAveragePooling2 這層會換成 Max Pooling，同時抽掉最後一層。</p>
+
+<p>因為 <code>include_top=False</code> ，模型需要補上 output layer，例如：</p>
+
+<pre><code class="language-python">from keras.layers import Dense, Dropout, Flatten
+num_classes = 2
+x = resMod.layers[-1].output
+x = Flatten(name='flatten')(x)
+x = Dropout(0.5)(x)
+x = Dense(num_classes, activation='softmax', name='predictions')(x)
+
+# Create your own model 
+model = keras.models.Model(input=resMod.input, output=x) 
+model.summary()
+</code></pre>
+
+<hr />
+
+<h2 id="手動修改輸入層">★ 手動修改輸入層</h2>
+
+<pre><code class="language-python">resMod = ResNet50(include_top=True, weights='imagenet')
+# Pop out input layer
+resMod.layers.pop(0)
+
+# New input layer
+newInput = keras.layers.Input(batch_shape=(None, 128, 128, 3))
+newOutputs = resMod(newInput)
+newModel = keras.models.Model(input=newInput, output=newOutputs)
+newModel.summary()
+</code></pre>
+
+<h3 id="模型結構">模型結構</h3>
+
+<table>
+<thead>
+<tr>
+<th align="left">Layer (type)　　　　　　　　　　</th>
+<th align="left">Output Shape　　　　　</th>
+<th align="center">　　　Param #　　　</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">input_1 (InputLayer)</td>
+<td align="left">(None, 128, 128, 3)</td>
+<td align="center">0</td>
+</tr>
+
+<tr>
+<td align="left">resnet50 (Model)</td>
+<td align="left">multiple</td>
+<td align="center">25636712</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2 id="flatten-vs-globalpooling">Flatten vs. GlobalPooling</h2>
+
+<p><a href="https://blog.csdn.net/qq_16234613/article/details/79520929" target="_blank">參考連結</a></p>
+
+<p><img src="https://avacheng.github.io/post/pic20190817/flattenvsglobalpooling.png" width="100%"></p>
+
+<p>Flatten 是將所有的 feature map 的所有 cell 轉成向量；GlobalPooling 則是每張 feature map 全部 cell 先經過 max 或 average pooling 後，再轉成向量，可以處理全連接層輸入維度太大、參數太多的問題</p>
+
+<p>例如 activation_49 維度是 (None, 4, 4, 2048)，如果下一層 Flatten，最後參數數目是 4 * 4 * 2048 = 32768 個；如果是 GlobalAveragePooling，參數就只有 2048 個。</p>
+
+<hr />
+
+<p>&lt;如有轉載，請附上本文連結網址&gt;</p>
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://avacheng.github.io/post/20190803/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://avacheng.github.io/post/20190803/">Win10 安裝 tensorflow-gpu</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="https://avacheng.github.io/post/20190825/">[ChatBot01] 站在巨人肩膀上開發聊天機器人-系列說明</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="https://avacheng.github.io/post/20190825/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+  
+
+</div>
+
+</div>
+</div>
+<script src="https://avacheng.github.io/js/ui.js"></script>
+<script src="https://avacheng.github.io/js/menus.js"></script>
+
+
+<script>
+  
+  if (window.location.hostname != "localhost") {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-149376358-1', 'auto');
+    ga('send', 'pageview');
+  }
+</script>
+
+
+
+
+
+</body>
+</html>
+

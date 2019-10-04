@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>iot on Ava程式筆記</title>
+    <link>https://avacheng.github.io/tags/iot/</link>
+    <description>Recent content in iot on Ava程式筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <copyright>&amp;copy; 2019. All rights reserved.</copyright>
+    <lastBuildDate>Sat, 22 Jun 2019 16:21:48 +0800</lastBuildDate>
+    
+	<atom:link href="https://avacheng.github.io/tags/iot/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>微軟 DevDays AI-IoT 實作坊</title>
+      <link>https://avacheng.github.io/post/20190622/</link>
+      <pubDate>Sat, 22 Jun 2019 16:21:48 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20190622/</guid>
+      <description>&lt;p&gt;《AI + IoT Power Couple – Hands-on Custom AI at the Intelligent Edge》&lt;br&gt;
+微軟2019年亞太技術年會實作坊 講師：Ted Way、Darwin Schweitzer&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;課程目標：學習如何將 ML 模型佈署到 IoT 邊緣裝置，用以節省雲端傳輸與運算的消耗，並提升邊緣裝置的反應效率&lt;br&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

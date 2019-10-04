@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ava程式筆記</title>
+    <link>https://avacheng.github.io/</link>
+    <description>Recent content on Ava程式筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <copyright>&amp;copy; 2019. All rights reserved.</copyright>
+    <lastBuildDate>Sun, 22 Sep 2019 17:12:45 +0800</lastBuildDate>
+    
+	<atom:link href="https://avacheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[ChatBot03] 上傳 EchoBot 到雲端並建立通道</title>
+      <link>https://avacheng.github.io/post/20190922/</link>
+      <pubDate>Sun, 22 Sep 2019 17:12:45 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20190922/</guid>
+      <description>&lt;p&gt;前一篇在地端完成了一個簡單的機器人，而這篇目標是將這個機器人放到 &lt;a href=&#34;https://portal.azure.com/&#34; target=&#34;_blank&#34;&gt;Azure 雲端&lt;/a&gt; 成為一個「App」，並建立「機器人通道註冊」與之相連。最後使用「機器人通道註冊」中的預設通道「WebChat 網路聊天」作為使用者介面來測試雲端佈署是否成功。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[ChatBot02] 建立機器人雛形 EchoBot</title>
+      <link>https://avacheng.github.io/post/20190907/</link>
+      <pubDate>Sat, 07 Sep 2019 15:42:30 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20190907/</guid>
+      <description>&lt;p&gt;在 Visual Studio 中使用 Bot Framework SDK 建立專案作為機器人的雛形。後續程式開發部分將以這個專案為模板進行修改。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[ChatBot01] 站在巨人肩膀上開發聊天機器人-系列說明</title>
+      <link>https://avacheng.github.io/post/20190825/</link>
+      <pubDate>Sun, 25 Aug 2019 19:42:30 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20190825/</guid>
+      <description>&lt;p&gt;這一系列文章記錄了自己打造聊天機器人的過程與心得，當中用了微軟的機器人開發套件 Bot Framework v4 SDK (C#) 和微軟的雲端平台 Azure 與認知服務，做出可以分析自然語言、具備基本問答能力的機器人，而且在多個平台上可以共用同樣的程式碼。&lt;/p&gt;
+
+&lt;p&gt;非常感謝網路上許多高手提供自己的經驗和技術，讓這個簡單的機器人得以成形。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Keras 預訓練模型 layer 抽換</title>
+      <link>https://avacheng.github.io/post/20190817/</link>
+      <pubDate>Sun, 18 Aug 2019 21:00:55 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20190817/</guid>
+      <description>&lt;p&gt;除了自己建模外，keras.applications 提供了數個預訓練的深度學習模型，包含常用的圖片分類模型 ResNet50、Vgg16/Vgg19 等，但是應用時可能會遇到需要調整輸入或輸出 layer 的狀況，最近練習時遇到案例輸入是 (128, 128, 3)、輸出是 2 個分類的，和預設的輸入 (244, 244, 3)、輸出 1000 類不同，在網路上找了一些抽換模型 layer 的方法，記錄下來&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Win10 安裝 tensorflow-gpu</title>
+      <link>https://avacheng.github.io/post/20190803/</link>
+      <pubDate>Sat, 03 Aug 2019 18:45:19 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20190803/</guid>
+      <description>&lt;p&gt;安裝過程依照 &lt;a href=&#34;https://medium.com/@WhoYoung99/2018%E6%9C%80%E6%96%B0win10%E5%AE%89%E8%A3%9Dtensorflow-gpu-keras-8b3f8652509a&#34; target=&#34;_blank&#34;&gt; [Win10 安裝 TensorFlow-gpu &amp;amp; Keras] &lt;/a&gt;，最後再參考 &lt;a href=&#34;https://janakiev.com/til/jupyter-virtual-envs/&#34; target=&#34;_blank&#34;&gt; [Using Virtual Environments in Jupyter Notebook and Python] &lt;/a&gt; 將新建的環境加到 Jupyter Notebook 中&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 Azure 服務工作區訓練 ML 模型</title>
+      <link>https://avacheng.github.io/post/20190727/</link>
+      <pubDate>Sat, 27 Jul 2019 11:50:52 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20190727/</guid>
+      <description>&lt;p&gt;目的：依據&lt;a href=&#34;https://github.com/Azure/MachineLearningNotebooks/blob/master/tutorials/img-classification-part1-training.ipynb&#34; target=&#34;_blank&#34;&gt; 參考連結1 &lt;/a&gt;的模式，將等待訓練的 ML 模型送到 Azure ML Service Workspace 使用 GPU 來進行訓練（Experiment），以提高訓練效率&lt;/p&gt;
+
+&lt;p&gt;效果：用 ResNet50 訓練圖片 (128*128) 約 2 萬張，1 epoch CUP i5 訓練時間約 8700 秒；Azure GPU 約 800 秒&lt;/p&gt;
+
+&lt;p&gt;準備：(1) 在 Jupyter Notebook 上執行 Azure 工作區的建立和上傳資料 (2) 實際訓練內容 training script (train.py)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>.Net String.Format 整理</title>
+      <link>https://avacheng.github.io/post/20190707/</link>
+      <pubDate>Sun, 07 Jul 2019 16:12:45 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20190707/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>微軟 DevDays AI-IoT 實作坊</title>
+      <link>https://avacheng.github.io/post/20190622/</link>
+      <pubDate>Sat, 22 Jun 2019 16:21:48 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20190622/</guid>
+      <description>&lt;p&gt;《AI + IoT Power Couple – Hands-on Custom AI at the Intelligent Edge》&lt;br&gt;
+微軟2019年亞太技術年會實作坊 講師：Ted Way、Darwin Schweitzer&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;課程目標：學習如何將 ML 模型佈署到 IoT 邊緣裝置，用以節省雲端傳輸與運算的消耗，並提升邊緣裝置的反應效率&lt;br&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://avacheng.github.io/about/</link>
+      <pubDate>Tue, 11 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://avacheng.github.io/about/</guid>
+      <description> 關於我  .NET Programmer Python Starter  關於網站  寫完程式，沉澱一下，將過程、想法、遇到的問題與解決方式記錄下來，從中成長 本業之外延伸更多的專長與興趣，成就更美好的自己  </description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>https://avacheng.github.io/contact/</link>
+      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://avacheng.github.io/contact/</guid>
+      <description> First Name  Last Name  E-Mail  City  State AL CA IL      Send   </description>
+    </item>
+    
+  </channel>
+</rss>

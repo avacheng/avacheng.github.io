@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>azure on Ava程式筆記</title>
+    <link>https://avacheng.github.io/tags/azure/</link>
+    <description>Recent content in azure on Ava程式筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <copyright>&amp;copy; 2019. All rights reserved.</copyright>
+    <lastBuildDate>Sun, 22 Sep 2019 17:12:45 +0800</lastBuildDate>
+    
+	<atom:link href="https://avacheng.github.io/tags/azure/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[ChatBot03] 上傳 EchoBot 到雲端並建立通道</title>
+      <link>https://avacheng.github.io/post/20190922/</link>
+      <pubDate>Sun, 22 Sep 2019 17:12:45 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20190922/</guid>
+      <description>&lt;p&gt;前一篇在地端完成了一個簡單的機器人，而這篇目標是將這個機器人放到 &lt;a href=&#34;https://portal.azure.com/&#34; target=&#34;_blank&#34;&gt;Azure 雲端&lt;/a&gt; 成為一個「App」，並建立「機器人通道註冊」與之相連。最後使用「機器人通道註冊」中的預設通道「WebChat 網路聊天」作為使用者介面來測試雲端佈署是否成功。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>[ChatBot01] 站在巨人肩膀上開發聊天機器人-系列說明</title>
+      <link>https://avacheng.github.io/post/20190825/</link>
+      <pubDate>Sun, 25 Aug 2019 19:42:30 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20190825/</guid>
+      <description>&lt;p&gt;這一系列文章記錄了自己打造聊天機器人的過程與心得，當中用了微軟的機器人開發套件 Bot Framework v4 SDK (C#) 和微軟的雲端平台 Azure 與認知服務，做出可以分析自然語言、具備基本問答能力的機器人，而且在多個平台上可以共用同樣的程式碼。&lt;/p&gt;
+
+&lt;p&gt;非常感謝網路上許多高手提供自己的經驗和技術，讓這個簡單的機器人得以成形。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 Azure 服務工作區訓練 ML 模型</title>
+      <link>https://avacheng.github.io/post/20190727/</link>
+      <pubDate>Sat, 27 Jul 2019 11:50:52 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20190727/</guid>
+      <description>&lt;p&gt;目的：依據&lt;a href=&#34;https://github.com/Azure/MachineLearningNotebooks/blob/master/tutorials/img-classification-part1-training.ipynb&#34; target=&#34;_blank&#34;&gt; 參考連結1 &lt;/a&gt;的模式，將等待訓練的 ML 模型送到 Azure ML Service Workspace 使用 GPU 來進行訓練（Experiment），以提高訓練效率&lt;/p&gt;
+
+&lt;p&gt;效果：用 ResNet50 訓練圖片 (128*128) 約 2 萬張，1 epoch CUP i5 訓練時間約 8700 秒；Azure GPU 約 800 秒&lt;/p&gt;
+
+&lt;p&gt;準備：(1) 在 Jupyter Notebook 上執行 Azure 工作區的建立和上傳資料 (2) 實際訓練內容 training script (train.py)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>微軟 DevDays AI-IoT 實作坊</title>
+      <link>https://avacheng.github.io/post/20190622/</link>
+      <pubDate>Sat, 22 Jun 2019 16:21:48 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20190622/</guid>
+      <description>&lt;p&gt;《AI + IoT Power Couple – Hands-on Custom AI at the Intelligent Edge》&lt;br&gt;
+微軟2019年亞太技術年會實作坊 講師：Ted Way、Darwin Schweitzer&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;課程目標：學習如何將 ML 模型佈署到 IoT 邊緣裝置，用以節省雲端傳輸與運算的消耗，並提升邊緣裝置的反應效率&lt;br&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

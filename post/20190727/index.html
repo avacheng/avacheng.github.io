@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.55.6" />
+
+  <title>使用 Azure 服務工作區訓練 ML 模型 &middot; Ava程式筆記</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://avacheng.github.io/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://avacheng.github.io/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="https://avacheng.github.io/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+ 
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="https://avacheng.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="https://avacheng.github.io/">Ava程式筆記</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/topics/"><i class='fa fa-map-signs fa-fw'></i>Topics</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/tags/"><i class='fa fa-tag fa-fw'></i>Tags</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/about/"><i class='fa fa-user fa-fw'></i>About</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/avacheng" rel="me" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2019. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>使用 Azure 服務工作區訓練 ML 模型</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>2019-07-27 Saturday</time>
+  </div>
+
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/azure">azure</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/machine-learning">machine-learning</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/gpu-training">gpu-training</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/python">python</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>目的：依據<a href="https://github.com/Azure/MachineLearningNotebooks/blob/master/tutorials/img-classification-part1-training.ipynb" target="_blank"> 參考連結1 </a>的模式，將等待訓練的 ML 模型送到 Azure ML Service Workspace 使用 GPU 來進行訓練（Experiment），以提高訓練效率</p>
+
+<p>效果：用 ResNet50 訓練圖片 (128*128) 約 2 萬張，1 epoch CUP i5 訓練時間約 8700 秒；Azure GPU 約 800 秒</p>
+
+<p>準備：(1) 在 Jupyter Notebook 上執行 Azure 工作區的建立和上傳資料 (2) 實際訓練內容 training script (train.py)</p>
+
+<p>步驟：(1) 安裝 Azure SDK，建立 workspace (2) 上傳圖檔到儲存體帳戶中 (3) 設定 script parameters (4) 上傳 training script 到 worksapce (5) 設定並啟動實驗 (Experiment)</p>
+
+<hr />
+
+<h2 id="1-安裝-sdk-建立workspace">1.安裝 SDK，建立workspace</h2>
+
+<p>因為是在 Jupyter Notebook 上操作，所以安裝了給 Notebook 用的 SDK</p>
+
+<pre><code class="language-python">pip install azureml-sdk[notebooks]
+</code></pre>
+
+<p>開啟新的 Notebook 檔案，載入必要套件</p>
+
+<pre><code class="language-python">import os
+import shutil
+import azureml
+
+from azureml.core import Experiment
+from azureml.core import Workspace, Run
+from azureml.core.compute import ComputeTarget, AmlCompute
+from azureml.core.compute_target import ComputeTargetException
+
+from azureml.train.dnn import TensorFlow
+
+print(&quot;SDK version:&quot;, azureml.core.VERSION)
+</code></pre>
+
+<p>建立新的 workspace</p>
+
+<pre><code class="language-python"># 資源群組名稱
+resource_group_name = &quot;mlgroup&quot;
+
+# 訂用帳戶識別碼
+subscription_id = &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx&quot;
+
+# 位置
+azure_region=&quot;eastus2&quot;
+
+# ML服務工作區名稱
+aml_workspace_name = &quot;keras_on_azure&quot;
+
+ws = Workspace.create(subscription_id = subscription_id,
+                      resource_group = resource_group_name,
+                      create_resource_group = True,
+                      name = aml_workspace_name,                
+                      location = azure_region)
+
+# 匯出 config
+ws.write_config()
+</code></pre>
+
+<p>或者直接載入 config</p>
+
+<pre><code class="language-python">ws = Workspace.from_config()
+</code></pre>
+
+<h2 id="2-上傳圖檔到儲存體帳戶中">2.上傳圖檔到儲存體帳戶中</h2>
+
+<pre><code class="language-python"># Upload input data
+ds = ws.get_default_datastore()
+ds.upload(src_dir='../train', target_path='train', overwrite=True, show_progress=True)
+ds.upload(src_dir='../test', target_path='test', overwrite=True, show_progress=True)
+</code></pre>
+
+<p>儲存體帳戶顯示我們剛剛上傳的圖片</p>
+
+<p><img src="https://avacheng.github.io/post/pic20190727/Picture006.png" width="100%"></p>
+
+<h2 id="3-設定-script-parameters">3.設定 script parameters</h2>
+
+<p>在 Notebook 繼續設定檔案來源位置等模型訓練時要匯入的參數</p>
+
+<pre><code class="language-python">script_params = {
+    '--train_folder': ds.path('train').as_mount(),
+    '--test_folder': ds.path('test').as_mount(),
+}
+</code></pre>
+
+<p>相對應的，在 training script 也要取得參數</p>
+
+<pre><code class="language-python">import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('--train_folder', type=str, dest='train_folder',
+                    help='train data folder mounting point')
+parser.add_argument('--test_folder', type=str, dest='test_folder', 
+                    help='test data folder mounting point')
+args = parser.parse_args()
+train_folder = args.train_folder
+test_folder = args.test_folder
+</code></pre>
+
+<h2 id="4-上傳-training-script-到-worksapce">4.上傳 training script 到 worksapce</h2>
+
+<p>上傳 training script 前，裡面先設定要取得的 log ，並儲存檔案</p>
+
+<pre><code class="language-python">from azureml.core import Run
+score = model.evaluate(x_test, y_test, verbose=0)
+run = Run.get_context()
+run.log('Test loss:', score[0])
+run.log('Test accuracy:', score[1])
+
+run.log_list('history_train', model_history.history[&quot;loss&quot;])
+run.log_list('history_valid', model_history.history[&quot;val_loss&quot;])
+</code></pre>
+
+<p>將 training script 和其他必要檔案複製到 script_folder 資料夾中，等一下建立 Experiment 時一起上傳</p>
+
+<pre><code class="language-python"># Upload training script
+script_folder = './run'
+os.makedirs(script_folder, exist_ok=True)
+
+shutil.copy('train.py', script_folder)
+shutil.copy('test.csv', script_folder)
+shutil.copy('train.csv', script_folder)
+</code></pre>
+
+<h2 id="5-設定並啟動實驗-experiment">5.設定並啟動實驗 (Experiment)</h2>
+
+<p>在 Notebook 啟動實驗</p>
+
+<pre><code class="language-python"># Create Experiment
+exp = Experiment(workspace=ws, name='keras_test')
+
+# Get default compute target
+compute_target = ws.get_default_compute_target(type='GPU')
+print(compute_target)
+
+# Create an estimator
+est = TensorFlow(source_directory=script_folder,
+                 entry_script='train.py',
+                 compute_target=compute_target,
+                 script_params=script_params,
+                 pip_packages=['keras', 'scikit-image', 'sklearn', 'pandas', 'numpy'],
+                 use_gpu=True)
+
+# Submit the job
+run = exp.submit(est)
+run
+</code></pre>
+
+<p>最後在 Workspace 中可以檢視目前 Experiment 的進度，以及傳回來的 log (Test Loss/Test Accuracy) 等</p>
+
+<p><img src="https://avacheng.github.io/post/pic20190727/Picture007.png" width="100%"></p>
+
+<p>如果有將訓練模型存下來（.h5檔等），則會存到儲存體帳戶中</p>
+
+<hr />
+
+<blockquote>
+<p>參考連結1：<a href="https://github.com/Azure/MachineLearningNotebooks/blob/master/tutorials/img-classification-part1-training.ipynb" target="_blank">(GitHub) Img classification training</a></p>
+
+<p>參考連結2：<a href="https://docs.microsoft.com/zh-tw/azure/machine-learning/service/how-to-train-keras" target="_blank">(Microsoft) How to train keras</a></p>
+
+<p>參考連結3：<a href="https://www.youtube.com/watch?v=VIsXeTuW3FU" target="_blank">(YouTube) How to install and use the Azure Machine Learning Python SDK</a></p>
+</blockquote>
+
+<hr />
+
+<p>&lt;如有轉載，請附上本文連結網址&gt;</p>
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://avacheng.github.io/post/20190707/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://avacheng.github.io/post/20190707/">.Net String.Format 整理</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="https://avacheng.github.io/post/20190803/">Win10 安裝 tensorflow-gpu</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="https://avacheng.github.io/post/20190803/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+  
+
+</div>
+
+</div>
+</div>
+<script src="https://avacheng.github.io/js/ui.js"></script>
+<script src="https://avacheng.github.io/js/menus.js"></script>
+
+
+<script>
+  
+  if (window.location.hostname != "localhost") {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-149376358-1', 'auto');
+    ga('send', 'pageview');
+  }
+</script>
+
+
+
+
+
+</body>
+</html>
+

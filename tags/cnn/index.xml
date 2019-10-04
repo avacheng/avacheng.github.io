@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cnn on Ava程式筆記</title>
+    <link>https://avacheng.github.io/tags/cnn/</link>
+    <description>Recent content in cnn on Ava程式筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <copyright>&amp;copy; 2019. All rights reserved.</copyright>
+    <lastBuildDate>Sun, 18 Aug 2019 21:00:55 +0800</lastBuildDate>
+    
+	<atom:link href="https://avacheng.github.io/tags/cnn/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Keras 預訓練模型 layer 抽換</title>
+      <link>https://avacheng.github.io/post/20190817/</link>
+      <pubDate>Sun, 18 Aug 2019 21:00:55 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20190817/</guid>
+      <description>&lt;p&gt;除了自己建模外，keras.applications 提供了數個預訓練的深度學習模型，包含常用的圖片分類模型 ResNet50、Vgg16/Vgg19 等，但是應用時可能會遇到需要調整輸入或輸出 layer 的狀況，最近練習時遇到案例輸入是 (128, 128, 3)、輸出是 2 個分類的，和預設的輸入 (244, 244, 3)、輸出 1000 類不同，在網路上找了一些抽換模型 layer 的方法，記錄下來&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

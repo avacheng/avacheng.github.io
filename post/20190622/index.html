@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.55.6" />
+
+  <title>微軟 DevDays AI-IoT 實作坊 &middot; Ava程式筆記</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://avacheng.github.io/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://avacheng.github.io/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="https://avacheng.github.io/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+ 
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="https://avacheng.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="https://avacheng.github.io/">Ava程式筆記</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/topics/"><i class='fa fa-map-signs fa-fw'></i>Topics</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/tags/"><i class='fa fa-tag fa-fw'></i>Tags</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/about/"><i class='fa fa-user fa-fw'></i>About</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/avacheng" rel="me" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2019. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>微軟 DevDays AI-IoT 實作坊</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>2019-06-22 Saturday</time>
+  </div>
+
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/devdays">devdays</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/iot">iot</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/machine-learning">machine-learning</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/azure">azure</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>《AI + IoT Power Couple – Hands-on Custom AI at the Intelligent Edge》<br>
+微軟2019年亞太技術年會實作坊 講師：Ted Way、Darwin Schweitzer<br></p>
+
+<p>課程目標：學習如何將 ML 模型佈署到 IoT 邊緣裝置，用以節省雲端傳輸與運算的消耗，並提升邊緣裝置的反應效率<br></p>
+
+<h4 id="a-href-https-aka-ms-aml-tutorial-ai-iot-power-couple-target-blank-點我連到-tutorial-文件-a"><a href="https://aka.ms/aml-tutorial/ai-iot-power-couple" target="_blank">點我連到 Tutorial 文件</a></h4>
+
+<h2 id="流程">流程</h2>
+
+<ol>
+<li>從過去取得的設備資料進行機器學習訓練，得到的ML模型利用 Azure Machine Learning（AML）容器化</li>
+<li>建立 Azure IoT Hub，登錄 IoT 邊緣裝置</li>
+<li>將 AML 模型佈署到 IoT 裝置</li>
+</ol>
+
+<h2 id="系統需求">系統需求</h2>
+
+<ol>
+<li>註冊 Azure 帳號</li>
+<li>安裝 Terminal client 用來連到 IoT 裝置</li>
+<li>安裝 <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> 和 <a href="https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit&ssr=false#overview" target="_blank">Azure IoT Hub Toolkit</a></li>
+</ol>
+
+<h2 id="實作步驟">實作步驟</h2>
+
+<p>用 <a href="https://aka.ms/edgevm" target="_blank">Ubuntu VM</a> 來模擬實體的 IoT 裝置，按「Get it now」、「Continue」，就會進到 Azure 中的設定頁面</p>
+
+<p><img src="https://avacheng.github.io/post/pic20190622/Picture001.png" width="100%"></p>
+
+<p>完成 VM 的設定（帳戶的名稱密碼自訂，在 tutorial 中不會用到），下面按「檢閱+建立」，然後繼續按「建立」</p>
+
+<p><img src="https://avacheng.github.io/post/pic20190622/Picture002.png" width="100%"></p>
+
+<p>等待 VM 建立時，到 <a href="https://notebooks.azure.com/tedway/projects/ai-iot-anomaly-detection" target="_blank">Azure Notebooks</a>，將範例程式碼 clone 到自己的 Notebooks</p>
+
+<p><img src="https://avacheng.github.io/post/pic20190622/Picture004.png" width="100%"></p>
+
+<p>回到 Azure 入口網站，佈署完成後，進到 VM 概觀，等一下會用到下面幾個值</p>
+
+<p><img src="https://avacheng.github.io/post/pic20190622/Picture006.png" width="100%"></p>
+
+<p>到剛才 clone 完成的 Azure Notebooks ，打開檔案「00-anomaly-detection-tutorial.ipynb」</p>
+
+<p>在第一部分「Specify parameters」將入口網站 VM 的值填入，如下：</p>
+
+<pre><code class="language-python"># 資源群組名稱
+resource_group_name = &quot;iot-workshop&quot;
+
+# 位置
+azure_region=&quot;eastus2&quot;
+
+# IoT Hub 名稱，可自訂，但具唯一性，需要改成和範例不同的名稱
+iot_hub_name=&quot;tedway-iothub1&quot;
+
+# IoT Edge 裝置名稱，可自訂
+iot_device_id=&quot;iot-edge-device&quot;
+
+# 訂用帳戶識別碼
+subscription_id = &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx&quot;
+
+# Azure ML workspace 名稱，可自訂
+aml_workspace_name = &quot;tedway-aml-iotedge&quot;
+
+# VM 電腦名稱
+iot_edge_device_name = &quot;tw-iot-edge-vm&quot;
+</code></pre>
+
+<p>將第一部分的程式碼跑完，中間會需要輸入 Notebook 顯示的驗證碼並登入 Azure 帳戶進行驗證</p>
+
+<pre><code class="language-python">!az login
+</code></pre>
+
+<p>第二部分 Provision Azure ML Workspace and IoT Hub，在 Azure 中建立 ML 服務工作區和 IoT Hub，完成後， Azure 有五個新增的項目</p>
+
+<p><img src="https://avacheng.github.io/post/pic20190622/Picture008.png" width="100%"></p>
+
+<p>第三部分 Load resources，跑到 3.2 完成後，會出現連線字串，用來修改 3.4 的字串（取代 HostName=….=）</p>
+
+<pre><code class="language-python"># 3.2 Get the connection string that you will need to enter in the IoT Edge device
+!az iot hub device-identity show-connection-string --device-id $iot_device_id --hub-name $iot_hub_name
+
+# 3.4
+!az vm run-command invoke -g $resource_group_name -n $iot_edge_device_name --command-id RunShellScript --script &quot;/etc/iotedge/configedge.sh 'HostName=...='&quot;
+</code></pre>
+
+<p>之後 Anomaly Detection Model 中，在 Train the model 部分進行 ML 模型的訓練，專案裡已經有範例溫度資料可以用，訓練好後會將模型存到磁碟中，然後在重新載入 Notebook 測試，來確定模型沒有錯</p>
+
+<p>Register Model 部分，模型會在 Azure 的 ML 服務工作區進行註冊，完成後，可以看到服務工作區有建立的模型</p>
+
+<p><img src="https://avacheng.github.io/post/pic20190622/Picture009.png" width="100%"></p>
+
+<p>Create Docker Image用剛才在 ML 工作區的模型建立 Docker Image，工作區一樣會有新的 image 項目產生</p>
+
+<p><img src="https://avacheng.github.io/post/pic20190622/Picture010.png" width="100%"></p>
+
+<p>Test model on Azure Container Instance將剛才產生的 image 發佈成為 web service 進行測試，測試完後 web service 可以選擇刪除或先保留</p>
+
+<p><img src="https://avacheng.github.io/post/pic20190622/Picture011.png" width="100%"></p>
+
+<p>最後第五部分「Deploy container to Azure IoT Edge device」將 Docker Image 的設定檔傳送到到 IoT Hub，IoT Hub 就會將其佈署到 IoT edge device ，也就是一開始建立的VM上。這樣 Notebook 的部分就完成了！</p>
+
+<p><img src="https://avacheng.github.io/post/pic20190622/Picture012.png" width="100%"></p>
+
+<p>接下來在 <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> 安裝 <a href="https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit&ssr=false#overview" target="_blank">Azure IoT Hub Toolkit</a>)，連線到 IoT Hub ，查看 device 傳回Hub的訊息</p>
+
+<ul>
+<li>連線到 IoT Hub：登入 Azure 後，在 VS code 上方選擇訂用帳戶和 Hub 名稱</li>
+</ul>
+
+<p><img src="https://avacheng.github.io/post/pic20190622/Picture013.png" width="100%"></p>
+
+<ul>
+<li>左下角 iot-edge-device 按右鍵，選擇「Start Monitoring Built-in Event Endpoint」，在 Output 區塊可以看到每5秒傳回來的溫度資料和ML模型判斷的結果（anomaly: false），最後按下面的「Stop Monitoring built-in event endpoint」結束偵測</li>
+</ul>
+
+<p><img src="https://avacheng.github.io/post/pic20190622/Picture014.png" width="100%"></p>
+
+<p>到此，Tutorial 完成！</p>
+
+<hr />
+
+<blockquote>
+<p>ps. 一開始在 VS code 並沒有看到傳東西回來，而且右邊 machinelearningmodule 不是綠色的 running 的狀態，後來是到 Azure 中將 IoT edge VM 重新啟動後才成功</p>
+
+<p>ps2. 安裝 Terminal client 部分，雖然 tutorial 上有寫，但似乎沒有用到？</p>
+
+<p>ps3. 之後記得到 Azure 將資源群組刪除，不然會一直收費喔</p>
+</blockquote>
+
+<hr />
+
+<p>&lt;如有轉載，請附上本文連結網址&gt;</p>
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="next">
+      <a href="https://avacheng.github.io/post/20190707/">.Net String.Format 整理</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="https://avacheng.github.io/post/20190707/"><i class="fa fa-chevron-right"></i></a>
+    
+  </div>
+</div>
+
+
+
+  
+
+</div>
+
+</div>
+</div>
+<script src="https://avacheng.github.io/js/ui.js"></script>
+<script src="https://avacheng.github.io/js/menus.js"></script>
+
+
+<script>
+  
+  if (window.location.hostname != "localhost") {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-149376358-1', 'auto');
+    ga('send', 'pageview');
+  }
+</script>
+
+
+
+
+
+</body>
+</html>
+
