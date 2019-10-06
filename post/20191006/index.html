@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.55.6" />
 
-  <title>Win10 安裝 tensorflow-gpu &middot; Ava程式筆記</title>
+  <title>Azure 介面簡介 &middot; Ava程式筆記</title>
 
   
   
@@ -208,7 +208,7 @@
 
 
 <div class="header">
-  <h1>Win10 安裝 tensorflow-gpu</h1>
+  <h1>Azure 介面簡介</h1>
   <h2></h2>
 </div>
 <div class="content">
@@ -217,7 +217,7 @@
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
-    <time>2019-08-03 Saturday</time>
+    <time>2019-10-06 Sunday</time>
   </div>
 
   
@@ -233,17 +233,11 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/tensorflow-gpu">tensorflow-gpu</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/azure">azure</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/deep-learning">deep-learning</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/microsoft">microsoft</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/cuda">cuda</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/anaconda">anaconda</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/windows10">windows10</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/jupyter-notebook">jupyter-notebook</a>
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/cloud">cloud</a>
     
   </div>
   
@@ -251,53 +245,95 @@
 
 </div>
 
-  <p>安裝過程依照 <a href="https://medium.com/@WhoYoung99/2018%E6%9C%80%E6%96%B0win10%E5%AE%89%E8%A3%9Dtensorflow-gpu-keras-8b3f8652509a" target="_blank"> [Win10 安裝 TensorFlow-gpu &amp; Keras] </a>，最後再參考 <a href="https://janakiev.com/til/jupyter-virtual-envs/" target="_blank"> [Using Virtual Environments in Jupyter Notebook and Python] </a> 將新建的環境加到 Jupyter Notebook 中</p>
+  <p>就是對 Azure 入口網站（Azure Portal）做個簡單的介紹&hellip;<br>
+網址：<a href="https://portal.azure.com/" target="_blank"><a href="https://portal.azure.com/">https://portal.azure.com/</a></a></p>
 
-<h2 id="作業系統">作業系統</h2>
+<hr />
+
+<h3 id="介面簡介">介面簡介</h3>
+
+<p>登入後的畫面如下。左邊是功能清單，分為固定和自訂上下兩個區塊（1 和 2），區塊上方的《 符號可以將功能清單縮小，只顯示小圖示。畫面上方是輔助與提示區塊（3 和 4）。中間白色區塊是主要工作區，資源（指 Azure 提供的服務項目）資訊的顯示與操作會在此進行；首頁是顯示預設的儀表板，包含服務項目與最近資源等等，供使用者登入後快速存取（5 - 8）。
+<img src="https://avacheng.github.io/post/pic20191006/Picture001.png" width="100%"></p>
+
+<blockquote>
+<ol>
+<li>功能清單：固定項目，包含建立新資源、回到首頁、到自訂的儀表板或列出所有服務</li>
+<li>我的最愛：自訂項目，特定資源項目群的捷徑，可透過其上方區塊 1 的「所有服務」來進行設定（如下圖）</li>
+<li>輔助工具區：包含帳戶切換、工作提示、客戶支援等等。</li>
+<li>帳戶：顯示目前帳戶、登出帳戶</li>
+<li>Azure 服務：顯示熱門的資源項目</li>
+<li>Microsoft Learn：連結到微軟針對 Azure 開的線上課程</li>
+<li>基礎結構管理與成本管理的捷徑</li>
+<li>最近的資源：快速連結到最近使用的資源</li>
+</ol>
+</blockquote>
+
+<hr />
+
+<h4 id="增修我的最愛-尋找服務">增修我的最愛/尋找服務</h4>
+
+<p><img src="https://avacheng.github.io/post/pic20191006/Picture010.png" width="100%"></p>
+
+<hr />
+
+<h4 id="輔助與提示區塊">輔助與提示區塊</h4>
+
+<p>Azure Cloud Shell：運行在瀏覽器上的終端。<br></p>
+
+<blockquote>
+<p>相關文章：<a href="https://azure.microsoft.com/zh-tw/features/cloud-shell/" target="_blank">微軟官網</a>、<a href="https://blog.51cto.com/fjcloud/2355100" target="_blank">了解Azure Cloud Shell 之概述</a>、<a href="https://www.infoq.cn/article/azure-cloud-shell">无需安装的 CLI 才是最好的</a>、<a href="https://www.infoq.com/articles/azure-cloud-shell/" target="_blank">The Best CLI Is the One You Don’t Have to Install</a>(前個連結的英文原文)</p>
+</blockquote>
+
+<p><img src="https://avacheng.github.io/post/pic20191006/Picture002.png" width="100%"></p>
+
+<hr />
+
+<p>顯示與切換訂用帳戶，可設定我的最愛清單
+<img src="https://avacheng.github.io/post/pic20191006/Picture003.png" width="100%"></p>
+
+<hr />
+
+<p>顯示帳戶相關通知；新增、刪除資源等操作，後端完成後也在此顯示通知
+<img src="https://avacheng.github.io/post/pic20191006/Picture004.png" width="100%"></p>
+
+<hr />
+
+<p>慣例設定，例如登入慣例、顏色主題、語言區域等
+<img src="https://avacheng.github.io/post/pic20191006/Picture005.png" width="100%"></p>
+
+<hr />
+
+<p>說明與支援
+<img src="https://avacheng.github.io/post/pic20191006/Picture006.png" width="100%"></p>
+
+<hr />
+
+<p>傳送意見反應
+<img src="https://avacheng.github.io/post/pic20191006/Picture007.png" width="100%"></p>
+
+<hr />
+
+<h4 id="登入資訊">登入資訊</h4>
+
+<p>顯示帳戶、email，登出帳戶等（個資我就隱藏起來啦）
+<img src="https://avacheng.github.io/post/pic20191006/Picture008.png" width="100%"></p>
+
+<hr />
+
+<h4 id="儀表板">儀表板</h4>
+
+<p>可自訂儀表板，甚至和別人共享儀表板（參考<a href="https://ithelp.ithome.com.tw/articles/10200154?sc=iThelpR" target="_blank">此文</a>）
+<img src="https://avacheng.github.io/post/pic20191006/Picture009.png" width="100%"></p>
+
+<hr />
+
+<h4 id="其他相關資源與參考文章">其他相關資源與參考文章</h4>
 
 <ol>
-<li>Windows 10 version 1903, OS Build 18362.175</li>
-<li>顯卡型號: Nvdia GeForce 940MX</li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10200154?sc=iThelpR" target="_blank">Azure 介面跟你不太熟怎麼辦？就裝熟阿&hellip;.</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10157344" target="_blank">認識 Microsoft Azure</a></li>
+<li><a href="https://www.ithome.com.tw/news/100735" target="_blank">微軟Azure新管理平臺5大重點特色快看！</a></li>
 </ol>
-
-<h2 id="安裝過程">安裝過程</h2>
-
-<ol>
-<li><p>先安裝 python 3.5 的虛擬環境，名稱keras35 (Anaconda prompt@base)</p>
-
-<pre><code>conda create -n keras35 python=3.5
-conda activate keras35
-</code></pre></li>
-
-<li><p>為了避免版本衝突，再來一樣是安裝 CUDA 9.0 和 cuDNN 7.0 (08/12更新：cuDNN 7.0，但對應 <strong>CUDA 8.0</strong>，非9.0)，安裝完後路徑 <code>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin</code> 和 <code>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\libnvvp</code> 就自動加到系統變數 %PATH% 下了</p></li>
-
-<li><p>配合 CUDA 的版本，安裝 TensorFlow GPU v1.11 (Anaconda prompt@keras35)</p>
-
-<pre><code>pip install tensorflow-gpu==1.11.0
-</code></pre></li>
-
-<li><p>驗證 TensorFlow 安裝是否成功，執行後應該可以看到 GPU 項目 (Anaconda prompt@keras35 -&gt; python)</p>
-
-<pre><code>from tensorflow.python.client import device_lib
-print(device_lib.list_local_devices())
-</code></pre></li>
-
-<li><p>安裝 Keras (Anaconda prompt@keras35)</p>
-
-<pre><code>pip install keras
-</code></pre></li>
-
-<li><p>在 Jupyter Notebook 顯示新環境 (Anaconda prompt@keras35)：先安裝 ipykernel，再將環境加到 Jupyter Notebook。
-<code>--name</code> 後接這個新的虛擬環境的名稱，<code>--display-name</code> 是我們想要在 Notebook 中顯示的名稱</p>
-
-<pre><code>pip install --user ipykernel
-python -m ipykernel install --user --name keras35 --display-name &quot;Python-keras35&quot;
-</code></pre></li>
-
-<li><p>最後回到 base 環境，啟動 Jupyter Notebook 就可以看到新的 kernel 環境 (Anaconda prompt@base)</p></li>
-</ol>
-
-<p>ps.後續實作中發現處理 CNN 時還是無法運行(kernel died)，提示 error retrieving driver version: Unimplemented: kernel reported driver version not implemented on Windows，後來參考<a href="https://www.codetd.com/article/3709701" target="_blank"> [此文] </a>修正為「cuDNN 7.0 對應 CUDA 8.0 版本」才成功</p>
 
 <hr />
 
@@ -307,13 +343,13 @@ python -m ipykernel install --user --name keras35 --display-name &quot;Python-ke
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="https://avacheng.github.io/post/20190727/"><i class="fa fa-chevron-left"></i></a>
+    <a href="https://avacheng.github.io/post/20190922/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="https://avacheng.github.io/post/20190727/">使用 Azure 服務工作區訓練 ML 模型</a>
+      <a href="https://avacheng.github.io/post/20190922/">[ChatBot03] 上傳 EchoBot 到雲端並建立通道</a>
     </nav>
     
   </div>
@@ -322,14 +358,8 @@ python -m ipykernel install --user --name keras35 --display-name &quot;Python-ke
   </div>
   <div class="pure-u-10-24">
     
-    <nav class="next">
-      <a href="https://avacheng.github.io/post/20190817/">Keras 預訓練模型 layer 抽換</a>
-    </nav>
-    
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://avacheng.github.io/post/20190817/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>

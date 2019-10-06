@@ -3,37 +3,54 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://avacheng.github.io/</loc>
+    <lastmod>2019-10-06T11:34:15+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://avacheng.github.io/post/</loc>
+    <lastmod>2019-10-06T11:34:15+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://avacheng.github.io/tags/</loc>
+    <lastmod>2019-10-06T11:34:15+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://avacheng.github.io/tags/azure/</loc>
+    <lastmod>2019-10-06T11:34:15+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://avacheng.github.io/post/20191006/</loc>
+    <lastmod>2019-10-06T11:34:15+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://avacheng.github.io/tags/cloud/</loc>
+    <lastmod>2019-10-06T11:34:15+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://avacheng.github.io/tags/microsoft/</loc>
+    <lastmod>2019-10-06T11:34:15+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://avacheng.github.io/tags/.net-core/</loc>
     <lastmod>2019-09-22T17:12:45+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://avacheng.github.io/</loc>
-    <lastmod>2019-09-22T17:12:45+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://avacheng.github.io/post/</loc>
-    <lastmod>2019-09-22T17:12:45+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://avacheng.github.io/tags/</loc>
-    <lastmod>2019-09-22T17:12:45+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://avacheng.github.io/topics/</loc>
-    <lastmod>2019-09-22T17:12:45+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://avacheng.github.io/tags/azure/</loc>
     <lastmod>2019-09-22T17:12:45+08:00</lastmod>
     <priority>0</priority>
   </url>
