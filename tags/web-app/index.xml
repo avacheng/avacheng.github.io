@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <copyright>&amp;copy; 2019. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 11 Oct 2019 14:01:51 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 13 Oct 2019 10:12:45 +0800</lastBuildDate>
     
 	<atom:link href="https://avacheng.github.io/tags/web-app/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[ChatBot04] 建立臉書的機器人通道</title>
+      <link>https://avacheng.github.io/post/20191013/</link>
+      <pubDate>Sun, 13 Oct 2019 10:12:45 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20191013/</guid>
+      <description>&lt;p&gt;在&lt;a href=&#34;https://avacheng.github.io/post/20190922&#34; target=&#34;_blank&#34;&gt;上一篇&lt;/a&gt;完成了機器人的雲端佈署後，接下來要進行機器人和使用者介面的串接。這篇介紹臉書 Facebook 的 Messenger API 的串接。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Azure 新增資源方式 (Web App 為例)</title>
@@ -28,7 +37,7 @@ Azure 入口網站網址：&lt;a href=&#34;https://portal.azure.com/&#34; target
       <pubDate>Sun, 22 Sep 2019 17:12:45 +0800</pubDate>
       
       <guid>https://avacheng.github.io/post/20190922/</guid>
-      <description>&lt;p&gt;前一篇在地端完成了一個簡單的機器人，而這篇目標是將這個機器人放到 &lt;a href=&#34;https://portal.azure.com/&#34; target=&#34;_blank&#34;&gt;Azure 雲端&lt;/a&gt; 成為一個「App」，並建立「機器人通道註冊」與之相連。最後使用「機器人通道註冊」中的預設通道「WebChat 網路聊天」作為使用者介面來測試雲端佈署是否成功。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://avacheng.github.io/post/20190907&#34; target=&#34;_blank&#34;&gt;前一篇&lt;/a&gt;在地端完成了一個簡單的機器人，而這篇目標是將這個機器人放到 &lt;a href=&#34;https://portal.azure.com/&#34; target=&#34;_blank&#34;&gt;Azure 雲端&lt;/a&gt; 成為一個「App」，並建立「機器人通道註冊」與之相連。最後使用「機器人通道註冊」中的預設通道「WebChat 網路聊天」作為使用者介面來測試雲端佈署是否成功。&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.55.6" />
+
+  <title>[ChatBot04] 建立臉書的機器人通道 &middot; Ava程式筆記</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://avacheng.github.io/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://avacheng.github.io/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="https://avacheng.github.io/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+ 
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="https://avacheng.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="https://avacheng.github.io/">Ava程式筆記</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/topics/"><i class='fa fa-map-signs fa-fw'></i>Topics</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/tags/"><i class='fa fa-tag fa-fw'></i>Tags</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/about/"><i class='fa fa-user fa-fw'></i>About</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/avacheng" rel="me" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2019. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>[ChatBot04] 建立臉書的機器人通道</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>2019-10-13 Sunday</time>
+  </div>
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://avacheng.github.io/topics/%E7%AB%99%E5%9C%A8%E5%B7%A8%E4%BA%BA%E8%82%A9%E8%86%80%E4%B8%8A%E9%96%8B%E7%99%BC%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA">站在巨人肩膀上開發聊天機器人</a>
+    
+  </div>
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/chatbot">chatbot</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/web-app">web-app</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/azure">azure</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/bot-channels-registration">bot-channels-registration</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/facebook">facebook</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/messenger-api">messenger-api</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>在<a href="https://avacheng.github.io/post/20190922" target="_blank">上一篇</a>完成了機器人的雲端佈署後，接下來要進行機器人和使用者介面的串接。這篇介紹臉書 Facebook 的 Messenger API 的串接。</p>
+
+<p>本文大綱：<br>
+1. 建立 Facebook 粉絲專頁<br>
+2. 到 Facebook 開發人員頁面，新增應用程式並加入 Messenger API<br>
+3. 在微軟 Azure 建立 Facebook 通道註冊<br>
+4. 回到粉絲專頁進行測試<br></p>
+
+<p><img src="https://avacheng.github.io/post/pic20191013/BotFramework1013.jpg" width="100%">
+↑ 目標：將機器人和臉書 Messenger API 串接，讓用戶能在粉絲專頁上，透過 Messenger 與機器人互動</p>
+
+<hr />
+
+<h2 id="1-建立-facebook-粉絲專頁">1. 建立 Facebook 粉絲專頁</h2>
+
+<blockquote>
+<p>》如果有現有的專頁，可以跳過這個部分，或者新建一個專頁用來測試機器人皆可。</p>
+
+<p>》使用現有的專頁不需擔心開發中的機器人會被一般使用者使用；應用程式通過臉書的審查前，只有開發者和允許的測試人員才能夠透過 Messenger 和機器人互動。</p>
+</blockquote>
+
+<p>登入 <a href="https://www.facebook.com/" target="_blank">Facebook</a> 後，依照以下畫面建立專粉絲專頁。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2251.png" width="100%"></p>
+
+<hr />
+
+<p>選擇「企業或品牌」或「社群或公眾人物」，然後依照畫面提示建立專頁。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2261.png" width="100%"></p>
+
+<hr />
+
+<p>專頁建立完成。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2291.png" width="100%"></p>
+
+<hr />
+
+<h2 id="2-到-facebook-開發人員頁面-新增應用程式並加入-messenger-api">2. 到 Facebook 開發人員頁面，新增應用程式並加入 Messenger API</h2>
+
+<p>進到 <a href="https://developers.facebook.com/quickstarts" target="_blank">Facebook 開發人員頁面</a>，登入後從右上角的「我的應用程式」選單中選「建立應用程式」。如果是第一次登入需要先在頁面中選擇「註冊成為 Facebook 開發人員」。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2301.png" width="100%"></p>
+
+<hr />
+
+<p>建立應用程式（名稱不需和專頁一樣）。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2311.png" width="100%"></p>
+
+<hr />
+
+<p>新增商品「Messenger」。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2321.png" width="100%"></p>
+
+<hr />
+
+<h2 id="3-在微軟-azure-建立-facebook-通道註冊">3. 在微軟 Azure 建立 Facebook 通道註冊</h2>
+
+<p>讓網頁停留在 Facebook 開發人員頁面上，用另外一個分頁開啟 <a href="https://developers.facebook.com/quickstarts" target="_blank">Azure</a>，進到先前建立的「機器人通道註冊」資源中，點選「頻道」，然後選擇「Facebook」頻道。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2381.png" width="100%"></p>
+
+<hr />
+
+<p>回到 Facebook 開發人員網頁，找到 Messenger 設定頁面的「存取憑證」，選擇「新增或移除專頁」。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2331.png" width="100%"></p>
+
+<hr />
+
+<p>在跳出的畫面勾選要使用聊天機器人的專頁（之後可再新增或刪除要串接的專頁）。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2341.png" width="100%"></p>
+
+<hr />
+
+<p>新增後，畫面上顯示了新增的專頁，在專頁名稱下方是頁面識別碼，填到 Azure 的機器人通道註冊的欄位中。右方點選「產生憑證」。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2361.png" width="100%"></p>
+
+<hr />
+
+<p>閱讀文字說明後，勾選「我瞭解」後，複製顯示的明碼字串，貼到 Azure 機器人通道註冊的「頁面存取權杖」欄位。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2371.png" width="100%"></p>
+
+<hr />
+
+<p>在 Azure 頁面貼上在前幾個步驟得到的 Facebook 的「頁面識別碼」和「頁面存取權杖（憑證）」。頁面最下方有「回呼URL」和「認證權杖」，待會要貼到 Facebook 中。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2391.png" width="100%"></p>
+
+<hr />
+
+<p>回到 Facebook，找到 Webhooks 區塊，點選「新增回調網址」。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2401.png" width="100%"></p>
+
+<hr />
+
+<p>在跳出的頁面上，兩個欄位分別貼上 Azure 的「回呼URL」和「認證權杖」，然後驗證並儲存。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2411.png" width="100%"></p>
+
+<hr />
+
+<p>Facebook 網頁上出現剛才設定的網址和加密的代碼，在其下方找到「新增訂閱」。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2421.png" width="100%"></p>
+
+<hr />
+
+<p>勾選前五個項目，然後儲存。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2431.png" width="100%"></p>
+
+<hr />
+
+<p>接下來在 Facebook 左邊工作清單找到「設定」，選擇「基本資料」，複製「應用程式編號」到 Azure 的 Facebook 應用程式 ID 位置。然後<strong>顯示</strong>「應用程式密鑰」（可能需要再次輸入密碼），複製貼到 Azure 頁面。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2441.png" width="100%"></p>
+
+<hr />
+
+<p>Azure 頁面上貼上剛才 Facebook 的編號和密碼，然後儲存，即完成 Facebook 通道的註冊。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2451.png" width="100%"></p>
+
+<hr />
+
+<h2 id="4-回到粉絲專頁進行測試">4. 回到粉絲專頁進行測試</h2>
+
+<blockquote>
+<p>》使用者和機器人互動的方式是使用 Messenger，所以要在專頁中新增傳送訊息的按鈕。</p>
+</blockquote>
+
+<p>回到粉絲專頁，選擇新增按鈕。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2451_1.png" width="100%"></p>
+
+<hr />
+
+<p><img src="https://avacheng.github.io/post/pic20191013/Picture2461.png" width="100%"></p>
+
+<hr />
+
+<p><img src="https://avacheng.github.io/post/pic20191013/Picture2471.png" width="100%"></p>
+
+<hr />
+
+<p><img src="https://avacheng.github.io/post/pic20191013/Picture2481.png" width="100%"></p>
+
+<hr />
+
+<p>新增完成後，在「傳送訊息」按鈕稍微停留下，從跳出的選單中點選「測試按鈕」。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2501.png" width="100%"></p>
+
+<hr />
+
+<p>在對話框中輸入文字，看機器人是否能順利回應。
+<img src="https://avacheng.github.io/post/pic20191013/Picture2519.png" width="100%"></p>
+
+<hr />
+
+<h3 id="補充-新增程式開發-測試人員角色">補充：新增程式開發/測試人員角色</h3>
+
+<blockquote>
+<p>》建立通道完成後，目前粉絲專頁中只有開發者自己（擔任管理員的角色）能夠得到機器人的回應，如果要讓更多的人可以共同開發測試這個機器人，需要設定角色。（如果要公開使用，需要另外申請審核）</p>
+</blockquote>
+
+<p>進到「角色」頁面，可依據需求新增「管理員」、「開發人員」或「測試人員」（權限差異請見文字旁「？」的說明）。新增後，需要對方也到「<a href="https://developers.facebook.com/quickstarts" target="_blank">Facebook 開發人員頁面</a>」進行確認後才能使用這個機器人。
+<img src="https://avacheng.github.io/post/pic20191013/PictureN01.png" width="100%"></p>
+
+<hr />
+
+<p>&lt;如有轉載，請附上本文連結網址&gt;</p>
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://avacheng.github.io/post/20191011/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://avacheng.github.io/post/20191011/">Azure 新增資源方式 (Web App 為例)</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+
+  
+
+</div>
+
+</div>
+</div>
+<script src="https://avacheng.github.io/js/ui.js"></script>
+<script src="https://avacheng.github.io/js/menus.js"></script>
+
+
+<script>
+  
+  if (window.location.hostname != "localhost") {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-149376358-1', 'auto');
+    ga('send', 'pageview');
+  }
+</script>
+
+
+
+
+
+</body>
+</html>
+

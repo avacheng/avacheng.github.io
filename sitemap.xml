@@ -4,30 +4,77 @@
   
   <url>
     <loc>https://avacheng.github.io/</loc>
-    <lastmod>2019-10-11T14:01:51+08:00</lastmod>
+    <lastmod>2019-10-13T10:12:45+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://avacheng.github.io/post/</loc>
-    <lastmod>2019-10-11T14:01:51+08:00</lastmod>
+    <lastmod>2019-10-13T10:12:45+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://avacheng.github.io/tags/</loc>
-    <lastmod>2019-10-11T14:01:51+08:00</lastmod>
+    <lastmod>2019-10-13T10:12:45+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://avacheng.github.io/tags/app-service/</loc>
-    <lastmod>2019-10-11T14:01:51+08:00</lastmod>
+    <loc>https://avacheng.github.io/topics/</loc>
+    <lastmod>2019-10-13T10:12:45+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://avacheng.github.io/tags/azure/</loc>
+    <lastmod>2019-10-13T10:12:45+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://avacheng.github.io/tags/bot-channels-registration/</loc>
+    <lastmod>2019-10-13T10:12:45+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://avacheng.github.io/tags/chatbot/</loc>
+    <lastmod>2019-10-13T10:12:45+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://avacheng.github.io/post/20191013/</loc>
+    <lastmod>2019-10-13T10:12:45+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://avacheng.github.io/tags/facebook/</loc>
+    <lastmod>2019-10-13T10:12:45+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://avacheng.github.io/tags/messenger-api/</loc>
+    <lastmod>2019-10-13T10:12:45+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://avacheng.github.io/tags/web-app/</loc>
+    <lastmod>2019-10-13T10:12:45+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://avacheng.github.io/topics/%E7%AB%99%E5%9C%A8%E5%B7%A8%E4%BA%BA%E8%82%A9%E8%86%80%E4%B8%8A%E9%96%8B%E7%99%BC%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA/</loc>
+    <lastmod>2019-10-13T10:12:45+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://avacheng.github.io/tags/app-service/</loc>
     <lastmod>2019-10-11T14:01:51+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -50,12 +97,6 @@
   </url>
   
   <url>
-    <loc>https://avacheng.github.io/tags/web-app/</loc>
-    <lastmod>2019-10-11T14:01:51+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://avacheng.github.io/post/20191006/</loc>
     <lastmod>2019-10-06T11:34:15+08:00</lastmod>
   </url>
@@ -67,36 +108,12 @@
   </url>
   
   <url>
-    <loc>https://avacheng.github.io/topics/</loc>
-    <lastmod>2019-09-22T17:12:45+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://avacheng.github.io/tags/bot-channels-registration/</loc>
-    <lastmod>2019-09-22T17:12:45+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://avacheng.github.io/tags/chatbot/</loc>
-    <lastmod>2019-09-22T17:12:45+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://avacheng.github.io/post/20190922/</loc>
     <lastmod>2019-09-22T17:12:45+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://avacheng.github.io/tags/webchat/</loc>
-    <lastmod>2019-09-22T17:12:45+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://avacheng.github.io/topics/%E7%AB%99%E5%9C%A8%E5%B7%A8%E4%BA%BA%E8%82%A9%E8%86%80%E4%B8%8A%E9%96%8B%E7%99%BC%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA/</loc>
     <lastmod>2019-09-22T17:12:45+08:00</lastmod>
     <priority>0</priority>
   </url>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>facebook on Ava程式筆記</title>
+    <link>https://avacheng.github.io/tags/facebook/</link>
+    <description>Recent content in facebook on Ava程式筆記</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-TW</language>
+    <copyright>&amp;copy; 2019. All rights reserved.</copyright>
+    <lastBuildDate>Sun, 13 Oct 2019 10:12:45 +0800</lastBuildDate>
+    
+	<atom:link href="https://avacheng.github.io/tags/facebook/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[ChatBot04] 建立臉書的機器人通道</title>
+      <link>https://avacheng.github.io/post/20191013/</link>
+      <pubDate>Sun, 13 Oct 2019 10:12:45 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20191013/</guid>
+      <description>&lt;p&gt;在&lt;a href=&#34;https://avacheng.github.io/post/20190922&#34; target=&#34;_blank&#34;&gt;上一篇&lt;/a&gt;完成了機器人的雲端佈署後，接下來要進行機器人和使用者介面的串接。這篇介紹臉書 Facebook 的 Messenger API 的串接。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
