@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <copyright>&amp;copy; 2019. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 13 Oct 2019 10:12:45 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 26 Oct 2019 09:31:18 +0800</lastBuildDate>
     
 	<atom:link href="https://avacheng.github.io/topics/%E7%AB%99%E5%9C%A8%E5%B7%A8%E4%BA%BA%E8%82%A9%E8%86%80%E4%B8%8A%E9%96%8B%E7%99%BC%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[ChatBot05] 建立 Line 的機器人通道</title>
+      <link>https://avacheng.github.io/post/20191026/</link>
+      <pubDate>Sat, 26 Oct 2019 09:31:18 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/post/20191026/</guid>
+      <description>&lt;p&gt;這篇介紹 Line 的 Messaging API 和機器人的串接。這當中會建立一個 LINE 官方帳號 2.0，使用者可以加入這個帳號來和機器人對話。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>[ChatBot04] 建立臉書的機器人通道</title>

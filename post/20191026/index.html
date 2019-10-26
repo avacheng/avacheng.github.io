@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.55.6" />
 
-  <title>bot-channels-registration &middot; Ava程式筆記</title>
+  <title>[ChatBot05] 建立 Line 的機器人通道 &middot; Ava程式筆記</title>
 
   
   
@@ -39,9 +39,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
  
-  
-  <link rel="alternate" type="application/rss+xml" title="Ava程式筆記"
-    href='https://avacheng.github.io/tags/bot-channels-registration/index.xml' />
   
 
   
@@ -211,16 +208,12 @@
 
 
 <div class="header">
-  <h1>bot-channels-registration</h1>
+  <h1>[ChatBot05] 建立 Line 的機器人通道</h1>
+  <h2></h2>
 </div>
-
 <div class="content">
-  
-    <article>
-  <header>
-    <h2><a href="https://avacheng.github.io/post/20191026/">[ChatBot05] 建立 Line 的機器人通道</a></h2>
 
-    <div class="post-meta">
+  <div class="post-meta">
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
@@ -265,146 +258,137 @@
 
 </div>
 
-  </header>
-
-  <p>
   <p>這篇介紹 Line 的 Messaging API 和機器人的串接。這當中會建立一個 LINE 官方帳號 2.0，使用者可以加入這個帳號來和機器人對話。</p>
-  </p>
+
+<p>本文大綱：<br>
+1. 在 <a href="https://developers.line.biz/en/services/messaging-api/" target="_blank">LINE Developers</a> 建立 Line Messaging API 頻道<br>
+2. 在微軟 Azure 建立 Line 通道註冊，並與 Line 串接<br>
+3. 進行測試<br></p>
+
+<p><img src="https://avacheng.github.io/post/pic20191026/BotFramework1026.jpg" width="100%">
+↑ 目標：將機器人和Line Messaging API 串接，讓用戶能在 Line 上，透過官方帳號與機器人互動</p>
+
+<hr />
+
+<h2 id="1-在-a-href-https-developers-line-biz-en-services-messaging-api-target-blank-line-developers-a-建立-line-messaging-api-頻道">1. 在 <a href="https://developers.line.biz/en/services/messaging-api/" target="_blank">LINE Developers</a> 建立 Line Messaging API 頻道</h2>
+
+<p>到 <a href="https://developers.line.biz/en/services/messaging-api/">Line 的開發人員頁面</a>註冊開發人員<br>
+<img src="https://avacheng.github.io/post/pic20191026/Picture252.png" width="100%"></p>
+
+<hr />
+
+<p>自訂 Provider 名稱<br>
+<img src="https://avacheng.github.io/post/pic20191026/Picture253.png" width="100%"></p>
+
+<hr />
+
+<blockquote>
+<p>》如果建立過程中有需要選擇 Channel 型態，選 Messaging API<br>
+<img src="https://avacheng.github.io/post/pic20191026/PictureS01.png" width="100%"></p>
+</blockquote>
+
+<hr />
+
+<p>自訂頻道名稱（7日內不能修改）、描述和類別等設定<br>
+<img src="https://avacheng.github.io/post/pic20191026/Picture254.png" width="100%"></p>
+
+<hr />
+
+<p>跳過機器人的隱私政策與使用條款的 URL 設定，未來有需要時再來填寫；繼續往下拉，按「Confirm」<br>
+<img src="https://avacheng.github.io/post/pic20191026/Picture256.png" width="100%"></p>
+
+<hr />
+
+<p>再次確認資料無誤<br>
+<img src="https://avacheng.github.io/post/pic20191026/Picture257.png" width="100%"></p>
+
+<hr />
+
+<p>勾選同意 Line 的使用條款，建立 Line 頻道<br>
+<img src="https://avacheng.github.io/post/pic20191026/Picture258.png" width="100%"></p>
+
+<hr />
+
+<p>進到新建的頻道中，以便接下來進行串接設定<br>
+<img src="https://avacheng.github.io/post/pic20191026/Picture259.png" width="100%"></p>
+
+<hr />
+
+<h2 id="2-在微軟-azure-建立-line-通道註冊-並與-line-串接">2. 在微軟 Azure 建立 Line 通道註冊，並與 Line 串接</h2>
+
+<p>登入 <a href="https://portal.azure.com/" target="_blank">Azure</a>，找到先前建立的「機器人通道註冊」，新增 Line 通道，進入設定頁面後，回到 Line 開發者頁面<br>
+<img src="https://avacheng.github.io/post/pic20191026/Picture263.png" width="100%"></p>
+
+<hr />
+
+<p>接續第一部分的頻道設定頁面。先在「Change Informations」開啟另外一個分頁，再往下設定。<br>
+<img src="https://avacheng.github.io/post/pic20191026/Picture260.png" width="100%"></p>
+
+<hr />
+
+<p>首先找到「Channel secret」，貼到 Azure 的頻道秘密欄位<br>
+<img src="https://avacheng.github.io/post/pic20191026/Picture261.png" width="100%"></p>
+
+<hr />
+
+<p>再找到「Channel access token (long-lived)」，從右邊的「Issue」按鈕中取得頻道存取權杖，貼到 Azure<br>
+<img src="https://avacheng.github.io/post/pic20191026/Picture262.png" width="100%"></p>
+
+<hr />
+
+<p>Azure 的設定畫面上貼入從 Line 取得的 Secret 和 Token，然後複製下方的「Webhook URL」網址，再按儲存， Azure 這邊的設定就完成了<br>
+<img src="https://avacheng.github.io/post/pic20191026/Picture264.png" width="100%"></p>
+
+<hr />
+
+<p>回到 Line 的頁面找到 Use webhooks，改為 <strong>Enabled</strong> ，並按右方的「Update」來儲存更新。然後在 Webhook URL 空白欄位右鍵貼上 Azure 剛才的網址，然後一樣「Update」。<br>
+<img src="https://avacheng.github.io/post/pic20191026/Picture265.png" width="100%"></p>
+
+<hr />
+
+<p>移到「Change Informations」開出的分頁，左邊選單中選擇「回應設定」，然後依據畫面修改設定。<br>
+<img src="https://avacheng.github.io/post/pic20191026/Picture267.png" width="100%"></p>
+
+<hr />
+
+<h2 id="3-進行測試">3. 進行測試</h2>
+
+<p>在 Line Developers 開發者頻道頁面中，最下方有這個頻道的相關資訊，例如 QR code、ID 等，掃描 QR code 就和一般加 Line 官方帳號一樣，加入後就可以開始聊天測試。（如果沒有回應，回到前面步驟確定設定無誤）
+<img src="https://avacheng.github.io/post/pic20191026/Picture266.png" width="100%"></p>
+
+<hr />
+
+<p>&lt;如有轉載，請附上本文連結網址&gt;</p>
 
   
-  <footer>
-    <a href="https://avacheng.github.io/post/20191026/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://avacheng.github.io/post/20191013/">[ChatBot04] 建立臉書的機器人通道</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2019-10-13 Sunday</time>
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://avacheng.github.io/post/20191013/"><i class="fa fa-chevron-left"></i></a>
+    
   </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
+  <div class="pure-u-10-24">
     
-      <a class="post-taxonomy-topic" href="https://avacheng.github.io/topics/%E7%AB%99%E5%9C%A8%E5%B7%A8%E4%BA%BA%E8%82%A9%E8%86%80%E4%B8%8A%E9%96%8B%E7%99%BC%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA">站在巨人肩膀上開發聊天機器人</a>
+    <nav class="prev">
+      <a href="https://avacheng.github.io/post/20191013/">[ChatBot04] 建立臉書的機器人通道</a>
+    </nav>
     
   </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/chatbot">chatbot</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/web-app">web-app</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/azure">azure</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/bot-channels-registration">bot-channels-registration</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/facebook">facebook</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/messenger-api">messenger-api</a>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
     
   </div>
-  
-  
-
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
 </div>
 
-  </header>
 
-  <p>
-  <p>在<a href="https://avacheng.github.io/post/20190922" target="_blank">上一篇</a>完成了機器人的雲端佈署後，接下來要進行機器人和使用者介面的串接。這篇介紹臉書 Facebook 的 Messenger API 的串接。</p>
-  </p>
-
-  
-  <footer>
-    <a href="https://avacheng.github.io/post/20191013/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://avacheng.github.io/post/20190922/">[ChatBot03] 上傳 EchoBot 到雲端並建立通道</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2019-09-22 Sunday</time>
-  </div>
 
   
 
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://avacheng.github.io/topics/%E7%AB%99%E5%9C%A8%E5%B7%A8%E4%BA%BA%E8%82%A9%E8%86%80%E4%B8%8A%E9%96%8B%E7%99%BC%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA">站在巨人肩膀上開發聊天機器人</a>
-    
-  </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/chatbot">chatbot</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/web-app">web-app</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/azure">azure</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/.net-core">.net-core</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/bot-channels-registration">bot-channels-registration</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/webchat">webchat</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p><a href="https://avacheng.github.io/post/20190907" target="_blank">前一篇</a>在地端完成了一個簡單的機器人，而這篇目標是將這個機器人放到 <a href="https://portal.azure.com/" target="_blank">Azure 雲端</a> 成為一個「App」，並建立「機器人通道註冊」與之相連。最後使用「機器人通道註冊」中的預設通道「WebChat 網路聊天」作為使用者介面來測試雲端佈署是否成功。</p>
-  </p>
-
-  
-  <footer>
-    <a href="https://avacheng.github.io/post/20190922/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
 </div>
 
 </div>
@@ -432,3 +416,4 @@
 
 </body>
 </html>
+

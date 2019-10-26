@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
     <copyright>&amp;copy; 2019. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 13 Oct 2019 10:12:45 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 26 Oct 2019 09:31:18 +0800</lastBuildDate>
     
 	<atom:link href="https://avacheng.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>azure</title>
       <link>https://avacheng.github.io/tags/azure/</link>
-      <pubDate>Sun, 13 Oct 2019 10:12:45 +0800</pubDate>
+      <pubDate>Sat, 26 Oct 2019 09:31:18 +0800</pubDate>
       
       <guid>https://avacheng.github.io/tags/azure/</guid>
       <description></description>
@@ -24,7 +24,7 @@
     <item>
       <title>bot-channels-registration</title>
       <link>https://avacheng.github.io/tags/bot-channels-registration/</link>
-      <pubDate>Sun, 13 Oct 2019 10:12:45 +0800</pubDate>
+      <pubDate>Sat, 26 Oct 2019 09:31:18 +0800</pubDate>
       
       <guid>https://avacheng.github.io/tags/bot-channels-registration/</guid>
       <description></description>
@@ -33,9 +33,36 @@
     <item>
       <title>chatbot</title>
       <link>https://avacheng.github.io/tags/chatbot/</link>
-      <pubDate>Sun, 13 Oct 2019 10:12:45 +0800</pubDate>
+      <pubDate>Sat, 26 Oct 2019 09:31:18 +0800</pubDate>
       
       <guid>https://avacheng.github.io/tags/chatbot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>line</title>
+      <link>https://avacheng.github.io/tags/line/</link>
+      <pubDate>Sat, 26 Oct 2019 09:31:18 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/tags/line/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>messaging-api</title>
+      <link>https://avacheng.github.io/tags/messaging-api/</link>
+      <pubDate>Sat, 26 Oct 2019 09:31:18 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/tags/messaging-api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web-app</title>
+      <link>https://avacheng.github.io/tags/web-app/</link>
+      <pubDate>Sat, 26 Oct 2019 09:31:18 +0800</pubDate>
+      
+      <guid>https://avacheng.github.io/tags/web-app/</guid>
       <description></description>
     </item>
     
@@ -54,15 +81,6 @@
       <pubDate>Sun, 13 Oct 2019 10:12:45 +0800</pubDate>
       
       <guid>https://avacheng.github.io/tags/messenger-api/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>web-app</title>
-      <link>https://avacheng.github.io/tags/web-app/</link>
-      <pubDate>Sun, 13 Oct 2019 10:12:45 +0800</pubDate>
-      
-      <guid>https://avacheng.github.io/tags/web-app/</guid>
       <description></description>
     </item>
     
