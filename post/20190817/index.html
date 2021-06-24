@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.83.1" />
 
   <title>Keras 預訓練模型 layer 抽換 &middot; Ava程式筆記</title>
 
@@ -72,12 +72,6 @@
 
   <div class="pure-menu">
     <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://avacheng.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
-      
-        </li>
       
       
         <li class="pure-menu-item">
@@ -193,7 +187,7 @@
 
   <div>
   <div class="small-print">
-    <small>&copy; 2019. All rights reserved.</small>
+    <small>&copy; 2021. All rights reserved.</small>
   </div>
   <div class="small-print">
     <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
@@ -256,369 +250,297 @@
 </div>
 
   <p>除了自己建模外，keras.applications 提供了數個預訓練的深度學習模型，包含常用的圖片分類模型 ResNet50、Vgg16/Vgg19 等，但是應用時可能會遇到需要調整輸入或輸出 layer 的狀況，最近練習時遇到案例輸入是 (128, 128, 3)、輸出是 2 個分類的，和預設的輸入 (244, 244, 3)、輸出 1000 類不同，在網路上找了一些抽換模型 layer 的方法，記錄下來</p>
-
-<h2 id="引用套件">★ 引用套件</h2>
-
-<pre><code class="language-python">from keras.applications.resnet50 import ResNet50
-</code></pre>
-
-<h2 id="參數說明">★ 參數說明</h2>
-
-<p><a href="https://keras.io/applications/#resnet" target="_blank">(官方連結)</a></p>
-
-<pre><code class="language-python">keras.applications.resnet50.ResNet50(
-                    include_top=True, # 是否包含最後的全連接層 (fully-connected layer)
-                    weights='imagenet', # None: 權重隨機初始化、'imagenet': 載入預訓練權重
-                    input_tensor=None, # 使用 Keras tensor 作為模型的輸入層（layers.Input() 輸出的 tensor）
-                    input_shape=None, # 當 include_top=False 時，可調整輸入圖片的尺寸（長寬需不小於 32）
-                    pooling=None, # 當 include_top=False 時，最後的輸出是否 pooling（可選 'avg' 或 'max'）
-                    classes=1000 # 當 include_top=True 且 weights=None 時，最後輸出的類別數
-                    )
-</code></pre>
-
-<hr />
-
-<h2 id="原始-resnet50-模型">★ 原始 ResNet50 模型</h2>
-
-<pre><code class="language-python">resMod = ResNet50(include_top=True, weights='imagenet')
-</code></pre>
-
-<h3 id="模型前-3-層">模型前 3 層</h3>
-
+<h2 id="-引用套件">★ 引用套件</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> keras.applications.resnet50 <span style="color:#f92672">import</span> ResNet50
+</code></pre></div><h2 id="-參數說明">★ 參數說明</h2>
+<p><a href="https://keras.io/applications/#resnet" target="_blank" rel="noreferrer noopener">(官方連結)</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">keras<span style="color:#f92672">.</span>applications<span style="color:#f92672">.</span>resnet50<span style="color:#f92672">.</span>ResNet50(
+					include_top<span style="color:#f92672">=</span>True, <span style="color:#75715e"># 是否包含最後的全連接層 (fully-connected layer)</span>
+					weights<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;imagenet&#39;</span>, <span style="color:#75715e"># None: 權重隨機初始化、&#39;imagenet&#39;: 載入預訓練權重</span>
+					input_tensor<span style="color:#f92672">=</span>None, <span style="color:#75715e"># 使用 Keras tensor 作為模型的輸入層（layers.Input() 輸出的 tensor）</span>
+					input_shape<span style="color:#f92672">=</span>None, <span style="color:#75715e"># 當 include_top=False 時，可調整輸入圖片的尺寸（長寬需不小於 32）</span>
+					pooling<span style="color:#f92672">=</span>None, <span style="color:#75715e"># 當 include_top=False 時，最後的輸出是否 pooling（可選 &#39;avg&#39; 或 &#39;max&#39;）</span>
+					classes<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span> <span style="color:#75715e"># 當 include_top=True 且 weights=None 時，最後輸出的類別數</span>
+					)
+</code></pre></div><hr>
+<h2 id="-原始-resnet50-模型">★ 原始 ResNet50 模型</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">resMod <span style="color:#f92672">=</span> ResNet50(include_top<span style="color:#f92672">=</span>True, weights<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;imagenet&#39;</span>)
+</code></pre></div><h3 id="模型前-3-層">模型前 3 層</h3>
 <table>
 <thead>
 <tr>
-<th align="left">Layer (type)　　　　　　　　　　</th>
-<th align="left">Output Shape　　　　　</th>
-<th align="center">　　　Param #　　　</th>
-<th align="left">Connected to　　</th>
+<th style="text-align:left">Layer (type)　　　　　　　　　　</th>
+<th style="text-align:left">Output Shape　　　　　</th>
+<th style="text-align:center">　　　Param #　　　</th>
+<th style="text-align:left">Connected to　　</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">input_1 (InputLayer)</td>
-<td align="left">(None, 224, 224, 3)</td>
-<td align="center">0</td>
-<td align="left"></td>
+<td style="text-align:left">input_1 (InputLayer)</td>
+<td style="text-align:left">(None, 224, 224, 3)</td>
+<td style="text-align:center">0</td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">conv1_pad (ZeroPadding2D)</td>
-<td align="left">(None, 230, 230, 3)</td>
-<td align="center">0</td>
-<td align="left">input_1[0][0]</td>
+<td style="text-align:left">conv1_pad (ZeroPadding2D)</td>
+<td style="text-align:left">(None, 230, 230, 3)</td>
+<td style="text-align:center">0</td>
+<td style="text-align:left">input_1[0][0]</td>
 </tr>
-
 <tr>
-<td align="left">conv1 (Conv2D)</td>
-<td align="left">(None, 112, 112, 64)</td>
-<td align="center">9472</td>
-<td align="left">conv1_pad[0][0]</td>
+<td style="text-align:left">conv1 (Conv2D)</td>
+<td style="text-align:left">(None, 112, 112, 64)</td>
+<td style="text-align:center">9472</td>
+<td style="text-align:left">conv1_pad[0][0]</td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="模型最後-5-層">模型最後 5 層</h3>
-
 <table>
 <thead>
 <tr>
-<th align="left">Layer (type)</th>
-<th align="left">Output Shape</th>
-<th align="center">　Param #　</th>
-<th align="left">Connected to　　</th>
+<th style="text-align:left">Layer (type)</th>
+<th style="text-align:left">Output Shape</th>
+<th style="text-align:center">　Param #　</th>
+<th style="text-align:left">Connected to　　</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">bn5c_branch2c (BatchNormalization)</td>
-<td align="left">(None, 7, 7, 2048)</td>
-<td align="center">8192</td>
-<td align="left">res5c_branch2c[0][0]</td>
+<td style="text-align:left">bn5c_branch2c (BatchNormalization)</td>
+<td style="text-align:left">(None, 7, 7, 2048)</td>
+<td style="text-align:center">8192</td>
+<td style="text-align:left">res5c_branch2c[0][0]</td>
 </tr>
-
 <tr>
-<td align="left">add_16 (Add)</td>
-<td align="left">(None, 7, 7, 2048)</td>
-<td align="center">0</td>
-<td align="left">bn5c_branch2c[0][0]、activation_46[0][0]</td>
+<td style="text-align:left">add_16 (Add)</td>
+<td style="text-align:left">(None, 7, 7, 2048)</td>
+<td style="text-align:center">0</td>
+<td style="text-align:left">bn5c_branch2c[0][0]、activation_46[0][0]</td>
 </tr>
-
 <tr>
-<td align="left">activation_49 (Activation)</td>
-<td align="left">(None, 7, 7, 2048)</td>
-<td align="center">0</td>
-<td align="left">add_16[0][0]</td>
+<td style="text-align:left">activation_49 (Activation)</td>
+<td style="text-align:left">(None, 7, 7, 2048)</td>
+<td style="text-align:center">0</td>
+<td style="text-align:left">add_16[0][0]</td>
 </tr>
-
 <tr>
-<td align="left">avg_pool (GlobalAveragePooling2)</td>
-<td align="left">(None, 2048)</td>
-<td align="center">0</td>
-<td align="left">activation_49[0][0]</td>
+<td style="text-align:left">avg_pool (GlobalAveragePooling2)</td>
+<td style="text-align:left">(None, 2048)</td>
+<td style="text-align:center">0</td>
+<td style="text-align:left">activation_49[0][0]</td>
 </tr>
-
 <tr>
-<td align="left">fc1000 (Dense)</td>
-<td align="left">(None, 1000)</td>
-<td align="center">2049000</td>
-<td align="left">avg_pool[0][0]</td>
+<td style="text-align:left">fc1000 (Dense)</td>
+<td style="text-align:left">(None, 1000)</td>
+<td style="text-align:center">2049000</td>
+<td style="text-align:left">avg_pool[0][0]</td>
 </tr>
 </tbody>
 </table>
-
-<hr />
-
-<h2 id="不載入預訓練權重-直接更改輸入輸出層維度">★ 不載入預訓練權重，直接更改輸入輸出層維度</h2>
-
-<pre><code class="language-python">num_classes = 2
-input_shape = (128, 128, 3)
-resMod = ResNet50(include_top=True, weights=None,
-                  input_shape=input_shape, classes=num_classes)
-</code></pre>
-
-<p>得到的模型會是已經調整好輸入輸出維度的模型，但是權重需要重新 training</p>
-
+<hr>
+<h2 id="-不載入預訓練權重直接更改輸入輸出層維度">★ 不載入預訓練權重，直接更改輸入輸出層維度</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">num_classes <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+input_shape <span style="color:#f92672">=</span> (<span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">3</span>)
+resMod <span style="color:#f92672">=</span> ResNet50(include_top<span style="color:#f92672">=</span>True, weights<span style="color:#f92672">=</span>None,
+				  input_shape<span style="color:#f92672">=</span>input_shape, classes<span style="color:#f92672">=</span>num_classes)
+</code></pre></div><p>得到的模型會是已經調整好輸入輸出維度的模型，但是權重需要重新 training</p>
 <h3 id="模型前-3-層-1">模型前 3 層</h3>
-
 <table>
 <thead>
 <tr>
-<th align="left">Layer (type)　　　　　　　　　　</th>
-<th align="left">Output Shape　　　　　</th>
-<th align="center">　　　Param #　　　</th>
-<th align="left">Connected to　　</th>
+<th style="text-align:left">Layer (type)　　　　　　　　　　</th>
+<th style="text-align:left">Output Shape　　　　　</th>
+<th style="text-align:center">　　　Param #　　　</th>
+<th style="text-align:left">Connected to　　</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">input_1 (InputLayer)</td>
-<td align="left">(None, 128, 128, 3)</td>
-<td align="center">0</td>
-<td align="left"></td>
+<td style="text-align:left">input_1 (InputLayer)</td>
+<td style="text-align:left">(None, 128, 128, 3)</td>
+<td style="text-align:center">0</td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">conv1_pad (ZeroPadding2D)</td>
-<td align="left">(None, 134, 134, 3)</td>
-<td align="center">0</td>
-<td align="left">input_1[0][0]</td>
+<td style="text-align:left">conv1_pad (ZeroPadding2D)</td>
+<td style="text-align:left">(None, 134, 134, 3)</td>
+<td style="text-align:center">0</td>
+<td style="text-align:left">input_1[0][0]</td>
 </tr>
-
 <tr>
-<td align="left">conv1 (Conv2D)</td>
-<td align="left">(None, 64, 64, 64)</td>
-<td align="center">9472</td>
-<td align="left">conv1_pad[0][0]</td>
+<td style="text-align:left">conv1 (Conv2D)</td>
+<td style="text-align:left">(None, 64, 64, 64)</td>
+<td style="text-align:center">9472</td>
+<td style="text-align:left">conv1_pad[0][0]</td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="模型最後-5-層-1">模型最後 5 層</h3>
-
 <table>
 <thead>
 <tr>
-<th align="left">Layer (type)</th>
-<th align="left">Output Shape</th>
-<th align="center">　Param #　</th>
-<th align="left">Connected to　　</th>
+<th style="text-align:left">Layer (type)</th>
+<th style="text-align:left">Output Shape</th>
+<th style="text-align:center">　Param #　</th>
+<th style="text-align:left">Connected to　　</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">bn5c_branch2c (BatchNormalization)</td>
-<td align="left">(None, 4, 4, 2048)</td>
-<td align="center">8192</td>
-<td align="left">res5c_branch2c[0][0]</td>
+<td style="text-align:left">bn5c_branch2c (BatchNormalization)</td>
+<td style="text-align:left">(None, 4, 4, 2048)</td>
+<td style="text-align:center">8192</td>
+<td style="text-align:left">res5c_branch2c[0][0]</td>
 </tr>
-
 <tr>
-<td align="left">add_16 (Add)</td>
-<td align="left">(None, 4, 4, 2048)</td>
-<td align="center">0</td>
-<td align="left">bn5c_branch2c[0][0]、activation_46[0][0]</td>
+<td style="text-align:left">add_16 (Add)</td>
+<td style="text-align:left">(None, 4, 4, 2048)</td>
+<td style="text-align:center">0</td>
+<td style="text-align:left">bn5c_branch2c[0][0]、activation_46[0][0]</td>
 </tr>
-
 <tr>
-<td align="left">activation_49 (Activation)</td>
-<td align="left">(None, 4, 4, 2048)</td>
-<td align="center">0</td>
-<td align="left">add_16[0][0]</td>
+<td style="text-align:left">activation_49 (Activation)</td>
+<td style="text-align:left">(None, 4, 4, 2048)</td>
+<td style="text-align:center">0</td>
+<td style="text-align:left">add_16[0][0]</td>
 </tr>
-
 <tr>
-<td align="left">avg_pool (GlobalAveragePooling2)</td>
-<td align="left">(None, 2048)</td>
-<td align="center">0</td>
-<td align="left">activation_49[0][0]</td>
+<td style="text-align:left">avg_pool (GlobalAveragePooling2)</td>
+<td style="text-align:left">(None, 2048)</td>
+<td style="text-align:center">0</td>
+<td style="text-align:left">activation_49[0][0]</td>
 </tr>
-
 <tr>
-<td align="left">fc1000 (Dense)</td>
-<td align="left">(None, 2)</td>
-<td align="center">4098</td>
-<td align="left">avg_pool[0][0]</td>
+<td style="text-align:left">fc1000 (Dense)</td>
+<td style="text-align:left">(None, 2)</td>
+<td style="text-align:center">4098</td>
+<td style="text-align:left">avg_pool[0][0]</td>
 </tr>
 </tbody>
 </table>
-
-<hr />
-
-<h2 id="載入權重-更改輸入圖片尺寸-輸出類別數手動修改">★ 載入權重，更改輸入圖片尺寸，輸出類別數手動修改</h2>
-
-<pre><code class="language-python">input_shape = (128, 128, 3)
-resMod = ResNet50(include_top=False, weights='imagenet',
-                  input_shape=input_shape)
-</code></pre>
-
-<h3 id="模型前-3-層-2">模型前 3 層</h3>
-
+<hr>
+<h2 id="-載入權重更改輸入圖片尺寸輸出類別數手動修改">★ 載入權重，更改輸入圖片尺寸，輸出類別數手動修改</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">input_shape <span style="color:#f92672">=</span> (<span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">3</span>)
+resMod <span style="color:#f92672">=</span> ResNet50(include_top<span style="color:#f92672">=</span>False, weights<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;imagenet&#39;</span>,
+				  input_shape<span style="color:#f92672">=</span>input_shape)
+</code></pre></div><h3 id="模型前-3-層-2">模型前 3 層</h3>
 <table>
 <thead>
 <tr>
-<th align="left">Layer (type)　　　　　　　　　　</th>
-<th align="left">Output Shape　　　　　</th>
-<th align="center">　　　Param #　　　</th>
-<th align="left">Connected to　　</th>
+<th style="text-align:left">Layer (type)　　　　　　　　　　</th>
+<th style="text-align:left">Output Shape　　　　　</th>
+<th style="text-align:center">　　　Param #　　　</th>
+<th style="text-align:left">Connected to　　</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">input_1 (InputLayer)</td>
-<td align="left">(None, 128, 128, 3)</td>
-<td align="center">0</td>
-<td align="left"></td>
+<td style="text-align:left">input_1 (InputLayer)</td>
+<td style="text-align:left">(None, 128, 128, 3)</td>
+<td style="text-align:center">0</td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">conv1_pad (ZeroPadding2D)</td>
-<td align="left">(None, 134, 134, 3)</td>
-<td align="center">0</td>
-<td align="left">input_1[0][0]</td>
+<td style="text-align:left">conv1_pad (ZeroPadding2D)</td>
+<td style="text-align:left">(None, 134, 134, 3)</td>
+<td style="text-align:center">0</td>
+<td style="text-align:left">input_1[0][0]</td>
 </tr>
-
 <tr>
-<td align="left">conv1 (Conv2D)</td>
-<td align="left">(None, 64, 64, 64)</td>
-<td align="center">9472</td>
-<td align="left">conv1_pad[0][0]</td>
+<td style="text-align:left">conv1 (Conv2D)</td>
+<td style="text-align:left">(None, 64, 64, 64)</td>
+<td style="text-align:center">9472</td>
+<td style="text-align:left">conv1_pad[0][0]</td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="模型最後-3-層">模型最後 3 層</h3>
-
 <table>
 <thead>
 <tr>
-<th align="left">Layer (type)</th>
-<th align="left">Output Shape</th>
-<th align="center">　Param #　</th>
-<th align="left">Connected to　　</th>
+<th style="text-align:left">Layer (type)</th>
+<th style="text-align:left">Output Shape</th>
+<th style="text-align:center">　Param #　</th>
+<th style="text-align:left">Connected to　　</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">bn5c_branch2c (BatchNormalization)</td>
-<td align="left">(None, 4, 4, 2048)</td>
-<td align="center">8192</td>
-<td align="left">res5c_branch2c[0][0]</td>
+<td style="text-align:left">bn5c_branch2c (BatchNormalization)</td>
+<td style="text-align:left">(None, 4, 4, 2048)</td>
+<td style="text-align:center">8192</td>
+<td style="text-align:left">res5c_branch2c[0][0]</td>
 </tr>
-
 <tr>
-<td align="left">add_16 (Add)</td>
-<td align="left">(None, 4, 4, 2048)</td>
-<td align="center">0</td>
-<td align="left">bn5c_branch2c[0][0]、activation_46[0][0]</td>
+<td style="text-align:left">add_16 (Add)</td>
+<td style="text-align:left">(None, 4, 4, 2048)</td>
+<td style="text-align:center">0</td>
+<td style="text-align:left">bn5c_branch2c[0][0]、activation_46[0][0]</td>
 </tr>
-
 <tr>
-<td align="left">activation_49 (Activation)</td>
-<td align="left">(None, 4, 4, 2048)</td>
-<td align="center">0</td>
-<td align="left">add_16[0][0]</td>
+<td style="text-align:left">activation_49 (Activation)</td>
+<td style="text-align:left">(None, 4, 4, 2048)</td>
+<td style="text-align:center">0</td>
+<td style="text-align:left">add_16[0][0]</td>
 </tr>
 </tbody>
 </table>
-
 <p>在 <code>pooling=None</code> 時，原先的最後 2 層會被抽出；假如 <code>pooling='avg'</code> ，GlobalAveragePooling2 這層還會保留，只抽掉最後的全連接層；假如 <code>pooling='max'</code> ，GlobalAveragePooling2 這層會換成 Max Pooling，同時抽掉最後一層。</p>
-
 <p>因為 <code>include_top=False</code> ，模型需要補上 output layer，例如：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> keras.layers <span style="color:#f92672">import</span> Dense, Dropout, Flatten
+num_classes <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+x <span style="color:#f92672">=</span> resMod<span style="color:#f92672">.</span>layers[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>output
+x <span style="color:#f92672">=</span> Flatten(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;flatten&#39;</span>)(x)
+x <span style="color:#f92672">=</span> Dropout(<span style="color:#ae81ff">0.5</span>)(x)
+x <span style="color:#f92672">=</span> Dense(num_classes, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;softmax&#39;</span>, name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;predictions&#39;</span>)(x)
 
-<pre><code class="language-python">from keras.layers import Dense, Dropout, Flatten
-num_classes = 2
-x = resMod.layers[-1].output
-x = Flatten(name='flatten')(x)
-x = Dropout(0.5)(x)
-x = Dense(num_classes, activation='softmax', name='predictions')(x)
+<span style="color:#75715e"># Create your own model </span>
+model <span style="color:#f92672">=</span> keras<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>Model(input<span style="color:#f92672">=</span>resMod<span style="color:#f92672">.</span>input, output<span style="color:#f92672">=</span>x) 
+model<span style="color:#f92672">.</span>summary()
+</code></pre></div><hr>
+<h2 id="-手動修改輸入層">★ 手動修改輸入層</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">resMod <span style="color:#f92672">=</span> ResNet50(include_top<span style="color:#f92672">=</span>True, weights<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;imagenet&#39;</span>)
+<span style="color:#75715e"># Pop out input layer</span>
+resMod<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>pop(<span style="color:#ae81ff">0</span>)
 
-# Create your own model 
-model = keras.models.Model(input=resMod.input, output=x) 
-model.summary()
-</code></pre>
-
-<hr />
-
-<h2 id="手動修改輸入層">★ 手動修改輸入層</h2>
-
-<pre><code class="language-python">resMod = ResNet50(include_top=True, weights='imagenet')
-# Pop out input layer
-resMod.layers.pop(0)
-
-# New input layer
-newInput = keras.layers.Input(batch_shape=(None, 128, 128, 3))
-newOutputs = resMod(newInput)
-newModel = keras.models.Model(input=newInput, output=newOutputs)
-newModel.summary()
-</code></pre>
-
-<h3 id="模型結構">模型結構</h3>
-
+<span style="color:#75715e"># New input layer</span>
+newInput <span style="color:#f92672">=</span> keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Input(batch_shape<span style="color:#f92672">=</span>(None, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">3</span>))
+newOutputs <span style="color:#f92672">=</span> resMod(newInput)
+newModel <span style="color:#f92672">=</span> keras<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>Model(input<span style="color:#f92672">=</span>newInput, output<span style="color:#f92672">=</span>newOutputs)
+newModel<span style="color:#f92672">.</span>summary()
+</code></pre></div><h3 id="模型結構">模型結構</h3>
 <table>
 <thead>
 <tr>
-<th align="left">Layer (type)　　　　　　　　　　</th>
-<th align="left">Output Shape　　　　　</th>
-<th align="center">　　　Param #　　　</th>
+<th style="text-align:left">Layer (type)　　　　　　　　　　</th>
+<th style="text-align:left">Output Shape　　　　　</th>
+<th style="text-align:center">　　　Param #　　　</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">input_1 (InputLayer)</td>
-<td align="left">(None, 128, 128, 3)</td>
-<td align="center">0</td>
+<td style="text-align:left">input_1 (InputLayer)</td>
+<td style="text-align:left">(None, 128, 128, 3)</td>
+<td style="text-align:center">0</td>
 </tr>
-
 <tr>
-<td align="left">resnet50 (Model)</td>
-<td align="left">multiple</td>
-<td align="center">25636712</td>
+<td style="text-align:left">resnet50 (Model)</td>
+<td style="text-align:left">multiple</td>
+<td style="text-align:center">25636712</td>
 </tr>
 </tbody>
 </table>
-
-<hr />
-
+<hr>
 <h2 id="flatten-vs-globalpooling">Flatten vs. GlobalPooling</h2>
-
-<p><a href="https://blog.csdn.net/qq_16234613/article/details/79520929" target="_blank">參考連結</a></p>
-
-<p><img src="https://avacheng.github.io/post/pic20190817/flattenvsglobalpooling.png" width="100%"></p>
-
+<p><a href="https://blog.csdn.net/qq_16234613/article/details/79520929" target="_blank" rel="noreferrer noopener">參考連結</a></p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190817/flattenvsglobalpooling.png" alt="flattenvsglobalpooling" id="flattenvsglobalpooling"  width="100%" />
+</p></p>
 <p>Flatten 是將所有的 feature map 的所有 cell 轉成向量；GlobalPooling 則是每張 feature map 全部 cell 先經過 max 或 average pooling 後，再轉成向量，可以處理全連接層輸入維度太大、參數太多的問題</p>
-
 <p>例如 activation_49 維度是 (None, 4, 4, 2048)，如果下一層 Flatten，最後參數數目是 4 * 4 * 2048 = 32768 個；如果是 GlobalAveragePooling，參數就只有 2048 個。</p>
-
-<hr />
-
+<hr>
 <p>&lt;如有轉載，請附上本文連結網址&gt;</p>
 
   

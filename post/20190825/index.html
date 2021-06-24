@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.83.1" />
 
   <title>[ChatBot01] 站在巨人肩膀上開發聊天機器人-系列說明 &middot; Ava程式筆記</title>
 
@@ -72,12 +72,6 @@
 
   <div class="pure-menu">
     <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://avacheng.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
-      
-        </li>
       
       
         <li class="pure-menu-item">
@@ -193,7 +187,7 @@
 
   <div>
   <div class="small-print">
-    <small>&copy; 2019. All rights reserved.</small>
+    <small>&copy; 2021. All rights reserved.</small>
   </div>
   <div class="small-print">
     <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
@@ -263,98 +257,79 @@
 </div>
 
   <p>這一系列文章記錄了自己打造聊天機器人的過程與心得，當中用了微軟的機器人開發套件 Bot Framework v4 SDK (C#) 和微軟的雲端平台 Azure 與認知服務，做出可以分析自然語言、具備基本問答能力的機器人，而且在多個平台上可以共用同樣的程式碼。</p>
-
 <p>非常感謝網路上許多高手提供自己的經驗和技術，讓這個簡單的機器人得以成形。</p>
-
 <h2 id="目的">目的</h2>
-
 <ol>
 <li>和不同平台連接，包含 Facebook、Line 等</li>
 <li>處理基本的客服問答 - 使用 Azure QnA maker</li>
 <li>分析文字語意並抓到關鍵字 - 使用 Azure LUIS (Language Understanding)</li>
 <li>將對話記錄下來，以供後續分析</li>
 </ol>
-
 <h2 id="機器人運作架構">機器人運作架構</h2>
-
-<p><img src="https://avacheng.github.io/post/pic20190825/BotFramework0825.jpg" width="100%"></p>
-
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190825/BotFramework0825.jpg" alt="BotFramework0825" id="BotFramework0825"  width="100%" />
+</p></p>
 <p>這個機器人是由許多的雲端服務組合而成的：使用者平台、機器人通道註冊、機器人的程式主體（Web App）、各種 AI 服務和資料庫。整體的運作流程會像這樣：使用者在雲端平台輸入訊息後，平台將訊息傳送給機器人通道註冊進行彙整，再交給程式主體去分析訊息；程式主體來處理訊息分析的流程，例如要將訊息丟給 QnA maker 處理還是 LUIS 處理、設定回答的方式、與資料庫串接等；業務處理完成，要回覆的訊息再依序由程式回傳到機器人通道註冊，再回傳到使用者眼前。而每個服務間透過 WebAPI 以 JSON 的格式傳送檔案資料進行溝通。開發者要做的就是將這些服務串接起來，組合成想要的功能（業務程序），寫成程式。程式部分會先在地端寫好後，在模擬器進行測試，確認程式和各 AI 服務及資料庫的串聯沒問題，再上傳到雲端。</p>
-
 <p>機器人的程式主體建構在 Visual Studio Bot Framework v4 SDK 的基礎上，其本身已經提供了接收和傳送訊息的模板（包含文字、圖片、卡片訊息等），照著這個模板我們可以取得來自使用者的訊息，將回覆訊息一樣套到模板上傳回機器人通道註冊後，機器人通道註冊就可以根據使用者平台規定的資料格式回覆訊息；因為各平台最後到程式主體中的資料格式是一致的，我們可以專注在業務邏輯的處理上。</p>
-
 <p>整個機器人是由雲端服務串接起來的，需要到各個雲端服務進行註冊，並取得或設定服務的 URL 和 Key （簡單來說，我們需要知道資料寄送的地址和開門的鑰匙才能正確將資料送達），所以建置過程中很大一部分是在處理這些基礎設施。</p>
-
 <blockquote>
-<p>註：所使用的 Azure 項目大部分都用 F0 免費的定價層，少數無免費層級的會用最基礎的收費層級，如需要更進階的服務與計價說明，請參考<a href="https://azure.microsoft.com/zh-tw/pricing/" target="_blank">微軟官方文件</a></p>
+<p>註：所使用的 Azure 項目大部分都用 F0 免費的定價層，少數無免費層級的會用最基礎的收費層級，如需要更進階的服務與計價說明，請參考<a href="https://azure.microsoft.com/zh-tw/pricing/" target="_blank" rel="noreferrer noopener">微軟官方文件</a></p>
 </blockquote>
-
 <h2 id="準備工具">準備工具</h2>
-
 <ol>
 <li>Visual Studio 2017 或 2019 (需含 .Net Core 2.1)</li>
 <li>安裝 C# Bot Framework v4 SDK</li>
 <li>安裝 BotFramework-Emulator 介面模擬器（用來測試機器人）</li>
-<li>微軟 Azure 訂閱帳號（註冊免費版即可）
-<!--5. 基本的 C# 語法與物件導向概念--></li>
+<li>微軟 Azure 訂閱帳號（註冊免費版即可）</li>
 </ol>
-
-<hr />
-
-<h2 id="1-安裝-a-href-https-visualstudio-microsoft-com-zh-hant-vs-target-blank-visual-studio-2019-community-a-需包含-net-core-2-1">1. 安裝 <a href="https://visualstudio.microsoft.com/zh-hant/vs/" target="_blank"> [Visual Studio 2019 community]</a> (需包含 .Net Core 2.1)</h2>
-
-<p><img src="https://avacheng.github.io/post/pic20190825/Picture100.png" width="100%"></p>
-
-<hr />
-
+<!-- raw HTML omitted -->
+<hr>
+<h2 id="1-安裝-visual-studio-2019-communityhttpsvisualstudiomicrosoftcomzh-hantvs-需包含-net-core-21">1. 安裝 <a href="https://visualstudio.microsoft.com/zh-hant/vs/" target="_blank" rel="noreferrer noopener">Visual Studio 2019 community</a> (需包含 .Net Core 2.1)</h2>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190825/Picture100.png" alt="Picture100" id="Picture100"  width="100%" />
+</p></p>
+<hr>
 <h3 id="如果已有-visual-studio">如果已有 Visual Studio</h3>
-
-<p><img src="https://avacheng.github.io/post/pic20190825/Picture102_1.png" width="100%"></p>
-
-<hr />
-
-<p><img src="https://avacheng.github.io/post/pic20190825/Picture102_2.png" width="100%"></p>
-
-<hr />
-
-<h3 id="勾選-asp-net-與網頁程式開發-然後-安裝">勾選 ASP.NET 與網頁程式開發，然後「安裝」</h3>
-
-<p><img src="https://avacheng.github.io/post/pic20190825/Picture103.png" width="100%"></p>
-
-<hr />
-
-<h2 id="2-安裝-a-href-https-marketplace-visualstudio-com-items-itemname-botbuilder-botbuilderv4-target-blank-bot-framework-sdk-a">2. 安裝 <a href="https://marketplace.visualstudio.com/items?itemName=BotBuilder.botbuilderv4" target="_blank"> [Bot Framework SDK]</a></h2>
-
-<p><img src="https://avacheng.github.io/post/pic20190825/Picture107.png" width="100%"></p>
-
-<hr />
-
-<p><img src="https://avacheng.github.io/post/pic20190825/Picture108.png" width="100%"></p>
-
-<hr />
-
-<h2 id="3-安裝-a-href-https-github-com-microsoft-botframework-emulator-releases-target-blank-botframework-emulator模擬器-a">3. 安裝 <a href="https://github.com/Microsoft/BotFramework-Emulator/releases" target="_blank"> [BotFramework-Emulator模擬器]</a></h2>
-
-<p><img src="https://avacheng.github.io/post/pic20190825/Picture110.png" width="100%"></p>
-
-<hr />
-
-<p><img src="https://avacheng.github.io/post/pic20190825/Picture111.png" width="100%"></p>
-
-<hr />
-
-<p><img src="https://avacheng.github.io/post/pic20190825/Picture112.png" width="100%"></p>
-
-<hr />
-
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190825/Picture102_1.png" alt="Picture102_1" id="Picture102_1"  width="100%" />
+</p></p>
+<hr>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190825/Picture102_2.png" alt="Picture102_2" id="Picture102_2"  width="100%" />
+</p></p>
+<hr>
+<h3 id="勾選-aspnet-與網頁程式開發然後安裝">勾選 ASP.NET 與網頁程式開發，然後「安裝」</h3>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190825/Picture103.png" alt="Picture103" id="Picture103"  width="100%" />
+</p></p>
+<hr>
+<h2 id="2-安裝-bot-framework-sdkhttpsmarketplacevisualstudiocomitemsitemnamebotbuilderbotbuilderv4">2. 安裝 <a href="https://marketplace.visualstudio.com/items?itemName=BotBuilder.botbuilderv4" target="_blank" rel="noreferrer noopener">Bot Framework SDK</a></h2>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190825/Picture107.png" alt="Picture107" id="Picture107"  width="100%" />
+</p></p>
+<hr>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190825/Picture108.png" alt="Picture108" id="Picture108"  width="100%" />
+</p></p>
+<hr>
+<h2 id="3-安裝-botframework-emulator模擬器httpsgithubcommicrosoftbotframework-emulatorreleases">3. 安裝 <a href="https://github.com/Microsoft/BotFramework-Emulator/releases" target="_blank" rel="noreferrer noopener">BotFramework-Emulator模擬器</a></h2>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190825/Picture110.png" alt="Picture110" id="Picture110"  width="100%" />
+</p></p>
+<hr>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190825/Picture111.png" alt="Picture111" id="Picture111"  width="100%" />
+</p></p>
+<hr>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190825/Picture112.png" alt="Picture112" id="Picture112"  width="100%" />
+</p></p>
+<hr>
 <h2 id="4-申請微軟-azure-訂閱帳號">4. 申請微軟 Azure 訂閱帳號</h2>
-
-<p>申請微軟 Azure 訂閱帳號：<a href="https://azure.microsoft.com/zh-tw/free/" target="_blank"><a href="https://azure.microsoft.com/zh-tw/free/">https://azure.microsoft.com/zh-tw/free/</a></a><br>
-申請流程可以參考<strong><a href="https://ithelp.ithome.com.tw/articles/10201833" target="_blank">此文</a></strong>，需要準備一張信用卡<br>
-入口網站網址：<a href="http://portal.azure.com" target="_blank"><a href="http://portal.azure.com">http://portal.azure.com</a></a>，之後會在此介面建立聊天機器人相關資源<br></p>
-
-<hr />
-
+<p>申請微軟 Azure 訂閱帳號：<a href="https://azure.microsoft.com/zh-tw/free/" target="_blank" rel="noreferrer noopener">https://azure.microsoft.com/zh-tw/free/</a></p>
+<p>申請流程可以參考**<a href="https://ithelp.ithome.com.tw/articles/10201833" target="_blank" rel="noreferrer noopener">此文</a>**，需要準備一張信用卡</p>
+<p>入口網站網址：<a href="http://portal.azure.com" target="_blank" rel="noreferrer noopener">http://portal.azure.com</a>，之後會在此介面建立聊天機器人相關資源</p>
+<hr>
 <p>&lt;如有轉載，請附上本文連結網址&gt;</p>
 
   

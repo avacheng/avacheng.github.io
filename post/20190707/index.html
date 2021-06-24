@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.83.1" />
 
   <title>.Net String.Format 整理 &middot; Ava程式筆記</title>
 
@@ -72,12 +72,6 @@
 
   <div class="pure-menu">
     <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://avacheng.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
-      
-        </li>
       
       
         <li class="pure-menu-item">
@@ -193,7 +187,7 @@
 
   <div>
   <div class="small-print">
-    <small>&copy; 2019. All rights reserved.</small>
+    <small>&copy; 2021. All rights reserved.</small>
   </div>
   <div class="small-print">
     <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
@@ -242,18 +236,15 @@
 </div>
 
   <h2 id="日期">日期</h2>
-
 <ul>
-<li><p>使用系統設定的 DateTimeFormatInfo.DataSeparator 分隔年月日 (<a href="https://blog.darkthread.net/blog/date-formate-slash" target="_blank"> 黑暗執行緒 </a>)</p>
-
-<pre><code>Console.WriteLine(string.Format(&quot;{0:yyyy/MM/dd}&quot;, DateTime.Today));
-</code></pre></li>
-
-<li><p>強制使用 &ldquo;/&rdquo; 分隔 → 加上 Escape 字符 &ldquo;\&rdquo; (<a href="https://blog.darkthread.net/blog/date-formate-slash" target="_blank"> 黑暗執行緒 </a>)</p>
-
-<pre><code>Console.WriteLine(string.Format(&quot;{0:yyyy\\/MM\\/dd}&quot;, DateTime.Today));
-</code></pre></li>
+<li>使用系統設定的 DateTimeFormatInfo.DataSeparator 分隔年月日 (<!-- raw HTML omitted --> 黑暗執行緒 <!-- raw HTML omitted -->)</li>
 </ul>
+<pre><code>Console.WriteLine(string.Format(&quot;{0:yyyy/MM/dd}&quot;, DateTime.Today));
+</code></pre><ul>
+<li>強制使用 &ldquo;/&rdquo; 分隔 → 加上 Escape 字符 &ldquo;&quot; (<!-- raw HTML omitted --> 黑暗執行緒 <!-- raw HTML omitted -->)</li>
+</ul>
+<pre><code>Console.WriteLine(string.Format(&quot;{0:yyyy\\/MM\\/dd}&quot;, DateTime.Today));
+</code></pre>
 
   
 <div class="prev-next-post pure-g">

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.83.1" />
+
+  <title>快速打造最強的 LINE 後台 &middot; Ava程式筆記</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://avacheng.github.io/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://avacheng.github.io/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="https://avacheng.github.io/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+ 
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/androidstudio.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="https://avacheng.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="https://avacheng.github.io/">Ava程式筆記</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/post/"><i class='fa fa-list fa-fw'></i>Posts</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/topics/"><i class='fa fa-map-signs fa-fw'></i>Topics</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/tags/"><i class='fa fa-tag fa-fw'></i>Tags</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://avacheng.github.io/about/"><i class='fa fa-user fa-fw'></i>About</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/avacheng" rel="me" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2021. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>快速打造最強的 LINE 後台</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>2021-06-16 Wednesday</time>
+  </div>
+
+  
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/bot">bot</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/line">line</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/line-official-account">line-official-account</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/line">line@</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <p>因為換工作的關係，離開前公司後就沒有碰過LINE串接相關技術了，但相信大家應該都有發現LINE的功能越來越強大，很多官方帳號現在下方都會有功能選單，像是一個藏在LINE裡面的App一樣。</p>
+<p>因為它是和LINE綁在一起的，我們不需要下載新的App、註冊新的帳號，所以接受度會比安裝新App高，而且相較於開發App，LINE官方帳號註冊零成本，甚至還可以免費發送 500 則訊息，對一般的小商家來說非常友善。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20210616/line-pricing.jpg" alt="line-pricing" id="line-pricing"  width="100%" />
+</p></p>
+<p>（圖片來源：<a href="https://tw.linebiz.com/service/account-solutions/line-official-account/" target="_blank" rel="noreferrer noopener">LINE Biz-Solutions</a>）</p>
+<p>說到節省成本，開發聊天機器人的用意主要是為了解決客服人力的問題，但是沒有客戶哪來的客服需求呢？其實店家最想要的是客源。</p>
+<p>那是不是能打造一個可以自動幫人招攬客戶、留住客戶的系統呢？</p>
+<p>因為疫情的關係，最近LINE社群經營更加盛行起來，而剛好我就遇到朋友介紹了一個強大的LINE後台系統，是由鄭錦聰老師花了兩年時間打造的。</p>
+<p>鄭老師是台灣聯盟行銷紀錄保持人，在20年前就已經運用網路行銷，做到年營收破億，他很喜歡研究各種行銷方法，每當他研究出一個新方法後，就會拿找一些行業的產品來做銷售測試，看看研究出的行銷方法可不可行，經常在測試銷售過程中，就打破那個行業的銷售紀錄，非常不可思議，是一位傳奇性的行銷大師。</p>
+<p>最近老師剛剛推出最新的顛覆性線上課程《趨勢聯盟秘訣》，課程的宗旨是教會你通過趨勢、聯盟，以及最新最酷的LINE自動行銷機器人（你體驗後一定會驚訝，覺得太神奇了），解決客戶不好找，成交不夠力、跟進花時間…等各種問題，最終讓銷售變成自動化、系統化。</p>
+<p>只要你點選以下連結，就可以立刻體驗鄭錦聰老師的LINE自動行銷機器人，還可以免費獲得2021最新趨勢聯盟報告……</p>
+<p><a href="https://gk.w7line.com/invite2/UwqPDyWdo">https://gk.w7line.com/invite2/UwqPDyWdo</a> （或者掃描最下方的QRcode）</p>
+<p>這份報告完全免費，你可以先加入LINE帳號後，先了解報告內容，你再看看是否有興趣參加這個線上課程。課程本身非常精采，每週開放一堂課程做學習，共6週課程，課程主題包括：百度文案公式、阿里巴巴網路推廣秘訣、猶太人借力術…等。</p>
+<p>這個課程本身就建立在這個強大的「LINE自動行銷機器人」上，我現在上到第四週課程，中間幾乎沒有人為的介入，一切銷售自動完成。</p>
+<p>如果你看了報告後對課程或LINE行銷機器人還有問題？我的建議是，不用想太多，先購買再說，因為現在有限時限量超級大優惠，先購買以確保搶到優惠，而課程有7天滿意保證（不用聯絡客服人員，也不用辦任何手續，在後台按下：我要退訂，學費就會全額退還），萬一不喜歡，退課就好，所以先以優惠價報名最重要。</p>
+<p>祝 學習愉快！</p>
+<p>Ava （如果有問題想問我，或想一起討論課程，歡迎加我的LINE@帳號 <strong>@139ihwwl</strong> ^^）</p>
+<p>😉 特別提醒1：體驗和報告都是免費的，只要點擊連結 <a href="https://gk.w7line.com/invite2/UwqPDyWdo">https://gk.w7line.com/invite2/UwqPDyWdo</a> （或掃描下面的QRcode），就會到LINE行銷機器人，許可加入後，就可以開始神奇的體驗之旅~</p>
+<p>😉 特別提醒2：LINE選單是手機版才有的，所以如果是電腦版的加入後要用手機來體驗喔</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20210616/qrcode.jpg" alt="line-pricing" id="line-pricing"  width="100%" />
+</p></p>
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://avacheng.github.io/post/20191026/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://avacheng.github.io/post/20191026/">[ChatBot05] 建立 Line 的機器人通道</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+
+  
+
+</div>
+
+</div>
+</div>
+<script src="https://avacheng.github.io/js/ui.js"></script>
+<script src="https://avacheng.github.io/js/menus.js"></script>
+
+
+<script>
+  
+  if (window.location.hostname != "localhost") {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-149376358-1', 'auto');
+    ga('send', 'pageview');
+  }
+</script>
+
+
+
+
+
+</body>
+</html>
+

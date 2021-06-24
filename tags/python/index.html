@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.83.1" />
 
   <title>python &middot; Ava程式筆記</title>
 
@@ -75,12 +75,6 @@
 
   <div class="pure-menu">
     <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://avacheng.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
-      
-        </li>
       
       
         <li class="pure-menu-item">
@@ -196,7 +190,7 @@
 
   <div>
   <div class="small-print">
-    <small>&copy; 2019. All rights reserved.</small>
+    <small>&copy; 2021. All rights reserved.</small>
   </div>
   <div class="small-print">
     <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
@@ -317,10 +311,8 @@
   </header>
 
   <p>
-  <p>目的：依據<a href="https://github.com/Azure/MachineLearningNotebooks/blob/master/tutorials/img-classification-part1-training.ipynb" target="_blank"> 參考連結1 </a>的模式，將等待訓練的 ML 模型送到 Azure ML Service Workspace 使用 GPU 來進行訓練（Experiment），以提高訓練效率</p>
-
+  <p>目的：依據 <a href="https://github.com/Azure/MachineLearningNotebooks/blob/master/tutorials/img-classification-part1-training.ipynb" target="_blank" rel="noreferrer noopener">參考連結1</a> 的模式，將等待訓練的 ML 模型送到 Azure ML Service Workspace 使用 GPU 來進行訓練（Experiment），以提高訓練效率</p>
 <p>效果：用 ResNet50 訓練圖片 (128*128) 約 2 萬張，1 epoch CUP i5 訓練時間約 8700 秒；Azure GPU 約 800 秒</p>
-
 <p>準備：(1) 在 Jupyter Notebook 上執行 Azure 工作區的建立和上傳資料 (2) 實際訓練內容 training script (train.py)</p>
   </p>
 

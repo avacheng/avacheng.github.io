@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.83.1" />
 
   <title>[ChatBot05] 建立 Line 的機器人通道 &middot; Ava程式筆記</title>
 
@@ -72,12 +72,6 @@
 
   <div class="pure-menu">
     <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://avacheng.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
-      
-        </li>
       
       
         <li class="pure-menu-item">
@@ -193,7 +187,7 @@
 
   <div>
   <div class="small-print">
-    <small>&copy; 2019. All rights reserved.</small>
+    <small>&copy; 2021. All rights reserved.</small>
   </div>
   <div class="small-print">
     <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
@@ -259,105 +253,102 @@
 </div>
 
   <p>這篇介紹 Line 的 Messaging API 和機器人的串接。這當中會建立一個 LINE 官方帳號 2.0，使用者可以加入這個帳號來和機器人對話。</p>
-
-<p>本文大綱：<br>
-1. 在 <a href="https://developers.line.biz/en/services/messaging-api/" target="_blank">LINE Developers</a> 建立 Line Messaging API 頻道<br>
-2. 在微軟 Azure 建立 Line 通道註冊，並與 Line 串接<br>
-3. 進行測試<br></p>
-
-<p><img src="https://avacheng.github.io/post/pic20191026/BotFramework1026.jpg" width="100%">
-↑ 目標：將機器人和Line Messaging API 串接，讓用戶能在 Line 上，透過官方帳號與機器人互動</p>
-
-<hr />
-
-<h2 id="1-在-a-href-https-developers-line-biz-en-services-messaging-api-target-blank-line-developers-a-建立-line-messaging-api-頻道">1. 在 <a href="https://developers.line.biz/en/services/messaging-api/" target="_blank">LINE Developers</a> 建立 Line Messaging API 頻道</h2>
-
-<p>到 <a href="https://developers.line.biz/en/services/messaging-api/">Line 的開發人員頁面</a>註冊開發人員<br>
-<img src="https://avacheng.github.io/post/pic20191026/Picture252.png" width="100%"></p>
-
-<hr />
-
-<p>自訂 Provider 名稱<br>
-<img src="https://avacheng.github.io/post/pic20191026/Picture253.png" width="100%"></p>
-
-<hr />
-
+<p>本文大綱：</p>
+<ol>
+<li>在 <a href="https://developers.line.biz/en/services/messaging-api/" target="_blank" rel="noreferrer noopener">LINE Developers</a> 建立 Line Messaging API 頻道<!-- raw HTML omitted --></li>
+<li>在微軟 Azure 建立 Line 通道註冊，並與 Line 串接<!-- raw HTML omitted --></li>
+<li>進行測試<!-- raw HTML omitted --></li>
+</ol>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/BotFramework1026.jpg" alt="BotFramework1026" id="BotFramework1026"  width="100%" />
+</p></p>
+<p>↑ 目標：將機器人和Line Messaging API 串接，讓用戶能在 Line 上，透過官方帳號與機器人互動</p>
+<hr>
+<h2 id="1-在-line-developershttpsdeveloperslinebizenservicesmessaging-api-建立-line-messaging-api-頻道">1. 在 <a href="https://developers.line.biz/en/services/messaging-api/" target="_blank" rel="noreferrer noopener">LINE Developers</a> 建立 Line Messaging API 頻道</h2>
+<p>到 <a href="https://developers.line.biz/en/services/messaging-api/" target="_blank" rel="noreferrer noopener">Line 的開發人員頁面</a>註冊開發人員</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/Picture252.png" alt="Picture252" id="Picture252"  width="100%" />
+</p></p>
+<hr>
+<p>自訂 Provider 名稱</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/Picture253.png" alt="Picture253" id="Picture253"  width="100%" />
+</p></p>
+<hr>
 <blockquote>
-<p>》如果建立過程中有需要選擇 Channel 型態，選 Messaging API<br>
-<img src="https://avacheng.github.io/post/pic20191026/PictureS01.png" width="100%"></p>
+<p>》如果建立過程中有需要選擇 Channel 型態，選 Messaging API</p>
 </blockquote>
-
-<hr />
-
-<p>自訂頻道名稱（7日內不能修改）、描述和類別等設定<br>
-<img src="https://avacheng.github.io/post/pic20191026/Picture254.png" width="100%"></p>
-
-<hr />
-
-<p>跳過機器人的隱私政策與使用條款的 URL 設定，未來有需要時再來填寫；繼續往下拉，按「Confirm」<br>
-<img src="https://avacheng.github.io/post/pic20191026/Picture256.png" width="100%"></p>
-
-<hr />
-
-<p>再次確認資料無誤<br>
-<img src="https://avacheng.github.io/post/pic20191026/Picture257.png" width="100%"></p>
-
-<hr />
-
-<p>勾選同意 Line 的使用條款，建立 Line 頻道<br>
-<img src="https://avacheng.github.io/post/pic20191026/Picture258.png" width="100%"></p>
-
-<hr />
-
-<p>進到新建的頻道中，以便接下來進行串接設定<br>
-<img src="https://avacheng.github.io/post/pic20191026/Picture259.png" width="100%"></p>
-
-<hr />
-
-<h2 id="2-在微軟-azure-建立-line-通道註冊-並與-line-串接">2. 在微軟 Azure 建立 Line 通道註冊，並與 Line 串接</h2>
-
-<p>登入 <a href="https://portal.azure.com/" target="_blank">Azure</a>，找到先前建立的「機器人通道註冊」，新增 Line 通道，進入設定頁面後，回到 Line 開發者頁面<br>
-<img src="https://avacheng.github.io/post/pic20191026/Picture263.png" width="100%"></p>
-
-<hr />
-
-<p>接續第一部分的頻道設定頁面。先在「Change Informations」開啟另外一個分頁，再往下設定。<br>
-<img src="https://avacheng.github.io/post/pic20191026/Picture260.png" width="100%"></p>
-
-<hr />
-
-<p>首先找到「Channel secret」，貼到 Azure 的頻道秘密欄位<br>
-<img src="https://avacheng.github.io/post/pic20191026/Picture261.png" width="100%"></p>
-
-<hr />
-
-<p>再找到「Channel access token (long-lived)」，從右邊的「Issue」按鈕中取得頻道存取權杖，貼到 Azure<br>
-<img src="https://avacheng.github.io/post/pic20191026/Picture262.png" width="100%"></p>
-
-<hr />
-
-<p>Azure 的設定畫面上貼入從 Line 取得的 Secret 和 Token，然後複製下方的「Webhook URL」網址，再按儲存， Azure 這邊的設定就完成了<br>
-<img src="https://avacheng.github.io/post/pic20191026/Picture264.png" width="100%"></p>
-
-<hr />
-
-<p>回到 Line 的頁面找到 Use webhooks，改為 <strong>Enabled</strong> ，並按右方的「Update」來儲存更新。然後在 Webhook URL 空白欄位右鍵貼上 Azure 剛才的網址，然後一樣「Update」。<br>
-<img src="https://avacheng.github.io/post/pic20191026/Picture265.png" width="100%"></p>
-
-<hr />
-
-<p>移到「Change Informations」開出的分頁，左邊選單中選擇「回應設定」，然後依據畫面修改設定。<br>
-<img src="https://avacheng.github.io/post/pic20191026/Picture267.png" width="100%"></p>
-
-<hr />
-
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/PictureS01.png" alt="PictureS01" id="PictureS01"  width="100%" />
+</p></p>
+<hr>
+<p>自訂頻道名稱（7日內不能修改）、描述和類別等設定</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/Picture254.png" alt="Picture254" id="Picture254"  width="100%" />
+</p></p>
+<hr>
+<p>跳過機器人的隱私政策與使用條款的 URL 設定，未來有需要時再來填寫；繼續往下拉，按「Confirm」</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/Picture256.png" alt="Picture256" id="Picture256"  width="100%" />
+</p></p>
+<hr>
+<p>再次確認資料無誤</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/Picture257.png" alt="Picture257" id="Picture257"  width="100%" />
+</p></p>
+<hr>
+<p>勾選同意 Line 的使用條款，建立 Line 頻道</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/Picture258.png" alt="Picture258" id="Picture258"  width="100%" />
+</p></p>
+<hr>
+<p>進到新建的頻道中，以便接下來進行串接設定</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/Picture259.png" alt="Picture259" id="Picture259"  width="100%" />
+</p></p>
+<hr>
+<h2 id="2-在微軟-azure-建立-line-通道註冊並與-line-串接">2. 在微軟 Azure 建立 Line 通道註冊，並與 Line 串接</h2>
+<p>登入 <a href="https://portal.azure.com/" target="_blank" rel="noreferrer noopener">Azure</a>，找到先前建立的「機器人通道註冊」，新增 Line 通道，進入設定頁面後，回到 Line 開發者頁面</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/Picture263.png" alt="Picture263" id="Picture263"  width="100%" />
+</p></p>
+<hr>
+<p>接續第一部分的頻道設定頁面。先在「Change Informations」開啟另外一個分頁，再往下設定。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/Picture260.png" alt="Picture260" id="Picture260"  width="100%" />
+</p></p>
+<hr>
+<p>首先找到「Channel secret」，貼到 Azure 的頻道秘密欄位</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/Picture261.png" alt="Picture261" id="Picture261"  width="100%" />
+</p></p>
+<hr>
+<p>再找到「Channel access token (long-lived)」，從右邊的「Issue」按鈕中取得頻道存取權杖，貼到 Azure&lt;</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/Picture262.png" alt="Picture262" id="Picture262"  width="100%" />
+</p></p>
+<hr>
+<p>Azure 的設定畫面上貼入從 Line 取得的 Secret 和 Token，然後複製下方的「Webhook URL」網址，再按儲存， Azure 這邊的設定就完成了</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/Picture264.png" alt="Picture264" id="Picture264"  width="100%" />
+</p></p>
+<hr>
+<p>回到 Line 的頁面找到 Use webhooks，改為 <strong>Enabled</strong> ，並按右方的「Update」來儲存更新。然後在 Webhook URL 空白欄位右鍵貼上 Azure 剛才的網址，然後一樣「Update」。<!-- raw HTML omitted -->
+<p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/Picture265.png" alt="Picture265" id="Picture265"  width="100%" />
+</p></p>
+<hr>
+<p>移到「Change Informations」開出的分頁，左邊選單中選擇「回應設定」，然後依據畫面修改設定。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/Picture267.png" alt="Picture267" id="Picture267"  width="100%" />
+</p></p>
+<hr>
 <h2 id="3-進行測試">3. 進行測試</h2>
-
-<p>在 Line Developers 開發者頻道頁面中，最下方有這個頻道的相關資訊，例如 QR code、ID 等，掃描 QR code 就和一般加 Line 官方帳號一樣，加入後就可以開始聊天測試。（如果沒有回應，回到前面步驟確定設定無誤）
-<img src="https://avacheng.github.io/post/pic20191026/Picture266.png" width="100%"></p>
-
-<hr />
-
+<p>在 Line Developers 開發者頻道頁面中，最下方有這個頻道的相關資訊，例如 QR code、ID 等，掃描 QR code 就和一般加 Line 官方帳號一樣，加入後就可以開始聊天測試。（如果沒有回應，回到前面步驟確定設定無誤）</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191026/Picture266.png" alt="Picture266" id="Picture266"  width="100%" />
+</p></p>
+<hr>
 <p>&lt;如有轉載，請附上本文連結網址&gt;</p>
 
   
@@ -379,8 +370,14 @@
   </div>
   <div class="pure-u-10-24">
     
+    <nav class="next">
+      <a href="https://avacheng.github.io/post/20210616/">快速打造最強的 LINE 後台</a>
+    </nav>
+    
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
+    
+    <a href="https://avacheng.github.io/post/20210616/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>

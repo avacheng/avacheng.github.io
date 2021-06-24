@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.83.1" />
 
   <title>Ava程式筆記</title>
 
@@ -75,12 +75,6 @@
 
   <div class="pure-menu">
     <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://avacheng.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
-      
-        </li>
       
       
         <li class="pure-menu-item">
@@ -196,7 +190,7 @@
 
   <div>
   <div class="small-print">
-    <small>&copy; 2019. All rights reserved.</small>
+    <small>&copy; 2021. All rights reserved.</small>
   </div>
   <div class="small-print">
     <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
@@ -217,617 +211,55 @@
 
 <div class="content">
   
-    <article>
-  <header>
-    <h2><a href="https://avacheng.github.io/post/20191026/">[ChatBot05] 建立 Line 的機器人通道</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2019-10-26 Saturday</time>
-  </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://avacheng.github.io/topics/%E7%AB%99%E5%9C%A8%E5%B7%A8%E4%BA%BA%E8%82%A9%E8%86%80%E4%B8%8A%E9%96%8B%E7%99%BC%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA">站在巨人肩膀上開發聊天機器人</a>
-    
-  </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/chatbot">chatbot</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/web-app">web-app</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/azure">azure</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/bot-channels-registration">bot-channels-registration</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/line">line</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/messaging-api">messaging-api</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>這篇介紹 Line 的 Messaging API 和機器人的串接。這當中會建立一個 LINE 官方帳號 2.0，使用者可以加入這個帳號來和機器人對話。</p>
-  </p>
-
-  
-  <footer>
-    <a href="https://avacheng.github.io/post/20191026/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://avacheng.github.io/post/20191013/">[ChatBot04] 建立臉書的機器人通道</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2019-10-13 Sunday</time>
-  </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://avacheng.github.io/topics/%E7%AB%99%E5%9C%A8%E5%B7%A8%E4%BA%BA%E8%82%A9%E8%86%80%E4%B8%8A%E9%96%8B%E7%99%BC%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA">站在巨人肩膀上開發聊天機器人</a>
-    
-  </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/chatbot">chatbot</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/web-app">web-app</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/azure">azure</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/bot-channels-registration">bot-channels-registration</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/facebook">facebook</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/messenger-api">messenger-api</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>在<a href="https://avacheng.github.io/post/20190922" target="_blank">上一篇</a>完成了機器人的雲端佈署後，接下來要進行機器人和使用者介面的串接。這篇介紹臉書 Facebook 的 Messenger API 的串接。</p>
-  </p>
-
-  
-  <footer>
-    <a href="https://avacheng.github.io/post/20191013/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://avacheng.github.io/post/20191011/">Azure 新增資源方式 (Web App 為例)</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2019-10-11 Friday</time>
-  </div>
-
-  
-
-  
-  
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/azure">azure</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/microsoft">microsoft</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/cloud">cloud</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/web-app">web-app</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/app-service">app-service</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>簡單介紹 Azure 的新增資源方式 （Web App 為例）&hellip;<br>
-Azure 入口網站網址：<a href="https://portal.azure.com/" target="_blank"><a href="https://portal.azure.com/">https://portal.azure.com/</a></a></p>
-  </p>
-
-  
-  <footer>
-    <a href="https://avacheng.github.io/post/20191011/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://avacheng.github.io/post/20191006/">Azure 介面簡介</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2019-10-06 Sunday</time>
-  </div>
-
-  
-
-  
-  
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/azure">azure</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/microsoft">microsoft</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/cloud">cloud</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>就是對 Azure 入口網站（Azure Portal）做個簡單的介紹&hellip;<br>
-網址：<a href="https://portal.azure.com/" target="_blank"><a href="https://portal.azure.com/">https://portal.azure.com/</a></a></p>
-  </p>
-
-  
-  <footer>
-    <a href="https://avacheng.github.io/post/20191006/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://avacheng.github.io/post/20190922/">[ChatBot03] 上傳 EchoBot 到雲端並建立通道</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2019-09-22 Sunday</time>
-  </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://avacheng.github.io/topics/%E7%AB%99%E5%9C%A8%E5%B7%A8%E4%BA%BA%E8%82%A9%E8%86%80%E4%B8%8A%E9%96%8B%E7%99%BC%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA">站在巨人肩膀上開發聊天機器人</a>
-    
-  </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/chatbot">chatbot</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/web-app">web-app</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/azure">azure</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/.net-core">.net-core</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/bot-channels-registration">bot-channels-registration</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/webchat">webchat</a>
-    
-  </div>
-  
+  <h2>2021</h2>
+  <ul>
   
+    <li><time>2021-06-16 Wednesday</time> - <a href="https://avacheng.github.io/post/20210616/">快速打造最強的 LINE 後台</a></li>
 
-</div>
-
-  </header>
-
-  <p>
-  <p><a href="https://avacheng.github.io/post/20190907" target="_blank">前一篇</a>在地端完成了一個簡單的機器人，而這篇目標是將這個機器人放到 <a href="https://portal.azure.com/" target="_blank">Azure 雲端</a> 成為一個「App」，並建立「機器人通道註冊」與之相連。最後使用「機器人通道註冊」中的預設通道「WebChat 網路聊天」作為使用者介面來測試雲端佈署是否成功。</p>
-  </p>
-
-  
-  <footer>
-    <a href="https://avacheng.github.io/post/20190922/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://avacheng.github.io/post/20190907/">[ChatBot02] 建立機器人雛形 EchoBot</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2019-09-07 Saturday</time>
-  </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://avacheng.github.io/topics/%E7%AB%99%E5%9C%A8%E5%B7%A8%E4%BA%BA%E8%82%A9%E8%86%80%E4%B8%8A%E9%96%8B%E7%99%BC%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA">站在巨人肩膀上開發聊天機器人</a>
-    
-  </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/chatbot">chatbot</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/bot-framework-sdk">bot-framework-sdk</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/c">c#</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/.net-core">.net-core</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>在 Visual Studio 中使用 Bot Framework SDK 建立專案作為機器人的雛形。後續程式開發部分將以這個專案為模板進行修改。</p>
-  </p>
-
-  
-  <footer>
-    <a href="https://avacheng.github.io/post/20190907/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://avacheng.github.io/post/20190825/">[ChatBot01] 站在巨人肩膀上開發聊天機器人-系列說明</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2019-08-25 Sunday</time>
-  </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://avacheng.github.io/topics/%E7%AB%99%E5%9C%A8%E5%B7%A8%E4%BA%BA%E8%82%A9%E8%86%80%E4%B8%8A%E9%96%8B%E7%99%BC%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA">站在巨人肩膀上開發聊天機器人</a>
-    
-  </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/azure">azure</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/chatbot">chatbot</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/bot-channels">bot-channels</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/bot-framework-sdk">bot-framework-sdk</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/c">c#</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/.net-core">.net-core</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/line-bot">line-bot</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/facebook-bot">facebook-bot</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>這一系列文章記錄了自己打造聊天機器人的過程與心得，當中用了微軟的機器人開發套件 Bot Framework v4 SDK (C#) 和微軟的雲端平台 Azure 與認知服務，做出可以分析自然語言、具備基本問答能力的機器人，而且在多個平台上可以共用同樣的程式碼。</p>
-
-<p>非常感謝網路上許多高手提供自己的經驗和技術，讓這個簡單的機器人得以成形。</p>
-  </p>
-
-  
-  <footer>
-    <a href="https://avacheng.github.io/post/20190825/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
   
-    <article>
-  <header>
-    <h2><a href="https://avacheng.github.io/post/20190817/">Keras 預訓練模型 layer 抽換</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2019-08-18 Sunday</time>
-  </div>
-
-  
-
-  
-  
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/machine-learning">machine-learning</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/transfer-learning">transfer-learning</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/cnn">cnn</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/pre-train">pre-train</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/resnet50">resnet50</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/keras">keras</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/python">python</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/keras.applications">keras.applications</a>
-    
-  </div>
+  </ul>
   
+  <h2>2019</h2>
+  <ul>
   
+    <li><time>2019-10-26 Saturday</time> - <a href="https://avacheng.github.io/post/20191026/">[ChatBot05] 建立 Line 的機器人通道</a></li>
 
-</div>
-
-  </header>
-
-  <p>
-  <p>除了自己建模外，keras.applications 提供了數個預訓練的深度學習模型，包含常用的圖片分類模型 ResNet50、Vgg16/Vgg19 等，但是應用時可能會遇到需要調整輸入或輸出 layer 的狀況，最近練習時遇到案例輸入是 (128, 128, 3)、輸出是 2 個分類的，和預設的輸入 (244, 244, 3)、輸出 1000 類不同，在網路上找了一些抽換模型 layer 的方法，記錄下來</p>
-  </p>
-
-  
-  <footer>
-    <a href="https://avacheng.github.io/post/20190817/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://avacheng.github.io/post/20190803/">Win10 安裝 tensorflow-gpu</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2019-08-03 Saturday</time>
-  </div>
-
   
+    <li><time>2019-10-13 Sunday</time> - <a href="https://avacheng.github.io/post/20191013/">[ChatBot04] 建立臉書的機器人通道</a></li>
 
   
-  
-  
-  
+    <li><time>2019-10-11 Friday</time> - <a href="https://avacheng.github.io/post/20191011/">Azure 新增資源方式 (Web App 為例)</a></li>
 
-  
   
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/tensorflow-gpu">tensorflow-gpu</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/deep-learning">deep-learning</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/cuda">cuda</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/anaconda">anaconda</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/windows10">windows10</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/jupyter-notebook">jupyter-notebook</a>
-    
-  </div>
-  
-  
+    <li><time>2019-10-06 Sunday</time> - <a href="https://avacheng.github.io/post/20191006/">Azure 介面簡介</a></li>
 
-</div>
-
-  </header>
-
-  <p>
-  <p>安裝過程依照 <a href="https://medium.com/@WhoYoung99/2018%E6%9C%80%E6%96%B0win10%E5%AE%89%E8%A3%9Dtensorflow-gpu-keras-8b3f8652509a" target="_blank"> [Win10 安裝 TensorFlow-gpu &amp; Keras] </a>，最後再參考 <a href="https://janakiev.com/til/jupyter-virtual-envs/" target="_blank"> [Using Virtual Environments in Jupyter Notebook and Python] </a> 將新建的環境加到 Jupyter Notebook 中</p>
-  </p>
-
-  
-  <footer>
-    <a href="https://avacheng.github.io/post/20190803/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
   
-</article>
+    <li><time>2019-09-22 Sunday</time> - <a href="https://avacheng.github.io/post/20190922/">[ChatBot03] 上傳 EchoBot 到雲端並建立通道</a></li>
 
   
-    <article>
-  <header>
-    <h2><a href="https://avacheng.github.io/post/20190727/">使用 Azure 服務工作區訓練 ML 模型</a></h2>
+    <li><time>2019-09-07 Saturday</time> - <a href="https://avacheng.github.io/post/20190907/">[ChatBot02] 建立機器人雛形 EchoBot</a></li>
 
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>2019-07-27 Saturday</time>
-  </div>
-
   
+    <li><time>2019-08-25 Sunday</time> - <a href="https://avacheng.github.io/post/20190825/">[ChatBot01] 站在巨人肩膀上開發聊天機器人-系列說明</a></li>
 
-  
   
-  
-  
+    <li><time>2019-08-18 Sunday</time> - <a href="https://avacheng.github.io/post/20190817/">Keras 預訓練模型 layer 抽換</a></li>
 
-  
-  
   
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/azure">azure</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/machine-learning">machine-learning</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/gpu-training">gpu-training</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://avacheng.github.io/tags/python">python</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  <p>目的：依據<a href="https://github.com/Azure/MachineLearningNotebooks/blob/master/tutorials/img-classification-part1-training.ipynb" target="_blank"> 參考連結1 </a>的模式，將等待訓練的 ML 模型送到 Azure ML Service Workspace 使用 GPU 來進行訓練（Experiment），以提高訓練效率</p>
-
-<p>效果：用 ResNet50 訓練圖片 (128*128) 約 2 萬張，1 epoch CUP i5 訓練時間約 8700 秒；Azure GPU 約 800 秒</p>
-
-<p>準備：(1) 在 Jupyter Notebook 上執行 Azure 工作區的建立和上傳資料 (2) 實際訓練內容 training script (train.py)</p>
-  </p>
+    <li><time>2019-08-03 Saturday</time> - <a href="https://avacheng.github.io/post/20190803/">Win10 安裝 tensorflow-gpu</a></li>
 
   
-  <footer>
-    <a href="https://avacheng.github.io/post/20190727/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
+    <li><time>2019-07-27 Saturday</time> - <a href="https://avacheng.github.io/post/20190727/">使用 Azure 服務工作區訓練 ML 模型</a></li>
 
   
+    <li><time>2019-07-07 Sunday</time> - <a href="https://avacheng.github.io/post/20190707/">.Net String.Format 整理</a></li>
 
   
+    <li><time>2019-06-22 Saturday</time> - <a href="https://avacheng.github.io/post/20190622/">微軟 DevDays AI-IoT 實作坊</a></li>
 
-
-<nav class="pagination" role="pagination">
-  
-  <i class="fa fa-chevron-left"></i>
   
-  <span>&nbsp;1 / 2&nbsp;</span>
+  </ul>
   
-  <a href="https://avacheng.github.io/page/2/"><i class="fa fa-chevron-right"></i></a>
-  
-</nav>
-
-
-
 </div>
 
 </div>

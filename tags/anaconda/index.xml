@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>anaconda on Ava程式筆記</title>
@@ -6,19 +6,15 @@
     <description>Recent content in anaconda on Ava程式筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
-    <copyright>&amp;copy; 2019. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 03 Aug 2019 18:45:19 +0800</lastBuildDate>
-    
-	<atom:link href="https://avacheng.github.io/tags/anaconda/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>&amp;copy; 2021. All rights reserved.</copyright>
+    <lastBuildDate>Sat, 03 Aug 2019 18:45:19 +0800</lastBuildDate><atom:link href="https://avacheng.github.io/tags/anaconda/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Win10 安裝 tensorflow-gpu</title>
       <link>https://avacheng.github.io/post/20190803/</link>
       <pubDate>Sat, 03 Aug 2019 18:45:19 +0800</pubDate>
       
       <guid>https://avacheng.github.io/post/20190803/</guid>
-      <description>&lt;p&gt;安裝過程依照 &lt;a href=&#34;https://medium.com/@WhoYoung99/2018%E6%9C%80%E6%96%B0win10%E5%AE%89%E8%A3%9Dtensorflow-gpu-keras-8b3f8652509a&#34; target=&#34;_blank&#34;&gt; [Win10 安裝 TensorFlow-gpu &amp;amp; Keras] &lt;/a&gt;，最後再參考 &lt;a href=&#34;https://janakiev.com/til/jupyter-virtual-envs/&#34; target=&#34;_blank&#34;&gt; [Using Virtual Environments in Jupyter Notebook and Python] &lt;/a&gt; 將新建的環境加到 Jupyter Notebook 中&lt;/p&gt;</description>
+      <description>&lt;p&gt;安裝過程依照 &lt;a href=&#34;https://medium.com/@WhoYoung99/2018%E6%9C%80%E6%96%B0win10%E5%AE%89%E8%A3%9Dtensorflow-gpu-keras-8b3f8652509a&#34; target=&#34;_blank&#34; rel=&#34;noreferrer noopener&#34;&gt;[Win10 安裝 TensorFlow-gpu &amp;amp; Keras]&lt;/a&gt;，最後再參考 &lt;a href=&#34;https://janakiev.com/til/jupyter-virtual-envs/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer noopener&#34;&gt;[Using Virtual Environments in Jupyter Notebook and Python]&lt;/a&gt; 將新建的環境加到 Jupyter Notebook 中&lt;/p&gt;</description>
     </item>
     
   </channel>

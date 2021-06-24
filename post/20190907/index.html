@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.83.1" />
 
   <title>[ChatBot02] 建立機器人雛形 EchoBot &middot; Ava程式筆記</title>
 
@@ -72,12 +72,6 @@
 
   <div class="pure-menu">
     <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://avacheng.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
-      
-        </li>
       
       
         <li class="pure-menu-item">
@@ -193,7 +187,7 @@
 
   <div>
   <div class="small-print">
-    <small>&copy; 2019. All rights reserved.</small>
+    <small>&copy; 2021. All rights reserved.</small>
   </div>
   <div class="small-print">
     <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
@@ -255,71 +249,67 @@
 </div>
 
   <p>在 Visual Studio 中使用 Bot Framework SDK 建立專案作為機器人的雛形。後續程式開發部分將以這個專案為模板進行修改。</p>
-
 <p>EchoBot 範本預設有兩個功能：(1)新成員進入對話狀態時，顯示歡迎詞「Hello and welcome!」；(2)接收到訊息後，傳送回聲訊息，也就是「Echo: 收到的訊息」，例如：接收到「你好」，機器人回傳的訊息為「Echo: 你好」。</p>
-
-<p>本文大綱：<br>
-1. 建立 Echobot 專案<br>
-2. 在對話介面模擬器 Emulator 進行測試
-<img src="https://avacheng.github.io/post/pic20190907/BotFramework0907.jpg" width="100%">
-↑ 目標：建立 localhost 機器人和模擬器的連接</p>
-
-<hr />
-
+<p>本文大綱：</p>
+<ol>
+<li>建立 Echobot 專案<!-- raw HTML omitted --></li>
+<li>在對話介面模擬器 Emulator 進行測試
+<p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190907/BotFramework0907.jpg" alt="BotFramework0907" id="BotFramework0907"  width="100%" />
+</p>
+↑ 目標：建立 localhost 機器人和模擬器的連接</li>
+</ol>
+<hr>
 <h2 id="1-建立-echobot-專案">1. 建立 Echobot 專案</h2>
-
-<p>開啟 Visual Studio，建立新專案。搜尋 echo，選擇 Echo Bot 範本，然後繼續建立專案<br>
-<img src="https://avacheng.github.io/post/pic20190907/Picture003.png" width="100%"></p>
-
-<hr />
-
-<p>專案建立完成後，機器人就已經具備基本的接收和回覆訊息能力了。接下來進入偵錯模式，等待瀏覽器跳出下圖畫面後，機器人就緒，可以進行測試了<br>
-<img src="https://avacheng.github.io/post/pic20190907/Picture006.png" width="100%">
+<p>開啟 Visual Studio，建立新專案。搜尋 echo，選擇 Echo Bot 範本，然後繼續建立專案</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190907/Picture003.png" alt="Picture003" id="Picture003"  width="100%" />
+</p></p>
+<hr>
+<p>專案建立完成後，機器人就已經具備基本的接收和回覆訊息能力了。接下來進入偵錯模式，等待瀏覽器跳出下圖畫面後，機器人就緒，可以進行測試了</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190907/Picture006.png" alt="Picture006" id="Picture006"  width="100%" />
+</p>
 複製上圖下面紅色框內網址。和上面的網址列比較數字是否相同，如果不同待會貼上後要進行修改（不需要複製messages後面那個點「.」）</p>
-
-<hr />
-
+<hr>
 <h2 id="2-在對話介面模擬器進行對話測試">2. 在對話介面模擬器進行對話測試</h2>
-
-<p>開啟Bot Framework Emulator (V4) 對話介面模擬器後，新增設定檔<br>
-<img src="https://avacheng.github.io/post/pic20190907/Picture008.png" width="100%"></p>
-
-<hr />
-
-<p>名稱自訂，將網頁的網址複製貼上，並將 localhost 數字改成和瀏覽器顯示的數字相同<br>
-<img src="https://avacheng.github.io/post/pic20190907/Picture009.png" width="100%"></p>
-
-<hr />
-
-<p>測試回聲機器人，確定專案建立成功（如果沒有回應，確認 Echobot 專案是否在偵錯狀態）<br>
-<img src="https://avacheng.github.io/post/pic20190907/Picture011.png" width="100%"></p>
-
-<hr />
-
-<h3 id="補充1-載入模擬器設定檔">補充1：載入模擬器設定檔</h3>
-
-<p>從檔案載入，或直接點選下方捷徑
-<img src="https://avacheng.github.io/post/pic20190907/Picture0551.png" width="100%"></p>
-
-<hr />
-
-<h3 id="補充2-修改模擬器設定檔-id-和-password">補充2：修改模擬器設定檔（ID 和 Password）</h3>
-
-<p>後續專案建置時「appsettings.json」檔案內的「MicrosoftAppId」和「MicrosoftAppPassword」會補上設定值（目前是空字串），到時在模擬器的設定檔中也需要加上這兩個參數。
-<img src="https://avacheng.github.io/post/pic20190907/Picture0481.png" width="100%"></p>
-
-<hr />
-
-<p>載入設定檔後，在左方選單上按滑鼠右鍵，選擇「Edit Configuration」
-<img src="https://avacheng.github.io/post/pic20190907/Picture0561.png" width="100%"></p>
-
-<hr />
-
-<p>分別將 ID 和 Password 填入兩個空格中，儲存設定檔。
-<img src="https://avacheng.github.io/post/pic20190907/Picture0571.png" width="100%"></p>
-
-<hr />
-
+<p>開啟Bot Framework Emulator (V4) 對話介面模擬器後，新增設定檔</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190907/Picture008.png" alt="Picture008" id="Picture008"  width="100%" />
+</p></p>
+<hr>
+<p>名稱自訂，將網頁的網址複製貼上，並將 localhost 數字改成和瀏覽器顯示的數字相同</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190907/Picture009.png" alt="Picture009" id="Picture009"  width="100%" />
+</p></p>
+<hr>
+<p>測試回聲機器人，確定專案建立成功（如果沒有回應，確認 Echobot 專案是否在偵錯狀態）</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190907/Picture011.png" alt="Picture011" id="Picture011"  width="100%" />
+</p></p>
+<hr>
+<h3 id="補充1載入模擬器設定檔">補充1：載入模擬器設定檔</h3>
+<p>從檔案載入，或直接點選下方捷徑</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190907/Picture0551.png" alt="Picture0551" id="Picture0551"  width="100%" />
+</p></p>
+<hr>
+<h3 id="補充2修改模擬器設定檔id-和-password">補充2：修改模擬器設定檔（ID 和 Password）</h3>
+<p>後續專案建置時「appsettings.json」檔案內的「MicrosoftAppId」和「MicrosoftAppPassword」會補上設定值（目前是空字串），到時在模擬器的設定檔中也需要加上這兩個參數。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190907/Picture0481.png" alt="Picture0481" id="Picture0481"  width="100%" />
+</p></p>
+<hr>
+<p>載入設定檔後，在左方選單上按滑鼠右鍵，選擇「Edit Configuration」。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190907/Picture0561.png" alt="Picture0561" id="Picture0561"  width="100%" />
+</p></p>
+<hr>
+<p>分別將 ID 和 Password 填入兩個空格中，儲存設定檔。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190907/Picture0571.png" alt="Picture0571" id="Picture0571"  width="100%" />
+</p></p>
+<hr>
 <p>&lt;如有轉載，請附上本文連結網址&gt;</p>
 
   

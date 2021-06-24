@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.83.1" />
 
   <title>Azure 新增資源方式 (Web App 為例) &middot; Ava程式筆記</title>
 
@@ -72,12 +72,6 @@
 
   <div class="pure-menu">
     <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://avacheng.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
-      
-        </li>
       
       
         <li class="pure-menu-item">
@@ -193,7 +187,7 @@
 
   <div>
   <div class="small-print">
-    <small>&copy; 2019. All rights reserved.</small>
+    <small>&copy; 2021. All rights reserved.</small>
   </div>
   <div class="small-print">
     <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
@@ -249,76 +243,76 @@
 
 </div>
 
-  <p>簡單介紹 Azure 的新增資源方式 （Web App 為例）&hellip;<br>
-Azure 入口網站網址：<a href="https://portal.azure.com/" target="_blank"><a href="https://portal.azure.com/">https://portal.azure.com/</a></a></p>
-
-<hr />
-
-<p>如果知道建立項目的「英文名稱」，可以直接點選「建立資源」，然後輸入名稱進行搜尋。
-<img src="https://avacheng.github.io/post/pic20191011/Picture001.png" width="100%">
-<img src="https://avacheng.github.io/post/pic20191011/Picture002.png" width="100%"></p>
-
-<hr />
-
-<p>常用的項目可以直接在左方「我的最愛」清單中點選。如果不確定項目名稱，可從「所有服務」的項目分類中尋找。進入分頁後，點選「新增」。
-<img src="https://avacheng.github.io/post/pic20191011/Picture003.png" width="100%">
-<img src="https://avacheng.github.io/post/pic20191011/Picture004.png" width="100%"></p>
-
-<hr />
-
-<p>進入新增的分頁。首先選擇是否新增資源群組。<br></p>
-
+  <p>簡單介紹 Azure 的新增資源方式 （Web App 為例）&hellip;<!-- raw HTML omitted -->
+Azure 入口網站網址：<a href="https://portal.azure.com/" target="_blank" rel="noreferrer noopener">https://portal.azure.com/</a></p>
+<hr>
+<p>如果知道建立項目的「英文名稱」，可以直接點選「建立資源」，然後輸入名稱進行搜尋。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191011/Picture001.png" alt="Picture001" id="Picture001"  width="100%" />
+</p></p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191011/Picture002.png" alt="Picture002" id="Picture002"  width="100%" />
+</p></p>
+<hr>
+<p>常用的項目可以直接在左方「我的最愛」清單中點選。如果不確定項目名稱，可從「所有服務」的項目分類中尋找。進入分頁後，點選「新增」。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191011/Picture003.png" alt="Picture003" id="Picture003"  width="100%" />
+</p></p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191011/Picture004.png" alt="Picture004" id="Picture004"  width="100%" />
+</p></p>
+<hr>
+<p>進入新增的分頁。首先選擇是否新增資源群組。</p>
 <blockquote>
 <p>資源群組，簡單來說是用來管理相同生命週期的資源；因為新增一個資源項目時，通常還會伴隨其他相關/相依項目的新增，如果是以資源項目來分類，在管理或刪除時很難一一處理，才有資源群組的產生。例如下圖新增一個「Test」群組，當測試結束，只要刪除這個群組，所有相關資源就會一併刪除了，不會有不小心漏掉項目（產生費用）的問題。</p>
 </blockquote>
-
-<p><img src="https://avacheng.github.io/post/pic20191011/Picture005.png" width="100%"></p>
-
-<hr />
-
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191011/Picture005.png" alt="Picture005" id="Picture005"  width="100%" />
+</p></p>
+<hr>
 <p>其它欄位依照說明進行設定即可。有紅色「*」的欄位為必填項目。填完後，如果不須進階設定，點選最下方「檢閱及建立」</p>
-
 <blockquote>
 <ul>
-<li>如果設定名稱時，欄位後面有加上「.azurewebistes.net」，表示必須設定在這個網域中為唯一的名稱，不只是在目前的訂閱帳戶中唯一。<br></li>
+<li>如果設定名稱時，欄位後面有加上「.azurewebistes.net」，表示必須設定在這個網域中為唯一的名稱，不只是在目前的訂閱帳戶中唯一。<!-- raw HTML omitted --></li>
 <li>SKU 為服務定價層，在 Web App 中預設「生產環境的 S1」等級。從「變更大小」進行修改，例如改為「免費 F1」</li>
 </ul>
 </blockquote>
-
-<p><img src="https://avacheng.github.io/post/pic20191011/Picture007.png" width="100%"></p>
-
-<hr />
-
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191011/Picture007.png" alt="Picture007" id="Picture007"  width="100%" />
+</p></p>
+<hr>
 <blockquote>
-<p>註：定價層設定方式：<br>
-1. 選擇分類：開發測試、生產環境等<br>
-2. 選擇定價層：依照所需的效能、預算等進行選擇<br>
-3. 務必「套用」更新<br>
-<img src="https://avacheng.github.io/post/pic20191011/Picture006.png" width="100%"></p>
+<p>註：定價層設定方式：</p>
+<ol>
+<li>選擇分類：開發測試、生產環境等</li>
+<li>選擇定價層：依照所需的效能、預算等進行選擇</li>
+<li>務必「套用」更新</li>
+</ol>
 </blockquote>
-
-<hr />
-
-<p>再次檢視資源項目的設定，無誤後就「建立」
-<img src="https://avacheng.github.io/post/pic20191011/Picture008.png" width="100%"></p>
-
-<hr />
-
-<p>資源正在建立中，畫面和右上角的「通知」都有提示。畫面中央還會列上進度。這時可以繼續其他工作，等 Azure 後端作業完成。
-<img src="https://avacheng.github.io/post/pic20191011/Picture009.png" width="100%"></p>
-
-<hr />
-
-<p>新增完成後，通知出現「已成功部署」的提示。或者新增後沒有進行其他操作，畫面中央會出現「您的部署已完成」。表示新增作業完成了。
-<img src="https://avacheng.github.io/post/pic20191011/Picture010.png" width="100%"></p>
-
-<hr />
-
-<p>註：以這個範例的 Web App 來說，新增一個項目會有另外兩個項目一起新增。要刪除時，可從上方「刪除資源群組」進行，或者針對個別項目勾選後選擇「刪除」即可。進行刪除時，頁面還會出現提示分頁，再進行一次確認後才開始刪除。
-<img src="https://avacheng.github.io/post/pic20191011/Picture011.png" width="100%"></p>
-
-<hr />
-
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191011/Picture006.png" alt="Picture006" id="Picture006"  width="100%" />
+</p></p>
+<hr>
+<p>再次檢視資源項目的設定，無誤後就「建立」</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191011/Picture008.png" alt="Picture008" id="Picture008"  width="100%" />
+</p></p>
+<hr>
+<p>資源正在建立中，畫面和右上角的「通知」都有提示。畫面中央還會列上進度。這時可以繼續其他工作，等 Azure 後端作業完成。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191011/Picture009.png" alt="Picture009" id="Picture009"  width="100%" />
+</p></p>
+<hr>
+<p>新增完成後，通知出現「已成功部署」的提示。或者新增後沒有進行其他操作，畫面中央會出現「您的部署已完成」。表示新增作業完成了。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191011/Picture010.png" alt="Picture010" id="Picture010"  width="100%" />
+</p></p>
+<hr>
+<p>註：以這個範例的 Web App 來說，新增一個項目會有另外兩個項目一起新增。要刪除時，可從上方「刪除資源群組」進行，或者針對個別項目勾選後選擇「刪除」即可。進行刪除時，頁面還會出現提示分頁，再進行一次確認後才開始刪除。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191011/Picture011.png" alt="Picture011" id="Picture011"  width="100%" />
+</p></p>
+<hr>
 <p>&lt;如有轉載，請附上本文連結網址&gt;</p>
 
   

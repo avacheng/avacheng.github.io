@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>.Net on Ava程式筆記</title>
@@ -6,12 +6,8 @@
     <description>Recent content in .Net on Ava程式筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
-    <copyright>&amp;copy; 2019. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 07 Jul 2019 16:12:45 +0800</lastBuildDate>
-    
-	<atom:link href="https://avacheng.github.io/tags/.net/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>&amp;copy; 2021. All rights reserved.</copyright>
+    <lastBuildDate>Sun, 07 Jul 2019 16:12:45 +0800</lastBuildDate><atom:link href="https://avacheng.github.io/tags/.net/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>.Net String.Format 整理</title>
       <link>https://avacheng.github.io/post/20190707/</link>

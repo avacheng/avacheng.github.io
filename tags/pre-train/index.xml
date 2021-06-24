@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>pre-train on Ava程式筆記</title>
@@ -6,12 +6,8 @@
     <description>Recent content in pre-train on Ava程式筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
-    <copyright>&amp;copy; 2019. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 18 Aug 2019 21:00:55 +0800</lastBuildDate>
-    
-	<atom:link href="https://avacheng.github.io/tags/pre-train/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>&amp;copy; 2021. All rights reserved.</copyright>
+    <lastBuildDate>Sun, 18 Aug 2019 21:00:55 +0800</lastBuildDate><atom:link href="https://avacheng.github.io/tags/pre-train/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Keras 預訓練模型 layer 抽換</title>
       <link>https://avacheng.github.io/post/20190817/</link>

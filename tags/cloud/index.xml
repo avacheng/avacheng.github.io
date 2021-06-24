@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>cloud on Ava程式筆記</title>
@@ -6,20 +6,16 @@
     <description>Recent content in cloud on Ava程式筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
-    <copyright>&amp;copy; 2019. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 11 Oct 2019 14:01:51 +0800</lastBuildDate>
-    
-	<atom:link href="https://avacheng.github.io/tags/cloud/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>&amp;copy; 2021. All rights reserved.</copyright>
+    <lastBuildDate>Fri, 11 Oct 2019 14:01:51 +0800</lastBuildDate><atom:link href="https://avacheng.github.io/tags/cloud/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure 新增資源方式 (Web App 為例)</title>
       <link>https://avacheng.github.io/post/20191011/</link>
       <pubDate>Fri, 11 Oct 2019 14:01:51 +0800</pubDate>
       
       <guid>https://avacheng.github.io/post/20191011/</guid>
-      <description>&lt;p&gt;簡單介紹 Azure 的新增資源方式 （Web App 為例）&amp;hellip;&lt;br&gt;
-Azure 入口網站網址：&lt;a href=&#34;https://portal.azure.com/&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;https://portal.azure.com/&#34;&gt;https://portal.azure.com/&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;簡單介紹 Azure 的新增資源方式 （Web App 為例）&amp;hellip;&lt;!-- raw HTML omitted --&gt;
+Azure 入口網站網址：&lt;a href=&#34;https://portal.azure.com/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer noopener&#34;&gt;https://portal.azure.com/&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -28,8 +24,8 @@ Azure 入口網站網址：&lt;a href=&#34;https://portal.azure.com/&#34; target
       <pubDate>Sun, 06 Oct 2019 11:34:15 +0800</pubDate>
       
       <guid>https://avacheng.github.io/post/20191006/</guid>
-      <description>&lt;p&gt;就是對 Azure 入口網站（Azure Portal）做個簡單的介紹&amp;hellip;&lt;br&gt;
-網址：&lt;a href=&#34;https://portal.azure.com/&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;https://portal.azure.com/&#34;&gt;https://portal.azure.com/&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;就是對 Azure 入口網站（Azure Portal）做個簡單的介紹&amp;hellip;&lt;/p&gt;
+&lt;p&gt;網址：&lt;a href=&#34;https://portal.azure.com/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer noopener&#34;&gt;https://portal.azure.com/&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

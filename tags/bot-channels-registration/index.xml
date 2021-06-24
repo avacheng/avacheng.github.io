@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>bot-channels-registration on Ava程式筆記</title>
@@ -6,12 +6,8 @@
     <description>Recent content in bot-channels-registration on Ava程式筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
-    <copyright>&amp;copy; 2019. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 26 Oct 2019 09:31:18 +0800</lastBuildDate>
-    
-	<atom:link href="https://avacheng.github.io/tags/bot-channels-registration/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>&amp;copy; 2021. All rights reserved.</copyright>
+    <lastBuildDate>Sat, 26 Oct 2019 09:31:18 +0800</lastBuildDate><atom:link href="https://avacheng.github.io/tags/bot-channels-registration/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[ChatBot05] 建立 Line 的機器人通道</title>
       <link>https://avacheng.github.io/post/20191026/</link>
@@ -27,7 +23,7 @@
       <pubDate>Sun, 13 Oct 2019 10:12:45 +0800</pubDate>
       
       <guid>https://avacheng.github.io/post/20191013/</guid>
-      <description>&lt;p&gt;在&lt;a href=&#34;https://avacheng.github.io/post/20190922&#34; target=&#34;_blank&#34;&gt;上一篇&lt;/a&gt;完成了機器人的雲端佈署後，接下來要進行機器人和使用者介面的串接。這篇介紹臉書 Facebook 的 Messenger API 的串接。&lt;/p&gt;</description>
+      <description>&lt;p&gt;在&lt;a href=&#34;https://avacheng.github.io/post/20190922&#34;&gt;上一篇&lt;/a&gt;完成了機器人的雲端佈署後，接下來要進行機器人和使用者介面的串接。這篇介紹臉書 Facebook 的 Messenger API 的串接。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -36,7 +32,7 @@
       <pubDate>Sun, 22 Sep 2019 17:12:45 +0800</pubDate>
       
       <guid>https://avacheng.github.io/post/20190922/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://avacheng.github.io/post/20190907&#34; target=&#34;_blank&#34;&gt;前一篇&lt;/a&gt;在地端完成了一個簡單的機器人，而這篇目標是將這個機器人放到 &lt;a href=&#34;https://portal.azure.com/&#34; target=&#34;_blank&#34;&gt;Azure 雲端&lt;/a&gt; 成為一個「App」，並建立「機器人通道註冊」與之相連。最後使用「機器人通道註冊」中的預設通道「WebChat 網路聊天」作為使用者介面來測試雲端佈署是否成功。&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://avacheng.github.io/post/20190907&#34;&gt;前一篇&lt;/a&gt;在地端完成了一個簡單的機器人，而這篇目標是將這個機器人放到 &lt;a href=&#34;https://portal.azure.com/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer noopener&#34;&gt;Azure 雲端&lt;/a&gt; 成為一個「App」，並建立「機器人通道註冊」與之相連。最後使用「機器人通道註冊」中的預設通道「WebChat 網路聊天」作為使用者介面來測試雲端佈署是否成功。&lt;/p&gt;</description>
     </item>
     
   </channel>

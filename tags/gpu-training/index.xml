@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>gpu-training on Ava程式筆記</title>
@@ -6,22 +6,16 @@
     <description>Recent content in gpu-training on Ava程式筆記</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-TW</language>
-    <copyright>&amp;copy; 2019. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 27 Jul 2019 11:50:52 +0800</lastBuildDate>
-    
-	<atom:link href="https://avacheng.github.io/tags/gpu-training/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>&amp;copy; 2021. All rights reserved.</copyright>
+    <lastBuildDate>Sat, 27 Jul 2019 11:50:52 +0800</lastBuildDate><atom:link href="https://avacheng.github.io/tags/gpu-training/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用 Azure 服務工作區訓練 ML 模型</title>
       <link>https://avacheng.github.io/post/20190727/</link>
       <pubDate>Sat, 27 Jul 2019 11:50:52 +0800</pubDate>
       
       <guid>https://avacheng.github.io/post/20190727/</guid>
-      <description>&lt;p&gt;目的：依據&lt;a href=&#34;https://github.com/Azure/MachineLearningNotebooks/blob/master/tutorials/img-classification-part1-training.ipynb&#34; target=&#34;_blank&#34;&gt; 參考連結1 &lt;/a&gt;的模式，將等待訓練的 ML 模型送到 Azure ML Service Workspace 使用 GPU 來進行訓練（Experiment），以提高訓練效率&lt;/p&gt;
-
+      <description>&lt;p&gt;目的：依據 &lt;a href=&#34;https://github.com/Azure/MachineLearningNotebooks/blob/master/tutorials/img-classification-part1-training.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noreferrer noopener&#34;&gt;參考連結1&lt;/a&gt; 的模式，將等待訓練的 ML 模型送到 Azure ML Service Workspace 使用 GPU 來進行訓練（Experiment），以提高訓練效率&lt;/p&gt;
 &lt;p&gt;效果：用 ResNet50 訓練圖片 (128*128) 約 2 萬張，1 epoch CUP i5 訓練時間約 8700 秒；Azure GPU 約 800 秒&lt;/p&gt;
-
 &lt;p&gt;準備：(1) 在 Jupyter Notebook 上執行 Azure 工作區的建立和上傳資料 (2) 實際訓練內容 training script (train.py)&lt;/p&gt;</description>
     </item>
     

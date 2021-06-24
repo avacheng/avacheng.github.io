@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.83.1" />
 
   <title>使用 Azure 服務工作區訓練 ML 模型 &middot; Ava程式筆記</title>
 
@@ -72,12 +72,6 @@
 
   <div class="pure-menu">
     <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://avacheng.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
-      
-        </li>
       
       
         <li class="pure-menu-item">
@@ -193,7 +187,7 @@
 
   <div>
   <div class="small-print">
-    <small>&copy; 2019. All rights reserved.</small>
+    <small>&copy; 2021. All rights reserved.</small>
   </div>
   <div class="small-print">
     <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
@@ -247,170 +241,129 @@
 
 </div>
 
-  <p>目的：依據<a href="https://github.com/Azure/MachineLearningNotebooks/blob/master/tutorials/img-classification-part1-training.ipynb" target="_blank"> 參考連結1 </a>的模式，將等待訓練的 ML 模型送到 Azure ML Service Workspace 使用 GPU 來進行訓練（Experiment），以提高訓練效率</p>
-
+  <p>目的：依據 <a href="https://github.com/Azure/MachineLearningNotebooks/blob/master/tutorials/img-classification-part1-training.ipynb" target="_blank" rel="noreferrer noopener">參考連結1</a> 的模式，將等待訓練的 ML 模型送到 Azure ML Service Workspace 使用 GPU 來進行訓練（Experiment），以提高訓練效率</p>
 <p>效果：用 ResNet50 訓練圖片 (128*128) 約 2 萬張，1 epoch CUP i5 訓練時間約 8700 秒；Azure GPU 約 800 秒</p>
-
 <p>準備：(1) 在 Jupyter Notebook 上執行 Azure 工作區的建立和上傳資料 (2) 實際訓練內容 training script (train.py)</p>
-
 <p>步驟：(1) 安裝 Azure SDK，建立 workspace (2) 上傳圖檔到儲存體帳戶中 (3) 設定 script parameters (4) 上傳 training script 到 worksapce (5) 設定並啟動實驗 (Experiment)</p>
-
-<hr />
-
-<h2 id="1-安裝-sdk-建立workspace">1.安裝 SDK，建立workspace</h2>
-
+<hr>
+<h2 id="1安裝-sdk建立workspace">1.安裝 SDK，建立workspace</h2>
 <p>因為是在 Jupyter Notebook 上操作，所以安裝了給 Notebook 用的 SDK</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pip install azureml<span style="color:#f92672">-</span>sdk[notebooks]
+</code></pre></div><p>開啟新的 Notebook 檔案，載入必要套件</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
+<span style="color:#f92672">import</span> shutil
+<span style="color:#f92672">import</span> azureml
 
-<pre><code class="language-python">pip install azureml-sdk[notebooks]
-</code></pre>
+<span style="color:#f92672">from</span> azureml.core <span style="color:#f92672">import</span> Experiment
+<span style="color:#f92672">from</span> azureml.core <span style="color:#f92672">import</span> Workspace, Run
+<span style="color:#f92672">from</span> azureml.core.compute <span style="color:#f92672">import</span> ComputeTarget, AmlCompute
+<span style="color:#f92672">from</span> azureml.core.compute_target <span style="color:#f92672">import</span> ComputeTargetException
 
-<p>開啟新的 Notebook 檔案，載入必要套件</p>
+<span style="color:#f92672">from</span> azureml.train.dnn <span style="color:#f92672">import</span> TensorFlow
 
-<pre><code class="language-python">import os
-import shutil
-import azureml
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;SDK version:&#34;</span>, azureml<span style="color:#f92672">.</span>core<span style="color:#f92672">.</span>VERSION)
+</code></pre></div><p>建立新的 workspace</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># 資源群組名稱</span>
+resource_group_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;mlgroup&#34;</span>
 
-from azureml.core import Experiment
-from azureml.core import Workspace, Run
-from azureml.core.compute import ComputeTarget, AmlCompute
-from azureml.core.compute_target import ComputeTargetException
+<span style="color:#75715e"># 訂用帳戶識別碼</span>
+subscription_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx&#34;</span>
 
-from azureml.train.dnn import TensorFlow
+<span style="color:#75715e"># 位置</span>
+azure_region<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;eastus2&#34;</span>
 
-print(&quot;SDK version:&quot;, azureml.core.VERSION)
-</code></pre>
+<span style="color:#75715e"># ML服務工作區名稱</span>
+aml_workspace_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;keras_on_azure&#34;</span>
 
-<p>建立新的 workspace</p>
+ws <span style="color:#f92672">=</span> Workspace<span style="color:#f92672">.</span>create(subscription_id <span style="color:#f92672">=</span> subscription_id,
+					  resource_group <span style="color:#f92672">=</span> resource_group_name,
+					  create_resource_group <span style="color:#f92672">=</span> True,
+					  name <span style="color:#f92672">=</span> aml_workspace_name,                
+					  location <span style="color:#f92672">=</span> azure_region)
 
-<pre><code class="language-python"># 資源群組名稱
-resource_group_name = &quot;mlgroup&quot;
-
-# 訂用帳戶識別碼
-subscription_id = &quot;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx&quot;
-
-# 位置
-azure_region=&quot;eastus2&quot;
-
-# ML服務工作區名稱
-aml_workspace_name = &quot;keras_on_azure&quot;
-
-ws = Workspace.create(subscription_id = subscription_id,
-                      resource_group = resource_group_name,
-                      create_resource_group = True,
-                      name = aml_workspace_name,                
-                      location = azure_region)
-
-# 匯出 config
-ws.write_config()
-</code></pre>
-
-<p>或者直接載入 config</p>
-
-<pre><code class="language-python">ws = Workspace.from_config()
-</code></pre>
-
-<h2 id="2-上傳圖檔到儲存體帳戶中">2.上傳圖檔到儲存體帳戶中</h2>
-
-<pre><code class="language-python"># Upload input data
-ds = ws.get_default_datastore()
-ds.upload(src_dir='../train', target_path='train', overwrite=True, show_progress=True)
-ds.upload(src_dir='../test', target_path='test', overwrite=True, show_progress=True)
-</code></pre>
-
-<p>儲存體帳戶顯示我們剛剛上傳的圖片</p>
-
-<p><img src="https://avacheng.github.io/post/pic20190727/Picture006.png" width="100%"></p>
-
-<h2 id="3-設定-script-parameters">3.設定 script parameters</h2>
-
+<span style="color:#75715e"># 匯出 config</span>
+ws<span style="color:#f92672">.</span>write_config()
+</code></pre></div><p>或者直接載入 config</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ws <span style="color:#f92672">=</span> Workspace<span style="color:#f92672">.</span>from_config()
+</code></pre></div><h2 id="2上傳圖檔到儲存體帳戶中">2.上傳圖檔到儲存體帳戶中</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Upload input data</span>
+ds <span style="color:#f92672">=</span> ws<span style="color:#f92672">.</span>get_default_datastore()
+ds<span style="color:#f92672">.</span>upload(src_dir<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;../train&#39;</span>, target_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;train&#39;</span>, overwrite<span style="color:#f92672">=</span>True, show_progress<span style="color:#f92672">=</span>True)
+ds<span style="color:#f92672">.</span>upload(src_dir<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;../test&#39;</span>, target_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;test&#39;</span>, overwrite<span style="color:#f92672">=</span>True, show_progress<span style="color:#f92672">=</span>True)
+</code></pre></div><p>儲存體帳戶顯示我們剛剛上傳的圖片</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190727/Picture006.png" alt="Picture006" id="Picture006"  width="100%" />
+</p></p>
+<h2 id="3設定-script-parameters">3.設定 script parameters</h2>
 <p>在 Notebook 繼續設定檔案來源位置等模型訓練時要匯入的參數</p>
-
-<pre><code class="language-python">script_params = {
-    '--train_folder': ds.path('train').as_mount(),
-    '--test_folder': ds.path('test').as_mount(),
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">script_params <span style="color:#f92672">=</span> {
+    <span style="color:#e6db74">&#39;--train_folder&#39;</span>: ds<span style="color:#f92672">.</span>path(<span style="color:#e6db74">&#39;train&#39;</span>)<span style="color:#f92672">.</span>as_mount(),
+    <span style="color:#e6db74">&#39;--test_folder&#39;</span>: ds<span style="color:#f92672">.</span>path(<span style="color:#e6db74">&#39;test&#39;</span>)<span style="color:#f92672">.</span>as_mount(),
 }
-</code></pre>
-
-<p>相對應的，在 training script 也要取得參數</p>
-
-<pre><code class="language-python">import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument('--train_folder', type=str, dest='train_folder',
-                    help='train data folder mounting point')
-parser.add_argument('--test_folder', type=str, dest='test_folder', 
-                    help='test data folder mounting point')
-args = parser.parse_args()
-train_folder = args.train_folder
-test_folder = args.test_folder
-</code></pre>
-
-<h2 id="4-上傳-training-script-到-worksapce">4.上傳 training script 到 worksapce</h2>
-
+</code></pre></div><p>相對應的，在 training script 也要取得參數</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> argparse
+parser <span style="color:#f92672">=</span> argparse<span style="color:#f92672">.</span>ArgumentParser()
+parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--train_folder&#39;</span>, type<span style="color:#f92672">=</span>str, dest<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;train_folder&#39;</span>,
+					help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;train data folder mounting point&#39;</span>)
+parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#39;--test_folder&#39;</span>, type<span style="color:#f92672">=</span>str, dest<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;test_folder&#39;</span>, 
+					help<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;test data folder mounting point&#39;</span>)
+args <span style="color:#f92672">=</span> parser<span style="color:#f92672">.</span>parse_args()
+train_folder <span style="color:#f92672">=</span> args<span style="color:#f92672">.</span>train_folder
+test_folder <span style="color:#f92672">=</span> args<span style="color:#f92672">.</span>test_folder
+</code></pre></div><h2 id="4上傳-training-script-到-worksapce">4.上傳 training script 到 worksapce</h2>
 <p>上傳 training script 前，裡面先設定要取得的 log ，並儲存檔案</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> azureml.core <span style="color:#f92672">import</span> Run
+score <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>evaluate(x_test, y_test, verbose<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+run <span style="color:#f92672">=</span> Run<span style="color:#f92672">.</span>get_context()
+run<span style="color:#f92672">.</span>log(<span style="color:#e6db74">&#39;Test loss:&#39;</span>, score[<span style="color:#ae81ff">0</span>])
+run<span style="color:#f92672">.</span>log(<span style="color:#e6db74">&#39;Test accuracy:&#39;</span>, score[<span style="color:#ae81ff">1</span>])
 
-<pre><code class="language-python">from azureml.core import Run
-score = model.evaluate(x_test, y_test, verbose=0)
-run = Run.get_context()
-run.log('Test loss:', score[0])
-run.log('Test accuracy:', score[1])
+run<span style="color:#f92672">.</span>log_list(<span style="color:#e6db74">&#39;history_train&#39;</span>, model_history<span style="color:#f92672">.</span>history[<span style="color:#e6db74">&#34;loss&#34;</span>])
+run<span style="color:#f92672">.</span>log_list(<span style="color:#e6db74">&#39;history_valid&#39;</span>, model_history<span style="color:#f92672">.</span>history[<span style="color:#e6db74">&#34;val_loss&#34;</span>])
+</code></pre></div><p>將 training script 和其他必要檔案複製到 script_folder 資料夾中，等一下建立 Experiment 時一起上傳</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Upload training script</span>
+script_folder <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;./run&#39;</span>
+os<span style="color:#f92672">.</span>makedirs(script_folder, exist_ok<span style="color:#f92672">=</span>True)
 
-run.log_list('history_train', model_history.history[&quot;loss&quot;])
-run.log_list('history_valid', model_history.history[&quot;val_loss&quot;])
-</code></pre>
-
-<p>將 training script 和其他必要檔案複製到 script_folder 資料夾中，等一下建立 Experiment 時一起上傳</p>
-
-<pre><code class="language-python"># Upload training script
-script_folder = './run'
-os.makedirs(script_folder, exist_ok=True)
-
-shutil.copy('train.py', script_folder)
-shutil.copy('test.csv', script_folder)
-shutil.copy('train.csv', script_folder)
-</code></pre>
-
-<h2 id="5-設定並啟動實驗-experiment">5.設定並啟動實驗 (Experiment)</h2>
-
+shutil<span style="color:#f92672">.</span>copy(<span style="color:#e6db74">&#39;train.py&#39;</span>, script_folder)
+shutil<span style="color:#f92672">.</span>copy(<span style="color:#e6db74">&#39;test.csv&#39;</span>, script_folder)
+shutil<span style="color:#f92672">.</span>copy(<span style="color:#e6db74">&#39;train.csv&#39;</span>, script_folder)
+</code></pre></div><h2 id="5設定並啟動實驗-experiment">5.設定並啟動實驗 (Experiment)</h2>
 <p>在 Notebook 啟動實驗</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Create Experiment</span>
+exp <span style="color:#f92672">=</span> Experiment(workspace<span style="color:#f92672">=</span>ws, name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;keras_test&#39;</span>)
 
-<pre><code class="language-python"># Create Experiment
-exp = Experiment(workspace=ws, name='keras_test')
+<span style="color:#75715e"># Get default compute target</span>
+compute_target <span style="color:#f92672">=</span> ws<span style="color:#f92672">.</span>get_default_compute_target(type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;GPU&#39;</span>)
+<span style="color:#66d9ef">print</span>(compute_target)
 
-# Get default compute target
-compute_target = ws.get_default_compute_target(type='GPU')
-print(compute_target)
+<span style="color:#75715e"># Create an estimator</span>
+est <span style="color:#f92672">=</span> TensorFlow(source_directory<span style="color:#f92672">=</span>script_folder,
+                 entry_script<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;train.py&#39;</span>,
+                 compute_target<span style="color:#f92672">=</span>compute_target,
+                 script_params<span style="color:#f92672">=</span>script_params,
+                 pip_packages<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;keras&#39;</span>, <span style="color:#e6db74">&#39;scikit-image&#39;</span>, <span style="color:#e6db74">&#39;sklearn&#39;</span>, <span style="color:#e6db74">&#39;pandas&#39;</span>, <span style="color:#e6db74">&#39;numpy&#39;</span>],
+                 use_gpu<span style="color:#f92672">=</span>True)
 
-# Create an estimator
-est = TensorFlow(source_directory=script_folder,
-                 entry_script='train.py',
-                 compute_target=compute_target,
-                 script_params=script_params,
-                 pip_packages=['keras', 'scikit-image', 'sklearn', 'pandas', 'numpy'],
-                 use_gpu=True)
-
-# Submit the job
-run = exp.submit(est)
+<span style="color:#75715e"># Submit the job</span>
+run <span style="color:#f92672">=</span> exp<span style="color:#f92672">.</span>submit(est)
 run
-</code></pre>
-
-<p>最後在 Workspace 中可以檢視目前 Experiment 的進度，以及傳回來的 log (Test Loss/Test Accuracy) 等</p>
-
-<p><img src="https://avacheng.github.io/post/pic20190727/Picture007.png" width="100%"></p>
-
+</code></pre></div><p>最後在 Workspace 中可以檢視目前 Experiment 的進度，以及傳回來的 log (Test Loss/Test Accuracy) 等</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20190727/Picture007.png" alt="Picture007" id="Picture007"  width="100%" />
+</p></p>
 <p>如果有將訓練模型存下來（.h5檔等），則會存到儲存體帳戶中</p>
-
-<hr />
-
+<hr>
 <blockquote>
-<p>參考連結1：<a href="https://github.com/Azure/MachineLearningNotebooks/blob/master/tutorials/img-classification-part1-training.ipynb" target="_blank">(GitHub) Img classification training</a></p>
-
-<p>參考連結2：<a href="https://docs.microsoft.com/zh-tw/azure/machine-learning/service/how-to-train-keras" target="_blank">(Microsoft) How to train keras</a></p>
-
-<p>參考連結3：<a href="https://www.youtube.com/watch?v=VIsXeTuW3FU" target="_blank">(YouTube) How to install and use the Azure Machine Learning Python SDK</a></p>
+<p>參考連結1：<!-- raw HTML omitted -->(GitHub) Img classification training<!-- raw HTML omitted --></p>
 </blockquote>
-
-<hr />
-
+<blockquote>
+<p>參考連結2：<!-- raw HTML omitted -->(Microsoft) How to train keras<!-- raw HTML omitted --></p>
+</blockquote>
+<blockquote>
+<p>參考連結3：<!-- raw HTML omitted -->(YouTube) How to install and use the Azure Machine Learning Python SDK<!-- raw HTML omitted --></p>
+</blockquote>
+<hr>
 <p>&lt;如有轉載，請附上本文連結網址&gt;</p>
 
   

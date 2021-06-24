@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.55.6" />
+  <meta name="generator" content="Hugo 0.83.1" />
 
   <title>[ChatBot04] 建立臉書的機器人通道 &middot; Ava程式筆記</title>
 
@@ -72,12 +72,6 @@
 
   <div class="pure-menu">
     <ul class="pure-menu-list">
-      
-      
-        <li class="pure-menu-item">
-          <a class="pure-menu-link" href="https://avacheng.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
-      
-        </li>
       
       
         <li class="pure-menu-item">
@@ -193,7 +187,7 @@
 
   <div>
   <div class="small-print">
-    <small>&copy; 2019. All rights reserved.</small>
+    <small>&copy; 2021. All rights reserved.</small>
   </div>
   <div class="small-print">
     <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
@@ -258,165 +252,158 @@
 
 </div>
 
-  <p>在<a href="https://avacheng.github.io/post/20190922" target="_blank">上一篇</a>完成了機器人的雲端佈署後，接下來要進行機器人和使用者介面的串接。這篇介紹臉書 Facebook 的 Messenger API 的串接。</p>
-
-<p>本文大綱：<br>
-1. 建立 Facebook 粉絲專頁<br>
-2. 到 Facebook 開發人員頁面，新增應用程式並加入 Messenger API<br>
-3. 在微軟 Azure 建立 Facebook 通道註冊<br>
-4. 回到粉絲專頁進行測試<br></p>
-
-<p><img src="https://avacheng.github.io/post/pic20191013/BotFramework1013.jpg" width="100%">
-↑ 目標：將機器人和臉書 Messenger API 串接，讓用戶能在粉絲專頁上，透過 Messenger 與機器人互動</p>
-
-<hr />
-
+  <p>在<a href="https://avacheng.github.io/post/20190922">上一篇</a>完成了機器人的雲端佈署後，接下來要進行機器人和使用者介面的串接。這篇介紹臉書 Facebook 的 Messenger API 的串接。</p>
+<p>本文大綱：<!-- raw HTML omitted --></p>
+<ol>
+<li>建立 Facebook 粉絲專頁<!-- raw HTML omitted --></li>
+<li>到 Facebook 開發人員頁面，新增應用程式並加入 Messenger API<!-- raw HTML omitted --></li>
+<li>在微軟 Azure 建立 Facebook 通道註冊<!-- raw HTML omitted --></li>
+<li>回到粉絲專頁進行測試<!-- raw HTML omitted --></li>
+</ol>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/BotFramework1013.jpg" alt="BotFramework1013" id="BotFramework1013"  width="100%" />
+</p></p>
+<p>↑ 目標：將機器人和臉書 Messenger API 串接，讓用戶能在粉絲專頁上，透過 Messenger 與機器人互動</p>
+<hr>
 <h2 id="1-建立-facebook-粉絲專頁">1. 建立 Facebook 粉絲專頁</h2>
-
 <blockquote>
 <p>》如果有現有的專頁，可以跳過這個部分，或者新建一個專頁用來測試機器人皆可。</p>
-
+</blockquote>
+<blockquote>
 <p>》使用現有的專頁不需擔心開發中的機器人會被一般使用者使用；應用程式通過臉書的審查前，只有開發者和允許的測試人員才能夠透過 Messenger 和機器人互動。</p>
 </blockquote>
-
-<p>登入 <a href="https://www.facebook.com/" target="_blank">Facebook</a> 後，依照以下畫面建立專粉絲專頁。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2251.png" width="100%"></p>
-
-<hr />
-
-<p>選擇「企業或品牌」或「社群或公眾人物」，然後依照畫面提示建立專頁。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2261.png" width="100%"></p>
-
-<hr />
-
-<p>專頁建立完成。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2291.png" width="100%"></p>
-
-<hr />
-
-<h2 id="2-到-facebook-開發人員頁面-新增應用程式並加入-messenger-api">2. 到 Facebook 開發人員頁面，新增應用程式並加入 Messenger API</h2>
-
-<p>進到 <a href="https://developers.facebook.com/quickstarts" target="_blank">Facebook 開發人員頁面</a>，登入後從右上角的「我的應用程式」選單中選「建立應用程式」。如果是第一次登入需要先在頁面中選擇「註冊成為 Facebook 開發人員」。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2301.png" width="100%"></p>
-
-<hr />
-
-<p>建立應用程式（名稱不需和專頁一樣）。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2311.png" width="100%"></p>
-
-<hr />
-
-<p>新增商品「Messenger」。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2321.png" width="100%"></p>
-
-<hr />
-
+<p>登入 <a href="https://www.facebook.com/" target="_blank" rel="noreferrer noopener">Facebook</a> 後，依照以下畫面建立專粉絲專頁。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2251.png" alt="Picture2251" id="Picture2251"  width="100%" />
+</p></p>
+<hr>
+<p>選擇「企業或品牌」或「社群或公眾人物」，然後依照畫面提示建立專頁。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2261.png" alt="Picture2261" id="Picture2261"  width="100%" />
+</p></p>
+<hr>
+<p>專頁建立完成。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2291.png" alt="Picture2291" id="Picture2291"  width="100%" />
+</p></p>
+<hr>
+<h2 id="2-到-facebook-開發人員頁面新增應用程式並加入-messenger-api">2. 到 Facebook 開發人員頁面，新增應用程式並加入 Messenger API</h2>
+<p>進到 <a href="https://developers.facebook.com/quickstarts" target="_blank" rel="noreferrer noopener">Facebook 開發人員頁面</a>，登入後從右上角的「我的應用程式」選單中選「建立應用程式」。如果是第一次登入需要先在頁面中選擇「註冊成為 Facebook 開發人員」。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2301.png" alt="Picture2301" id="Picture2301"  width="100%" />
+</p></p>
+<hr>
+<p>建立應用程式（名稱不需和專頁一樣）。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2311.png" alt="Picture2311" id="Picture2311"  width="100%" />
+</p></p>
+<hr>
+<p>新增商品「Messenger」。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2321.png" alt="Picture2321" id="Picture2321"  width="100%" />
+</p></p>
+<hr>
 <h2 id="3-在微軟-azure-建立-facebook-通道註冊">3. 在微軟 Azure 建立 Facebook 通道註冊</h2>
-
-<p>讓網頁停留在 Facebook 開發人員頁面上，用另外一個分頁開啟 <a href="https://developers.facebook.com/quickstarts" target="_blank">Azure</a>，進到先前建立的「機器人通道註冊」資源中，點選「頻道」，然後選擇「Facebook」頻道。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2381.png" width="100%"></p>
-
-<hr />
-
-<p>回到 Facebook 開發人員網頁，找到 Messenger 設定頁面的「存取憑證」，選擇「新增或移除專頁」。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2331.png" width="100%"></p>
-
-<hr />
-
-<p>在跳出的畫面勾選要使用聊天機器人的專頁（之後可再新增或刪除要串接的專頁）。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2341.png" width="100%"></p>
-
-<hr />
-
-<p>新增後，畫面上顯示了新增的專頁，在專頁名稱下方是頁面識別碼，填到 Azure 的機器人通道註冊的欄位中。右方點選「產生憑證」。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2361.png" width="100%"></p>
-
-<hr />
-
-<p>閱讀文字說明後，勾選「我瞭解」後，複製顯示的明碼字串，貼到 Azure 機器人通道註冊的「頁面存取權杖」欄位。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2371.png" width="100%"></p>
-
-<hr />
-
-<p>在 Azure 頁面貼上在前幾個步驟得到的 Facebook 的「頁面識別碼」和「頁面存取權杖（憑證）」。頁面最下方有「回呼URL」和「認證權杖」，待會要貼到 Facebook 中。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2391.png" width="100%"></p>
-
-<hr />
-
-<p>回到 Facebook，找到 Webhooks 區塊，點選「新增回調網址」。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2401.png" width="100%"></p>
-
-<hr />
-
-<p>在跳出的頁面上，兩個欄位分別貼上 Azure 的「回呼URL」和「認證權杖」，然後驗證並儲存。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2411.png" width="100%"></p>
-
-<hr />
-
-<p>Facebook 網頁上出現剛才設定的網址和加密的代碼，在其下方找到「新增訂閱」。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2421.png" width="100%"></p>
-
-<hr />
-
-<p>勾選前五個項目，然後儲存。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2431.png" width="100%"></p>
-
-<hr />
-
-<p>接下來在 Facebook 左邊工作清單找到「設定」，選擇「基本資料」，複製「應用程式編號」到 Azure 的 Facebook 應用程式 ID 位置。然後<strong>顯示</strong>「應用程式密鑰」（可能需要再次輸入密碼），複製貼到 Azure 頁面。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2441.png" width="100%"></p>
-
-<hr />
-
-<p>Azure 頁面上貼上剛才 Facebook 的編號和密碼，然後儲存，即完成 Facebook 通道的註冊。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2451.png" width="100%"></p>
-
-<hr />
-
+<p>讓網頁停留在 Facebook 開發人員頁面上，用另外一個分頁開啟 <a href="https://developers.facebook.com/quickstarts" target="_blank" rel="noreferrer noopener">Azure</a>，進到先前建立的「機器人通道註冊」資源中，點選「頻道」，然後選擇「Facebook」頻道。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2381.png" alt="Picture2381" id="Picture2381"  width="100%" />
+</p></p>
+<hr>
+<p>回到 Facebook 開發人員網頁，找到 Messenger 設定頁面的「存取憑證」，選擇「新增或移除專頁」。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2331.png" alt="Picture2331" id="Picture2331"  width="100%" />
+</p></p>
+<hr>
+<p>在跳出的畫面勾選要使用聊天機器人的專頁（之後可再新增或刪除要串接的專頁）。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2341.png" alt="Picture2341" id="Picture2341"  width="100%" />
+</p></p>
+<hr>
+<p>新增後，畫面上顯示了新增的專頁，在專頁名稱下方是頁面識別碼，填到 Azure 的機器人通道註冊的欄位中。右方點選「產生憑證」。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2361.png" alt="Picture2361" id="Picture2361"  width="100%" />
+</p></p>
+<hr>
+<p>閱讀文字說明後，勾選「我瞭解」後，複製顯示的明碼字串，貼到 Azure 機器人通道註冊的「頁面存取權杖」欄位。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2371.png" alt="Picture2371" id="Picture2371"  width="100%" />
+</p></p>
+<hr>
+<p>在 Azure 頁面貼上在前幾個步驟得到的 Facebook 的「頁面識別碼」和「頁面存取權杖（憑證）」。頁面最下方有「回呼URL」和「認證權杖」，待會要貼到 Facebook 中。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2391.png" alt="Picture2391" id="Picture2391"  width="100%" />
+</p></p>
+<hr>
+<p>回到 Facebook，找到 Webhooks 區塊，點選「新增回調網址」。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2401.png" alt="Picture2401" id="Picture2401"  width="100%" />
+</p></p>
+<hr>
+<p>在跳出的頁面上，兩個欄位分別貼上 Azure 的「回呼URL」和「認證權杖」，然後驗證並儲存。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2411.png" alt="Picture2411" id="Picture2411"  width="100%" />
+</p></p>
+<hr>
+<p>Facebook 網頁上出現剛才設定的網址和加密的代碼，在其下方找到「新增訂閱」。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2421.png" alt="Picture2421" id="Picture2421"  width="100%" />
+</p></p>
+<hr>
+<p>勾選前五個項目，然後儲存。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2431.png" alt="Picture2431" id="Picture2431"  width="100%" />
+</p></p>
+<hr>
+<p>接下來在 Facebook 左邊工作清單找到「設定」，選擇「基本資料」，複製「應用程式編號」到 Azure 的 Facebook 應用程式 ID 位置。然後<strong>顯示</strong>「應用程式密鑰」（可能需要再次輸入密碼），複製貼到 Azure 頁面。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2441.png" alt="Picture2441" id="Picture2441"  width="100%" />
+</p></p>
+<hr>
+<p>Azure 頁面上貼上剛才 Facebook 的編號和密碼，然後儲存，即完成 Facebook 通道的註冊。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2451.png" alt="Picture2451" id="Picture2451"  width="100%" />
+</p></p>
+<hr>
 <h2 id="4-回到粉絲專頁進行測試">4. 回到粉絲專頁進行測試</h2>
-
 <blockquote>
 <p>》使用者和機器人互動的方式是使用 Messenger，所以要在專頁中新增傳送訊息的按鈕。</p>
 </blockquote>
-
-<p>回到粉絲專頁，選擇新增按鈕。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2451_1.png" width="100%"></p>
-
-<hr />
-
-<p><img src="https://avacheng.github.io/post/pic20191013/Picture2461.png" width="100%"></p>
-
-<hr />
-
-<p><img src="https://avacheng.github.io/post/pic20191013/Picture2471.png" width="100%"></p>
-
-<hr />
-
-<p><img src="https://avacheng.github.io/post/pic20191013/Picture2481.png" width="100%"></p>
-
-<hr />
-
-<p>新增完成後，在「傳送訊息」按鈕稍微停留下，從跳出的選單中點選「測試按鈕」。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2501.png" width="100%"></p>
-
-<hr />
-
-<p>在對話框中輸入文字，看機器人是否能順利回應。
-<img src="https://avacheng.github.io/post/pic20191013/Picture2519.png" width="100%"></p>
-
-<hr />
-
-<h3 id="補充-新增程式開發-測試人員角色">補充：新增程式開發/測試人員角色</h3>
-
+<p>回到粉絲專頁，選擇新增按鈕。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2451_1.png" alt="Picture2451_1" id="Picture2451_1"  width="100%" />
+</p></p>
+<hr>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2461.png" alt="Picture2461" id="Picture2461"  width="100%" />
+</p></p>
+<hr>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2471.png" alt="Picture2471" id="Picture2471"  width="100%" />
+</p></p>
+<hr>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2481.png" alt="Picture2481" id="Picture2481"  width="100%" />
+</p></p>
+<hr>
+<p>新增完成後，在「傳送訊息」按鈕稍微停留下，從跳出的選單中點選「測試按鈕」。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2501.png" alt="Picture2501" id="Picture2501"  width="100%" />
+</p></p>
+<hr>
+<p>在對話框中輸入文字，看機器人是否能順利回應。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/Picture2519.png" alt="Picture2519" id="Picture2519"  width="100%" />
+</p></p>
+<hr>
+<h3 id="補充新增程式開發測試人員角色">補充：新增程式開發/測試人員角色</h3>
 <blockquote>
 <p>》建立通道完成後，目前粉絲專頁中只有開發者自己（擔任管理員的角色）能夠得到機器人的回應，如果要讓更多的人可以共同開發測試這個機器人，需要設定角色。（如果要公開使用，需要另外申請審核）</p>
 </blockquote>
-
-<p>進到「角色」頁面，可依據需求新增「管理員」、「開發人員」或「測試人員」（權限差異請見文字旁「？」的說明）。新增後，需要對方也到「<a href="https://developers.facebook.com/quickstarts" target="_blank">Facebook 開發人員頁面</a>」進行確認後才能使用這個機器人。
-<img src="https://avacheng.github.io/post/pic20191013/PictureN01.png" width="100%"></p>
-
-<hr />
-
+<p>進到「角色」頁面，可依據需求新增「管理員」、「開發人員」或「測試人員」（權限差異請見文字旁「？」的說明）。新增後，需要對方也到「<a href="https://developers.facebook.com/quickstarts" target="_blank" rel="noreferrer noopener">Facebook 開發人員頁面</a>」進行確認後才能使用這個機器人。</p>
+<p><p class="md_image">
+  <img src="https://avacheng.github.io/post/pic20191013/PictureN01.png" alt="PictureN01" id="PictureN01"  width="100%" />
+</p></p>
+<hr>
 <p>&lt;如有轉載，請附上本文連結網址&gt;</p>
 
   
